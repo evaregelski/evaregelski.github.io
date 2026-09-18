@@ -1,0 +1,99 @@
+/* ==========================================================================
+   Resume / work history — scoped styles.
+   Tokens from site.css; .aurora and .glass are shared components.
+   ========================================================================== */
+
+.cv-head{padding-block:clamp(2.5rem,6vw,4rem)}
+.cv-head h1{font-size:clamp(2.4rem,6vw,4rem);font-weight:600;letter-spacing:-.03em}
+.cv-head .eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;color:var(--muted);display:block;margin-bottom:1.25rem}
+.cv-head .profile{max-width:62ch;margin-top:1.5rem;font-size:clamp(1.02rem,1vw+.7rem,1.15rem);color:var(--muted);line-height:1.7}
+.cv-head .cv-actions{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:2rem}
+
+/* ---- skill filter --------------------------------------------------------
+   Clicking a lens dims everything that isn't evidence for it. Nothing is
+   hidden — a recruiter scanning for "research" still sees the whole history,
+   just with the relevant lines brought forward.
+   -------------------------------------------------------------------------- */
+.lenses{padding-block:1.25rem;border-block:1px solid var(--rule)}
+.lenses__in{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center}
+.lenses__lbl{font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;color:var(--muted);margin-right:.5rem}
+.lens{
+  padding:.45em 1em;font-size:.82rem;font-weight:500;font-family:var(--font);
+  background:var(--white);color:var(--muted);border:1.5px solid var(--rule);
+  border-radius:999px;cursor:pointer;transition:all .15s var(--ease)
+}
+.lens:hover{border-color:var(--ink);color:var(--ink)}
+.lens[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.lens--clear{border-style:dashed}
+
+[data-filtered="true"] .role__bullets li:not(.is-match){opacity:.28}
+[data-filtered="true"] .role:not(:has(.is-match)){opacity:.4}
+.role,.role__bullets li{transition:opacity .25s var(--ease)}
+
+/* ---- timeline ------------------------------------------------------------ */
+.cv{padding-block:clamp(2.5rem,6vw,4rem)}
+.cv h2{font-size:clamp(1.5rem,3vw,2rem);font-weight:600;margin-bottom:2rem}
+
+.track{position:relative;padding-left:clamp(1.5rem,4vw,3rem)}
+.track::before{
+  content:"";position:absolute;left:0;top:.6rem;bottom:2rem;width:2px;
+  background:linear-gradient(var(--lime),var(--peri) 55%,var(--rule))
+}
+
+.role{position:relative;margin-bottom:clamp(2rem,4vw,3rem)}
+.role::before{
+  content:"";position:absolute;left:calc(clamp(1.5rem,4vw,3rem) * -1 - 5px);top:.7rem;
+  width:12px;height:12px;border-radius:50%;background:var(--lime);
+  border:2px solid var(--paper);box-shadow:0 0 0 2px var(--lime)
+}
+.role--current::before{background:var(--pink);box-shadow:0 0 0 2px var(--pink)}
+.role--edu::before{background:var(--peri);box-shadow:0 0 0 2px var(--peri)}
+
+.role__when{font-family:var(--mono);font-size:.64rem;letter-spacing:.12em;color:var(--muted)}
+.role__title{font-size:clamp(1.15rem,2vw,1.45rem);font-weight:600;margin-top:.45rem;line-height:1.25}
+.role__org{color:var(--pink-text)}
+.role__note{max-width:62ch;margin-top:.75rem;color:var(--muted)}
+
+.role__bullets{margin-top:1.1rem;max-width:64ch}
+.role__bullets li{position:relative;padding-left:1.3rem;color:var(--muted);line-height:1.6}
+.role__bullets li + li{margin-top:.6rem}
+.role__bullets li::before{
+  content:"";position:absolute;left:0;top:.62em;width:7px;height:7px;
+  background:var(--lime);border-radius:1px
+}
+.role__bullets li strong{color:var(--ink);font-weight:600}
+
+/* case studies attached to the role they came out of */
+.role__cases{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.25rem}
+.casechip{
+  display:inline-flex;align-items:center;gap:.5rem;padding:.55em 1em;
+  font-size:.85rem;font-weight:600;border-radius:3px;
+  border:1.5px solid var(--ink);color:var(--ink);
+  transition:background-color .15s,color .15s,border-color .15s,transform .15s var(--ease)
+}
+.casechip:hover{background:var(--lime);border-color:var(--lime);transform:translateY(-2px)}
+.casechip svg{flex:none}
+.casechip__lbl{font-family:var(--mono);font-size:.58rem;letter-spacing:.12em;color:var(--muted)}
+
+/* ---- expertise ----------------------------------------------------------- */
+.kit{padding-block:clamp(2.5rem,6vw,4rem);border-top:1px solid var(--rule)}
+.kit__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));gap:1.25rem;margin-top:1.75rem}
+.kit__col h3{font-family:var(--mono);font-size:.64rem;letter-spacing:.12em;color:var(--muted);font-weight:400;margin-bottom:.9rem}
+.kit__col ul{display:flex;flex-wrap:wrap;gap:.4rem}
+.kit__col li{
+  padding:.35em .75em;font-size:.82rem;color:var(--ink);
+  background:rgba(255,255,255,.6);border:1px solid var(--rule);border-radius:999px
+}
+
+@media(max-width:44rem){
+  .track{padding-left:1.35rem}
+  .role::before{left:-1.35rem;margin-left:-5px}
+}
+
+/* keep it sane on paper — people do print these */
+@media print{
+  .site-bar,.site-foot,.lenses,.cv-actions,.aurora::before,.aurora::after{display:none!important}
+  body{background:#fff}
+  .role{break-inside:avoid}
+  .casechip{border:0;padding:0;font-weight:400;text-decoration:underline}
+}

@@ -303,3 +303,61 @@ p{margin:0}a{color:inherit;text-decoration:none}ul{margin:0;padding:0;list-style
 .worklist__head{margin-bottom:2.5rem}
 .worklist__head h1{font-size:clamp(2.2rem,5vw,3.4rem);font-weight:600;letter-spacing:-.03em}
 .worklist__head p{max-width:52ch;margin-top:1rem;color:var(--muted)}
+
+/* ==========================================================================
+   .aurora — slow colour wash behind a section.
+   Three blurred blobs on two layers. Lime stays left so it never haloes
+   artwork on the right. Dies completely under prefers-reduced-motion,
+   which the global rule at the top of this file already enforces.
+   ========================================================================== */
+.aurora{position:relative;overflow:hidden;isolation:isolate}
+.aurora > .wrap{position:relative;z-index:1}
+.aurora::before,.aurora::after{
+  content:"";position:absolute;inset:-25%;z-index:0;pointer-events:none;
+  filter:blur(70px);will-change:transform
+}
+.aurora::before{
+  background:
+    radial-gradient(38% 46% at 18% 42%, rgba(184,240,74,.78), transparent 70%),
+    radial-gradient(30% 38% at 52% 76%, rgba(91,79,214,.30), transparent 70%);
+  animation:aurora-a 26s var(--ease) infinite alternate
+}
+.aurora::after{
+  background:
+    radial-gradient(26% 34% at 44% 22%, rgba(255,72,177,.36), transparent 70%),
+    radial-gradient(22% 28% at 8% 84%, rgba(255,72,177,.24), transparent 70%);
+  animation:aurora-b 34s var(--ease) infinite alternate
+}
+@keyframes aurora-a{from{transform:translate3d(0,0,0) scale(1)}   to{transform:translate3d(4%,-3%,0) scale(1.12)}}
+@keyframes aurora-b{from{transform:translate3d(0,0,0) scale(1.06)} to{transform:translate3d(-5%,4%,0) scale(1)}}
+
+/* quieter variant for sections that carry a lot of content */
+.aurora--soft::before{background:
+  radial-gradient(42% 50% at 14% 38%, rgba(184,240,74,.42), transparent 72%),
+  radial-gradient(34% 42% at 62% 80%, rgba(91,79,214,.20), transparent 72%)}
+.aurora--soft::after{background:
+  radial-gradient(30% 38% at 78% 24%, rgba(255,72,177,.22), transparent 72%),
+  radial-gradient(24% 30% at 30% 90%, rgba(255,72,177,.14), transparent 72%)}
+
+@media(max-width:60rem){.aurora::before,.aurora::after{opacity:.75}}
+
+/* ==========================================================================
+   .glass — frosted panel. Needs colour behind it to be worth anything,
+   so it only goes on elements sitting over an .aurora.
+   ========================================================================== */
+.glass{
+  background:rgba(255,255,255,.62);
+  border:1px solid rgba(255,255,255,.75);
+  box-shadow:0 1px 2px rgba(17,17,20,.04), 0 8px 24px rgba(17,17,20,.06);
+  -webkit-backdrop-filter:blur(16px) saturate(1.6);
+  backdrop-filter:blur(16px) saturate(1.6)
+}
+/* without backdrop-filter the panel would read as washed-out paper, so
+   fall back to something solid enough to keep text at AA */
+@supports not ((backdrop-filter:blur(2px)) or (-webkit-backdrop-filter:blur(2px))){
+  .glass{background:rgba(255,255,255,.93)}
+}
+
+/* two figures that must read as a matched pair (e.g. persona portraits) */
+.two-up--match .shell{aspect-ratio:3/4;display:grid}
+.two-up--match .shell img{width:100%;height:100%;object-fit:cover}

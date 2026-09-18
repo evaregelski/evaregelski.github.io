@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cryptid Quest — game UI and onboarding — Eva Regelski</title>
+<meta name="description" content="Designing the UI and tutorial for Cryptid Quest, a location-aware game — validated with a 41-participant card sort and usability tested across three days of gameplay.">
+<meta property="og:title" content="Cryptid Quest — game UI and onboarding — Eva Regelski">
+<meta property="og:description" content="A tutorial that teaches without getting in the way. Fifteen interviews, a 41-person card sort, and a usability test that found the real problem.">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:image" content="https://evaregelski.github.io/assets/mappa-cover.jpg">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../assets/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=Silkscreen&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../styles/site.css">
+</head>
+<body>
+<header class="site-bar"><div class="wrap bar__in">
+  <a class="mark" href="../../index.html"><span class="e">E</span>va Regelski</a>
+  <button class="navtoggle" type="button" aria-expanded="false" aria-controls="sitenav"><span></span><span class="visually-hidden">Menu</span></button>
+  <nav id="sitenav" aria-label="Main"><ul><li><a href="../../work.html" aria-current="page">Work</a></li><li><a href="../../development.html">Development</a></li><li><a href="../../illustration.html">Illustration</a></li><li><a href="../../resume.html">Resume</a></li><li><a href="../../about.html">About</a></li><li><a href="../../index.html#contact">Contact</a></li></ul></nav>
+</div></header>
+
+<section class="hero"><div class="wrap hero__in">
+  <div class="hero__grid">
+    <div>
+      <p class="client">Mappa</p>
+      <h1>A tutorial that teaches the game without talking down to the player</h1>
+      <p class="sub">Cryptid Quest is a location-aware game where players explore the real world hunting creatures never proven to exist. We designed its UI and the first three days of onboarding — then tested it and found out the part we were proudest of wasn't the problem.</p>
+    </div>
+    <figure class="hero__mark">
+      <svg viewBox="0 0 320 240" role="img" aria-label="Diagram: four overlapping tutorial requirements — teach, comfort, excite, respect">
+        <g fill="none" stroke="#b8f04a" stroke-width="1.3">
+          <circle cx="160" cy="96" r="52"/><circle cx="160" cy="144" r="52"/>
+          <circle cx="136" cy="120" r="52"/><circle cx="184" cy="120" r="52"/>
+        </g>
+        <circle cx="160" cy="120" r="9" fill="#ff48b1"/>
+        <g fill="rgba(247,246,242,.62)" font-family="'Space Mono',monospace" font-size="9" letter-spacing="1" text-anchor="middle">
+          <text x="160" y="32">TEACH</text>
+          <text x="160" y="222">RESPECT</text>
+        </g>
+        <g fill="rgba(247,246,242,.62)" font-family="'Space Mono',monospace" font-size="9" letter-spacing="1">
+          <text x="10" y="124">COMFORT</text>
+          <text x="258" y="124">EXCITE</text>
+        </g>
+        <g fill="#ff48b1" font-family="'Space Mono',monospace" font-size="8" letter-spacing="1" text-anchor="middle">
+          <text x="160" y="150">ALL FOUR</text>
+        </g>
+      </svg>
+      <figcaption>FIG. 00 — MISS ONE AND PLAYERS DISENGAGE</figcaption>
+    </figure>
+  </div>
+  <dl class="rail">
+    <div><dt>ROLE</dt><dd>Researcher, designer, tester</dd></div>
+    <div><dt>TEAM</dt><dd>Five, with Margaret Payne, Rae Bernstein, Andrew Koo and Shalyse Pierce</dd></div>
+    <div><dt>TIMELINE</dt><dd>3-week sprint</dd></div>
+    <div><dt>TOOLS</dt><dd>Figma, Procreate, Optimal Workshop</dd></div>
+  </dl>
+</div></section>
+
+<section class="outcome"><dl class="wrap outcome__in">
+  <div><dt>RESEARCH</dt><dd>15 interviews, a 41-person card sort, 10 usability sessions</dd></div>
+  <div><dt>MEASURED</dt><dd>SUS 66/100 — and we named why</dd></div>
+  <div><dt>DELIVERED</dt><dd>Tutorial and UI for the first three days of play, mobile and desktop</dd></div>
+</dl></section>
+
+<div class="wrap body">
+  <aside class="toc">
+    <p>ON THIS PAGE</p>
+    <a href="#brief" class="on">The brief</a>
+    <a href="#discover">Discover</a>
+    <a href="#users">The players</a>
+    <a href="#tutorial">The tutorial</a>
+    <a href="#ia">Information architecture</a>
+    <a href="#testing">Testing</a>
+    <a href="#changes">What changed</a>
+    <a href="#prototype">The prototype</a>
+    <a href="#reflection">Reflection</a>
+  </aside>
+
+  <div>
+    <section class="sec" id="brief">
+      <h2>The brief</h2>
+      <p>Mappa is a mobile-first metaverse platform that gamifies the globe through location-aware social gaming. The founders brought our team on ahead of their go-to-market launch to design the UI and tutorial for their flagship game, <strong>Cryptid Quest</strong> — players explore the real world to find creatures never proven to exist.</p>
+
+      <div class="two-up">
+        <figure>
+          <div class="shell" style="padding:1.25rem"><p style="margin:0;font-size:.95rem;line-height:1.6"><b>Our task</b><br>Solidify game UI for mobile and desktop, and establish flows and interactions for the first three days of gameplay.</p></div>
+        </figure>
+        <figure>
+          <div class="shell" style="padding:1.25rem"><p style="margin:0;font-size:.95rem;line-height:1.6"><b>Priorities for UI</b><br>Information architecture, and an in-game tutorial that respects the player's intelligence.</p></div>
+        </figure>
+      </div>
+
+      <p>That second priority is the whole project in one line. <strong>Every game has a tutorial. Most of them are resented.</strong> The brief wasn't to build one, it was to build one players wouldn't want to skip — while also letting them skip it.</p>
+
+      <figure class="figure figure--wide">
+        <div class="shell"><img class="zoomable" data-group="mappa" data-caption="Four phases: Discover, Define, Design, Deliver" src="assets/design-process.png" alt="Process diagram showing four phases — Discover, Define, Design, Deliver" loading="lazy"></div>
+        <figcaption>Discover, Define, Design, Deliver</figcaption>
+      </figure>
+    </section>
+
+    <section class="sec" id="discover">
+      <h2>Discover</h2>
+      <p>Competitive and comparative analysis, heuristic evaluations, user interviews and affinity mapping. Two competitors did most of the work for us.</p>
+
+      <h3>Superworld — how to handle a map</h3>
+      <p>Mappa gave us several competitors to look at; Superworld, a virtual real estate platform mapped over the globe, was the most relevant. Its map is the part of a location-aware game people touch constantly, so the conventions it had already settled — a plain search bar, pinch-pan-zoom, tapping into an area for detail — were conventions we had no reason to reinvent.</p>
+
+      <figure class="figure">
+        <div class="shell"><img class="zoomable" data-group="mappa" data-caption="Superworld's map UI — the benchmark for navigation in a location-aware game" src="assets/superworld-map.jpg" alt="Superworld's map interface showing a city map divided into purchasable plots with a search bar" loading="lazy"></div>
+        <figcaption>Superworld — search, pinch-pan-zoom, tap an area for detail</figcaption>
+      </figure>
+
+      <h3>Pokémon GO — how to teach without lecturing</h3>
+      <p>For onboarding we studied Pokémon GO, because it does something rare well: it teaches just enough to get players invested without overwhelming them. We pulled out five elements.</p>
+
+      <figure class="figure figure--wide">
+        <div class="shell"><img class="zoomable" data-group="mappa" data-caption="Five elements of Pokémon GO's onboarding: goal, first task, guiding, reward, solo exploration" src="assets/pokemon-go.jpg" alt="Five Pokémon GO onboarding screens labelled Goal, First Task, Guiding, Reward and Solo Exploration" loading="lazy"></div>
+        <figcaption>Goal, first task, guiding, reward, solo exploration</figcaption>
+      </figure>
+
+      <ul class="bul">
+        <li><strong>Goal</strong> — clear context on the objective and story from the start.</li>
+        <li><strong>First task</strong> — an early, easy one that teaches mechanics without pressure.</li>
+        <li><strong>Guiding</strong> — simple language and non-invasive prompts that don't interrupt play. This became a core principle.</li>
+        <li><strong>Reward</strong> — immediate feedback after the first task.</li>
+        <li><strong>Solo exploration</strong> — the tutorial trusts players to work some things out themselves.</li>
+      </ul>
+
+      <h3>Fifteen interviews</h3>
+      <p>Ages 20 to 43. Four women, ten men, one non-binary participant. Four themes came out.</p>
+
+      <figure class="figure">
+        <div class="shell"><img class="zoomable" data-group="mappa" data-caption="Affinity map: four main types of gamers, plotted across variety/balance and progression/challenge" src="assets/affinity-themes.png" alt="Affinity map diagram plotting four gamer types across axes of variety and balance against progression and challenge" loading="lazy"></div>
+        <figcaption>Where the interview themes landed</figcaption>
+      </figure>
+
+      <ul class="bul">
+        <li>Players split into two camps: those who <strong>play to escape and relax</strong>, often while multitasking, and those who play for <strong>socialization, excitement and lore</strong>.</li>
+        <li>Tutorials should be <strong>minimal and skippable</strong> — but still engaging enough to keep players invested.</li>
+        <li>Players want to feel like they're <strong>making progress</strong> and overcoming challenges, large and small.</li>
+        <li>Players value <strong>variety</strong>, and a balance between challenge and task completion.</li>
+      </ul>
+
+      <div class="insight">
+        <p>Minimal and skippable, but engaging enough to stay invested. Those pull in opposite directions, and holding both is the actual design problem.</p>
+        <span>THE TENSION THE WHOLE TUTORIAL HAD TO RESOLVE</span>
+      </div>
+    </section>
+
+    <section class="sec" id="users">
+      <h2>The players</h2>
+      <p>Two proto-personas, grounded in the interviews and in Quantic Foundry's research on gamer motivations. They exist to represent the two camps — and to stop us designing for an average player who doesn't exist.</p>
+
+      <div class="two-up two-up--match">
+        <figure>
+          <div class="shell"><img class="zoomable" data-group="mappa" data-caption="Brian, the Bard — 29, San Francisco, realtor. Competitive, prefers desktop." src="assets/persona-brian.jpg" alt="Portrait of Brian, a man in headphones and a flannel shirt" loading="lazy"></div>
+          <figcaption><b>Brian, the Bard</b> — 29, realtor, competitive, desktop-first. Wants quick, low-friction play and cross-device progress. Frustrated by slow tutorials, pay-to-win pricing, and required daily tasks.</figcaption>
+        </figure>
+        <figure>
+          <div class="shell"><img class="zoomable" data-group="mappa" data-caption="Gil, the Gardener — 31, San Juan, sales rep. Busy, newly relocated, multitasks." src="assets/persona-gil.jpg" alt="Portrait of Gil, a man on a sofa looking at his phone" loading="lazy"></div>
+          <figcaption><b>Gil, the Gardener</b> — 31, sales rep, newly relocated to Puerto Rico. Plays to decompress and stay connected to friends back home. Frustrated by long tutorials and too much direction.</figcaption>
+        </figure>
+      </div>
+
+      <p><strong>Brian and Gil want opposite things from a tutorial.</strong> Brian wants it gone. Gil wants it gentle. Designing for one breaks the other — which is why skip controls and non-invasive prompts stopped being nice-to-haves and became the mechanism.</p>
+
+      <h3>How might we</h3>
+      <figure class="figure figure--wide">
+        <div class="shell"><img class="zoomable" data-group="mappa" data-caption="Three focus areas: tutorial, information architecture, building progress" src="assets/three-focuses.png" alt="Three labelled blocks: Tutorial, Information Architecture, Building Progress" loading="lazy"></div>
+        <figcaption>Where research pointed us</figcaption>
+      </figure>
+
+      <div class="insight">
+        <p>Players need a fast, low-friction way to learn Cryptid Quest so they can start making progress, have fun with friends, and settle into immersive gameplay — without feeling talked down to.</p>
+        <span>THE PROBLEM STATEMENT</span>
+      </div>
+
+      <p>We were designing inside real constraints: a web-based game with an existing style guide, and a client who wanted simple, clean UI. Our research added a requirement the brief hadn't: <strong>the game needed a story strong enough to hold attention from the first screen.</strong> That turned out to be the finding that mattered most.</p>
+    </section>
+
+    <section class="sec" id="tutorial">
+      <h2>The tutorial</h2>
+      <p>Before designing anything I wanted the approach grounded in both our research and established practice. A tutorial has to do four things at once: <strong>teach the game, comfort the player, excite them about what's ahead, and respect their intelligence.</strong> Miss any one and players disengage.</p>
+
+      <figure class="figure figure--phone">
+        <div class="shell"><img class="zoomable" data-group="mappa" data-caption="The four-part framework — teach, comfort, excite, respect — overlapping at the centre" src="assets/perfect-tutorial.png" alt="Venn-style diagram with four overlapping circles labelled Teach, Comfort, Excite and Respect, meeting at a point marked Perfect Tutorial" loading="lazy"></div>
+        <figcaption>The framework that became our north star</figcaption>
+      </figure>
+
+      <h3>Three days, sketched</h3>
+      <p>Mappa asked us to structure onboarding around the first three days of play. We ran a design studio and sketched flows against all four principles.</p>
+
+      <div class="three-up">
+        <figure>
+          <div class="shell"><img class="zoomable" data-group="mappa" data-caption="Day 1 sketches — login, objective, meeting your helper, exploring" src="assets/sketches-day1.png" alt="Hand-drawn Day 1 flow sketches across eight phone frames" loading="lazy"></div>
+          <figcaption><b>Day 1</b> — what the game is, what quests are, what a helper is and how they assist</figcaption>
+        </figure>
+        <figure>
+          <div class="shell"><img class="zoomable" data-group="mappa" data-caption="Day 2 sketches — helper returns with a clue, shop visit, buying and equipping" src="assets/sketches-day2.png" alt="Hand-drawn Day 2 flow sketches across eight phone frames" loading="lazy"></div>
+          <figcaption><b>Day 2</b> — what you do between quest searches: the shop, an item, equipping it</figcaption>
+        </figure>
+        <figure>
+          <div class="shell"><img class="zoomable" data-group="mappa" data-caption="Day 3 sketches — final clue, mini game, reward" src="assets/sketches-day3.png" alt="Hand-drawn Day 3 flow sketches across eight phone frames" loading="lazy"></div>
+          <figcaption><b>Day 3</b> — the final clue, a mini game, the reward</figcaption>
+        </figure>
+      </div>
+
+      <p>The storyboard that came out of that studio became the experience we built and tested.</p>
+    </section>
+
+    <section class="sec" id="ia">
+      <h2>Information architecture</h2>
+      <p>We had a sense of best practice from the research, but a sense isn't validation. <strong>We ran a hybrid open/closed card sort with 41 participants</strong> to find out how players would naturally group game features and controls.</p>
+
+      <figure class="figure figure--phone">
+        <div class="shell"><img class="zoomable" data-group="mappa" data-caption="The cards participants sorted — quests, wallet, emotes, helpers, voice chat, world map, progress bar, toggle tutorial" src="assets/card-sort-cards.png" alt="Scattered cards labelled Toggle Tutorial, Wallet, World Map, Voice Chat, Emotes, Progress Bar, Helpers and Quests" loading="lazy"></div>
+        <figcaption>41 participants, one pile of controls</figcaption>
+      </figure>
+
+      <p>The results largely confirmed our assumptions — which is a useful outcome, not a wasted study. <strong>It meant we could design against evidence rather than instinct</strong>, and it settled three homes for everything in the game.</p>
+
+      <div class="three-up">
+        <figure>
+          <div class="shell"><img class="zoomable" data-group="mappa" data-caption="Card sort result — main menu grouping" src="assets/card-sort-menu.png" alt="Card sort column: Friends, Player Profile, Player Stats, Share Link to Game, Wallet" loading="lazy"></div>
+          <figcaption>Main menu</figcaption>
+        </figure>
+        <figure>
+          <div class="shell"><img class="zoomable" data-group="mappa" data-caption="Card sort result — system preferences grouping" src="assets/card-sort-prefs.png" alt="Card sort column: Customize Controls, Logout, Settings, Text Chat, Toggle Tutorial, Voice Chat" loading="lazy"></div>
+          <figcaption>System preferences</figcaption>
+        </figure>
+        <figure>
+          <div class="shell"><img class="zoomable" data-group="mappa" data-caption="Card sort result — HUD grouping" src="assets/card-sort-hud.png" alt="Card sort column: Clues, Emotes, Fast Travel, Helpers, Inventory, Items, Progress Bar, Quests, Shop, World Map" loading="lazy"></div>
+          <figcaption>Heads-up display</figcaption>
+        </figure>
+      </div>
+
+      <h3>Site map</h3>
+      <figure class="figure figure--wide">
+        <div class="shell"><img class="zoomable" data-group="mappa" data-caption="Full game site map — main menu, system preferences, and items on screen during gameplay" src="assets/sitemap-full.png" alt="Full game site map branching into main button, system preferences and on-screen gameplay items" loading="lazy"></div>
+        <figcaption>Everything, in three homes</figcaption>
+      </figure>
+
+      <div class="three-up">
+        <figure>
+          <div class="shell"><img class="zoomable" data-group="mappa" data-caption="Main menu branch — Friends, Shop, Profile, Quests, Inventory, Helpers" src="assets/sitemap-menu.png" alt="Site map detail of the main button branch" loading="lazy"></div>
+          <figcaption><b>Main menu</b> — everything players reach for constantly, in one quick-access place</figcaption>
+        </figure>
+        <figure>
+          <div class="shell"><img class="zoomable" data-group="mappa" data-caption="System preferences branch — logout, account settings, controls, toggle tutorial" src="assets/sitemap-prefs.png" alt="Site map detail of the system preferences branch" loading="lazy"></div>
+          <figcaption><b>System preferences</b> — account, controls, and toggling the tutorial on or off at any time</figcaption>
+        </figure>
+        <figure>
+          <div class="shell"><img class="zoomable" data-group="mappa" data-caption="HUD branch — world map, skip tutorial, communication" src="assets/sitemap-hud.png" alt="Site map detail of the on-screen gameplay branch" loading="lazy"></div>
+          <figcaption><b>HUD</b> — visible at all times: world map, skip tutorial, communication hub</figcaption>
+        </figure>
+      </div>
+
+      <p>Note where <strong>toggle tutorial</strong> sits — in preferences <em>and</em> on the HUD. Players told us they wanted tutorials skippable; putting the escape hatch only in a settings menu would have been a way of saying yes while meaning no.</p>
+    </section>
+
+    <section class="sec" id="testing">
+      <h2>Testing</h2>
+      <p>Mappa is mobile-first, so we designed and tested mobile before adapting to desktop. The mid-fidelity wireframes cover Day 1 through Day 3 — street view, main menu, tutorial screens, helper profile.</p>
+
+      <figure class="figure figure--wide">
+        <div class="shell"><img class="zoomable" data-group="mappa" data-caption="Mid-fidelity mobile wireframes across the three-day flow" src="assets/wireframes-mobile.png" alt="Four mid-fidelity mobile wireframes showing street view, a control grid, a tutorial screen and a helper profile" loading="lazy"></div>
+        <figcaption>Mid-fidelity mobile — the version we put in front of people</figcaption>
+      </figure>
+
+      <p>Ten participants walked the full three days, with tasks broken out by day.</p>
+
+      <figure class="figure figure--wide">
+        <div class="shell"><img class="zoomable" data-group="mappa" data-caption="Test tasks grouped by day" src="assets/test-tasks.png" alt="Banner showing Day 1 onboarding and first task, Day 2 shop and inventory, Day 3 completing first quest" loading="lazy"></div>
+        <figcaption></figcaption>
+      </figure>
+
+      <ul class="bul">
+        <li><strong>Day 1</strong> — account creation, tutorial walkthrough, main menu navigation, map navigation, quest navigation, learning more about a quest.</li>
+        <li><strong>Day 2</strong> — login and explore, collect loot, visit the shop, check inventory.</li>
+        <li><strong>Day 3</strong> — login and explore, find a chest and collect items, complete the Yeti quest.</li>
+      </ul>
+
+      <p>We collected three kinds of data: quantitative error rates, qualitative emotional response, and a System Usability Score with written feedback.</p>
+
+      <div class="stats">
+        <div class="stat"><b>8%</b><span>AVERAGE ERROR RATE</span></div>
+        <div class="stat"><b>76%</b><span>TASKS COMPLETED CLEANLY</span></div>
+        <div class="stat"><b>66</b><span>SYSTEM USABILITY SCORE / 100</span></div>
+      </div>
+
+      <div class="chart">
+        <div class="chart__head">
+          <p class="chart__q">How did tasks actually end?</p>
+          <span class="chart__n">10 PARTICIPANTS</span>
+        </div>
+        <div class="chart__row" data-key="1">
+          <span class="chart__label">Completed, no issue</span>
+          <div class="chart__track"><div class="chart__fill" style="width:76%"></div></div>
+          <span class="chart__val">76%</span>
+        </div>
+        <div class="chart__row" data-key="2">
+          <span class="chart__label">Completed, minor issue</span>
+          <div class="chart__track"><div class="chart__fill" style="width:15%"></div></div>
+          <span class="chart__val">15%</span>
+        </div>
+        <div class="chart__row">
+          <span class="chart__label">Completed, major error</span>
+          <div class="chart__track"><div class="chart__fill" style="width:6%"></div></div>
+          <span class="chart__val">6%</span>
+        </div>
+        <div class="chart__row" data-key="0">
+          <span class="chart__label">Failed</span>
+          <div class="chart__track"><div class="chart__fill" style="width:3%"></div></div>
+          <span class="chart__val">3%</span>
+        </div>
+      </div>
+
+      <div class="two-up">
+        <figure>
+          <div class="shell"><img class="zoomable" data-group="mappa" data-caption="Average error rate across tasks" src="assets/chart-error-rate.png" alt="Bar chart of average error rate by category" loading="lazy"></div>
+          <figcaption>Average error rate</figcaption>
+        </figure>
+        <figure>
+          <div class="shell"><img class="zoomable" data-group="mappa" data-caption="Success rate by task, with the problem tasks annotated" src="assets/chart-success-by-task.png" alt="Stacked bar chart of success rate by task with the problematic tasks annotated in red" loading="lazy"></div>
+          <figcaption>Success rate by task — the red bands are where to look</figcaption>
+        </figure>
+      </div>
+
+      <p>Breaking success down <em>by task</em> rather than reporting one average is what made the results actionable. An 8% error rate tells you nothing about what to fix. The per-task view named the specific screens that were failing.</p>
+
+      <div class="insight">
+        <p>A System Usability Score of 66 is below average. Players could navigate and complete tasks — they just weren't enjoying it as much as we'd assumed.</p>
+        <span>THE NUMBER WE DIDN'T WANT, AND THE MOST USEFUL ONE WE GOT</span>
+      </div>
+
+      <h3>What the sessions said</h3>
+      <div class="two-up">
+        <figure>
+          <div class="shell" style="padding:1.25rem"><p style="margin:0;font-size:.95rem;line-height:1.7"><b>Done well</b><br>Easy to use<br>Quick to learn</p></div>
+        </figure>
+        <figure>
+          <div class="shell" style="padding:1.25rem"><p style="margin:0;font-size:.95rem;line-height:1.7"><b>Needs improvement</b><br>Unclear on the game's goal and story<br>Bottom of screen is cluttered<br>Tutorial flexibility</p></div>
+        </figure>
+      </div>
+
+      <p><strong>Easy to use and quick to learn, but unclear on the point of it all.</strong> We had built a tutorial that successfully taught the mechanics of a game players didn't understand the purpose of. That's the finding the whole second half of the project turned on.</p>
+    </section>
+
+    <section class="sec" id="changes">
+      <h2>What changed</h2>
+
+      <h3>The story, moved to the front</h3>
+      <p>Players were confused about <em>why</em> they were hunting cryptids. We reworked the intro to establish the objective and emotional tone far earlier — making sure five things land before play begins: what cryptids are, why they need finding, why clues appear in everyday places, how to find them, and who your helper is.</p>
+      <p>All of it front-loaded into short, skippable screens. <strong>Get it out of the way fast, so players start oriented and excited rather than confused.</strong></p>
+
+      <h3>Decluttering the bottom bar</h3>
+      <p>Testing showed the crowded bottom of the screen was making the main menu — the most frequently needed control in the game — hard to find. We cleared the bar and prioritized the menu button, then moved the communication features we'd displaced into a new hub in the top left: voice chat, messaging, emotes and notifications in one place.</p>
+
+      <figure class="figure figure--wide">
+        <div class="shell"><img class="zoomable" data-group="mappa" data-caption="Mobile UI before and after — communication hub added, main menu prioritized" src="assets/mobile-ui-changes.png" alt="Before and after mobile screens showing the communication hub moved to the top left and the main menu button prioritized at the bottom" loading="lazy"></div>
+        <figcaption>Before, after, and the menu open</figcaption>
+      </figure>
+
+      <h3>Mobile to desktop</h3>
+      <p>On desktop, a single button at the bottom made less sense than a persistent sidebar down the left edge — using the wider screen without stealing attention from the game world. Players can keep it open or collapsed.</p>
+
+      <figure class="figure figure--wide">
+        <div class="shell"><img class="zoomable" data-group="mappa" data-caption="Desktop main menu, open and collapsed" src="assets/desktop-main-menu.png" alt="Two desktop game screens showing the left sidebar menu open and collapsed" loading="lazy"></div>
+        <figcaption>Desktop — menu open, menu closed</figcaption>
+      </figure>
+
+      <h3>Chat, built out</h3>
+      <p>The communication hub grew from a text bar at the bottom of the screen into something that works mid-game. Incoming messages appear as a quick-reply overlay inside the game world; clicking through shows recent conversation history without leaving play.</p>
+
+      <div class="three-up">
+        <figure>
+          <div class="shell"><img class="zoomable" data-group="mappa" data-caption="Mobile chat — the original bar at the bottom of the screen" src="assets/chat-mobile.png" alt="Mobile game screen with a chat bar at the bottom" loading="lazy"></div>
+          <figcaption>Where it started</figcaption>
+        </figure>
+        <figure>
+          <div class="shell"><img class="zoomable" data-group="mappa" data-caption="Desktop — an incoming message as a quick-reply overlay" src="assets/chat-desktop.png" alt="Desktop game screen with an incoming message overlay in the corner" loading="lazy"></div>
+          <figcaption>Incoming, with quick reply</figcaption>
+        </figure>
+        <figure>
+          <div class="shell"><img class="zoomable" data-group="mappa" data-caption="Desktop — full messages panel with conversation history" src="assets/chat-built-out.png" alt="Desktop game screen with a full messages panel open showing conversation history" loading="lazy"></div>
+          <figcaption>Full history, on demand</figcaption>
+        </figure>
+      </div>
+
+      <h3>Respecting the player</h3>
+      <p>With the story fixed, the mechanics themselves. The principle: teach what's needed without making anyone feel babysat. We used <strong>small, non-invasive guiding gestures</strong> rather than pop-up instruction walls — Brian can ignore them entirely, Gil gets just enough support — and added skip buttons and back arrows throughout so players control their own pace.</p>
+
+      <figure class="figure figure--wide">
+        <div class="shell"><img class="zoomable" data-group="mappa" data-caption="Non-invasive guiding gestures, and a persistent option to skip the tutorial" src="assets/respect-tutorial.png" alt="Game screen annotated to show a small guiding gesture on the left and a skip tutorial option at the bottom right" loading="lazy"></div>
+        <figcaption>A nudge, not a wall — and always a way out</figcaption>
+      </figure>
+    </section>
+
+    <section class="sec" id="prototype">
+      <h2>The prototype</h2>
+      <p>The revised tutorial, running. Each clip covers one day of the onboarding flow.</p>
+
+      <figure class="figure">
+        <div class="shell"><video controls playsinline preload="none" poster="assets/poster-tutorial.jpg" title="The reworked intro story"><source src="assets/tutorial.mp4" type="video/mp4"></video></div>
+        <figcaption>The reworked intro — objective, story and your first clue, in skippable screens</figcaption>
+      </figure>
+
+      <figure class="figure">
+        <div class="shell"><video controls playsinline preload="none" poster="assets/poster-day1.jpg" title="Day 1 — intro and deploying your helper"><source src="assets/day1.mp4" type="video/mp4"></video></div>
+        <figcaption><b>Day 1</b> — account creation, the objective, cryptids and quests, deploying your helper</figcaption>
+      </figure>
+
+      <figure class="figure">
+        <div class="shell"><video controls playsinline preload="none" poster="assets/poster-day2.jpg" title="Day 2 — buying items and chatting"><source src="assets/day2.mp4" type="video/mp4"></video></div>
+        <figcaption><b>Day 2</b> — a helper returns with a clue and coins, the shop, equipping an item, in-game chat</figcaption>
+      </figure>
+
+      <figure class="figure">
+        <div class="shell"><video controls playsinline preload="none" poster="assets/poster-day3.jpg" title="Day 3 — finishing the first quest"><source src="assets/day3.mp4" type="video/mp4"></video></div>
+        <figcaption><b>Day 3</b> — the final clue, the mini game, the reward</figcaption>
+      </figure>
+    </section>
+
+    <section class="sec" id="reflection">
+      <h2>Next steps, and what I'd take from it</h2>
+
+      <ul class="bul">
+        <li><strong>A/B testing across mobile and desktop</strong> — we tested mobile and adapted desktop from it. The desktop version was never put in front of users.</li>
+        <li><strong>Expand the cryptid lore</strong> — deeper world-building, for more emotional investment in the quest narrative.</li>
+        <li><strong>Usability testing for wallet integration</strong> — how the wallet and cryptocurrency features affect gameplay and comprehension.</li>
+      </ul>
+
+      <p><strong>The most valuable thing we learned was the thing we got wrong.</strong> We spent our energy on tutorial mechanics — teaching people how to tap, where to find the menu, how helpers work. Testing showed the mechanics landed. What hadn't landed was <em>why any of it mattered</em>. Players could operate Cryptid Quest perfectly while having no idea what they were doing in it.</p>
+
+      <p><strong>A middling SUS score was more useful than a good one.</strong> 66 out of 100 forced a real diagnosis. If it had come back at 85 we'd have shipped a game that taught its controls beautifully and left players cold, and we wouldn't have known until launch.</p>
+
+      <p><strong>Designing for two opposed personas produced better mechanics than designing for one.</strong> Brian wanted the tutorial gone; Gil wanted it gentle. Neither could be served by tuning the tutorial's length. Both were served by giving the player the controls — skip, back, toggle — and making the guidance quiet enough to ignore. The conflict is what pushed us past a compromise into a mechanism.</p>
+
+      <p>What I'd do differently: test the story before testing the interface. We validated the information architecture with 41 people and never once asked whether the premise made sense. That question would have cost an afternoon.</p>
+    </section>
+  </div>
+</div>
+
+<div class="lb" data-lb aria-hidden="true" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <div class="lb__top">
+    <span class="lb__count" data-lb-count></span>
+    <button class="lb__close" data-lb-close aria-label="Close viewer">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+  <div class="lb__stage" data-lb-stage data-zoom="false"><img data-lb-img alt=""></div>
+  <div class="lb__bottom">
+    <span data-lb-caption></span>
+    <span class="lb__nav">
+      <button data-lb-prev aria-label="Previous image"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <button data-lb-next aria-label="Next image"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
+    </span>
+  </div>
+</div>
+
+<section class="nextproj"><div class="wrap nextproj__in">
+  <div><span>NEXT PROJECT</span><h2>A job-matching app for Ukrainian refugees, designed and built in 2.5 days</h2></div>
+  <a class="btn" href="../robota/index.html">View project</a>
+</div></section>
+<footer class="site-foot"><div class="wrap foot__in">
+  <p class="foot__mark"><span class="e">E</span>va Regelski</p>
+  <nav aria-label="Footer"><ul><li><a href="../../work.html">Work</a></li><li><a href="../../development.html">Development</a></li><li><a href="../../illustration.html">Illustration</a></li><li><a href="../../resume.html">Resume</a></li><li><a href="../../about.html">About</a></li></ul></nav>
+  <p class="foot__fine">© <span data-year>2026</span> Eva Regelski · Cleveland, Ohio</p>
+</div></footer>
+<script src="../../js/site.js"></script>
+<script>document.querySelectorAll('[data-year]').forEach(function(e){e.textContent=new Date().getFullYear()});</script>
+</body>
+</html>

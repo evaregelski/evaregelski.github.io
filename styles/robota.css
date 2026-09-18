@@ -3,17 +3,6 @@
    Tokens live in site.css. Nothing here hard-codes a color.
    ========================================================================== */
 
-/* Full-bleed banner band, outside the 44rem figure cap */
-.band-art{background:#cddef6;overflow:hidden}
-.band-art img{
-  width:100%;max-width:70rem;margin-inline:auto;display:block;
-  height:clamp(11rem,26vw,20rem);object-fit:contain;object-position:center
-}
-.band-art figcaption{
-  max-width:78rem;margin:0 auto;padding:.85rem var(--gutter) 1.1rem;
-  font-family:var(--mono);font-size:.64rem;letter-spacing:.1em;color:var(--muted)
-}
-
 /* ==========================================================================
    .flow — a flowchart built in markup instead of shipped as a flat image.
    Steps read in normal order, left to right. At the end of a row the
