@@ -1,0 +1,140 @@
+/* ==========================================================================
+   Robota case study — scoped styles.
+   Tokens live in site.css. Nothing here hard-codes a color.
+   ========================================================================== */
+
+/* Full-bleed banner band, outside the 44rem figure cap */
+.band-art{background:#cddef6;overflow:hidden}
+.band-art img{
+  width:100%;max-width:70rem;margin-inline:auto;display:block;
+  height:clamp(11rem,26vw,20rem);object-fit:contain;object-position:center
+}
+.band-art figcaption{
+  max-width:78rem;margin:0 auto;padding:.85rem var(--gutter) 1.1rem;
+  font-family:var(--mono);font-size:.64rem;letter-spacing:.1em;color:var(--muted)
+}
+
+/* ==========================================================================
+   .flow — a flowchart built in markup instead of shipped as a flat image.
+   Steps read in normal order, left to right. At the end of a row the
+   connector turns down and runs back to the start of the next row, so
+   step 3 visibly leads to step 4.
+   ========================================================================== */
+.flow{
+  --gap:1.4rem;
+  margin:1.75rem 0;padding:1.4rem 1.25rem 1.6rem;background:var(--white);
+  border:1px solid var(--rule);border-radius:4px
+}
+.flow__track{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--gap);
+  list-style:none;margin:0;padding:0;counter-reset:step
+}
+@media(max-width:52rem){.flow__track{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:30rem){.flow__track{grid-template-columns:minmax(0,1fr)}}
+
+.flow__node{
+  position:relative;padding:1.5rem .85rem .85rem;min-height:5rem;
+  font-size:.86rem;line-height:1.4;color:var(--ink);
+  border:1.5px solid;border-radius:3px
+}
+.flow__n{
+  position:absolute;top:.55rem;left:.85rem;
+  font-family:var(--mono);font-size:.58rem;letter-spacing:.12em;opacity:.65
+}
+.flow__n::before{counter-increment:step;content:counter(step,decimal-leading-zero)}
+.flow__node small{display:block;margin-top:.3rem;font-size:.75rem;opacity:.75}
+
+/* colour carries the node type, the way the original chart did */
+.flow__node{background:#eeedfe;border-color:#c3bdf2}              /* step */
+.flow__node--input{background:#ffe6f4;border-color:#f6aed6}        /* user input */
+.flow__node--start{background:var(--lime);border-color:#9ad62f;font-weight:600}
+.flow__node--end{background:var(--pink);border-color:#e6229a;font-weight:600}
+.flow__node--decision{background:var(--ink);border-color:var(--ink);color:var(--paper);font-weight:600}
+
+.flow__split{display:grid;gap:.3rem;margin-top:.55rem}
+.flow__split span{font-family:var(--mono);font-size:.6rem;letter-spacing:.08em;color:var(--muted-dark);font-weight:400}
+.flow__split b{color:var(--lime);font-weight:400}
+
+/* ---- connectors -----------------------------------------------------------
+   Mid-row: a short arrow into the column gap.
+   Row end: a line down and back across to the first card of the next row,
+   finishing with an arrowhead on that card's top edge.
+   --------------------------------------------------------------------------- */
+.flow__node::after{
+  content:"";position:absolute;z-index:1;
+  right:calc(var(--gap) / -2 - 3px);top:50%;translate:0 -50%;
+  width:0;height:0;border-style:solid;border-width:5px 0 5px 7px;
+  border-color:transparent transparent transparent var(--muted)
+}
+
+/* row end — the wrap-around path */
+.flow__track > .flow__node:nth-child(3n)::after{
+  right:50%;top:100%;translate:0 0;
+  width:calc(200% + var(--gap) * 2);height:calc(var(--gap) - 7px);
+  border-style:solid;border-width:0 1.5px 1.5px 0;border-color:var(--muted);
+  border-bottom-right-radius:0;border-bottom-left-radius:5px
+}
+/* arrowhead where that path lands */
+.flow__track > .flow__node:nth-child(3n+1):not(:first-child)::before{
+  content:"";position:absolute;z-index:1;left:50%;bottom:100%;translate:-50% 0;
+  width:0;height:0;border-style:solid;border-width:7px 5px 0 5px;
+  border-color:var(--muted) transparent transparent transparent
+}
+
+@media(max-width:52rem){
+  .flow__track > .flow__node:nth-child(3n)::after{
+    right:calc(var(--gap) / -2 - 3px);top:50%;translate:0 -50%;
+    width:0;height:0;border-width:5px 0 5px 7px;
+    border-color:transparent transparent transparent var(--muted);border-radius:0
+  }
+  .flow__track > .flow__node:nth-child(3n+1):not(:first-child)::before{content:none}
+  .flow__track > .flow__node:nth-child(2n)::after{
+    right:50%;top:100%;translate:0 0;
+    width:calc(100% + var(--gap));height:calc(var(--gap) - 7px);
+    border-style:solid;border-width:0 1.5px 1.5px 0;border-color:var(--muted);
+    border-bottom-left-radius:5px
+  }
+  .flow__track > .flow__node:nth-child(2n+1):not(:first-child)::before{
+    content:"";position:absolute;z-index:1;left:50%;bottom:100%;translate:-50% 0;
+    width:0;height:0;border-style:solid;border-width:7px 5px 0 5px;
+    border-color:var(--muted) transparent transparent transparent
+  }
+}
+
+@media(max-width:30rem){
+  .flow__track > .flow__node::before{content:none !important}
+  .flow__track > .flow__node::after,
+  .flow__track > .flow__node:nth-child(2n)::after,
+  .flow__track > .flow__node:nth-child(3n)::after{
+    left:50%;right:auto;top:auto;bottom:calc(var(--gap) / -2 - 3px);translate:-50% 0;
+    width:0;height:0;border-style:solid;border-width:7px 5px 0 5px;
+    border-color:var(--muted) transparent transparent transparent;border-radius:0
+  }
+}
+
+.flow__track > .flow__node:last-child::after{content:none}
+
+.flow__key{
+  display:flex;flex-wrap:wrap;gap:1.1rem;margin-top:1.5rem;padding-top:1rem;
+  border-top:1px solid var(--rule)
+}
+.flow__key span{display:inline-flex;align-items:center;gap:.45rem;font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;color:var(--muted)}
+.flow__key i{width:12px;height:12px;border-radius:2px;display:inline-block;border:1.5px solid}
+.flow__key .k-start{background:var(--lime);border-color:#9ad62f}
+.flow__key .k-step{background:#eeedfe;border-color:#c3bdf2}
+.flow__key .k-input{background:#ffe6f4;border-color:#f6aed6}
+.flow__key .k-dec{background:var(--ink);border-color:var(--ink)}
+.flow__key .k-end{background:var(--pink);border-color:#e6229a}
+
+.flow__scroll{margin-top:.7rem;font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;color:var(--muted)}
+
+/* transcription of the handwritten sketch annotations */
+.annots{margin:1rem 0 0;display:grid;gap:.5rem}
+.annots li{
+  position:relative;padding-left:1.6rem;font-size:.9rem;color:var(--muted);line-height:1.55
+}
+.annots li::before{
+  content:"";position:absolute;left:0;top:.55em;width:9px;height:9px;
+  background:#f0a500;border-radius:50%
+}
+.annots b{color:var(--ink);font-weight:600}

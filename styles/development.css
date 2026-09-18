@@ -1,0 +1,42 @@
+/* ==========================================================================
+   Development page — scoped styles.
+   Tokens and the .proto embed live in site.css; this only adds the project
+   block rhythm and the click-to-play poster that sits over an embed.
+   ========================================================================== */
+
+.dev-sec{padding-block:clamp(2.5rem,6vw,4rem)}
+.dev-sec + .dev-sec{border-top:1px solid var(--rule)}
+.dev-sec > h2{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:600;letter-spacing:-.03em}
+.dev-sec .soon{
+  margin-top:.5rem;font-family:var(--mono);font-size:.7rem;letter-spacing:.14em;color:var(--pink-text)
+}
+
+.proj{margin-top:clamp(2rem,4vw,3rem)}
+.proj + .proj{margin-top:clamp(3rem,6vw,4.5rem);padding-top:clamp(3rem,6vw,4.5rem);border-top:1px solid var(--rule)}
+.proj__kind{font-family:var(--mono);font-size:.64rem;letter-spacing:.14em;color:var(--muted)}
+.proj__title{font-size:clamp(1.4rem,2.8vw,2rem);font-weight:600;margin-top:.5rem}
+.proj__stack{margin-top:.6rem;font-family:var(--mono);font-size:.66rem;letter-spacing:.08em;color:var(--muted)}
+.proj__stack b{color:var(--ink);font-weight:400}
+.proj p{max-width:62ch;margin-top:1rem;color:var(--muted)}
+.proj p + p{margin-top:.75rem}
+.proj .links{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1.5rem}
+
+/* Click-to-play: the cover art stands in for the game until asked.
+   Keeps two heavy game iframes from loading the moment the page opens. */
+.play{position:relative;display:block;width:100%;padding:0;border:0;background:none;cursor:pointer;font:inherit;color:inherit}
+.play img{width:100%;display:block}
+.play__veil{
+  position:absolute;inset:0;display:grid;place-content:center;gap:.75rem;justify-items:center;
+  background:rgba(17,17,20,.45);transition:background-color .2s var(--ease)
+}
+.play:hover .play__veil,.play:focus-visible .play__veil{background:rgba(17,17,20,.28)}
+.play__btn{
+  display:inline-flex;align-items:center;gap:.55rem;padding:.8em 1.5em;
+  font-size:.95rem;font-weight:600;background:var(--lime);color:var(--ink);
+  border:1.5px solid var(--lime);border-radius:3px;transition:transform .15s var(--ease)
+}
+.play:hover .play__btn{transform:translateY(-2px)}
+.play__note{font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;color:var(--paper)}
+
+.proto__frame--game{height:min(34rem,70vh)}
+.proto__frame--game .proto__fallback p{max-width:38ch}

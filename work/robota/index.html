@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Robota — international aid hackathon — Eva Regelski</title>
+<meta name="description" content="A mobile job-matching platform for Ukrainian refugees in Washington state, designed and built in 2.5 days — winner of both the Innovation Track and Crowd Favorite at General Assembly's 2022 International Aid Hackathon.">
+<meta property="og:title" content="Robota — international aid hackathon — Eva Regelski">
+<meta property="og:description" content="Two designers, six engineers, 2.5 days, and a two-sided job-matching problem.">
+<meta property="og:image" content="../../assets/robota-cover.jpg">
+<link rel="icon" href="../../assets/logo-mark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=Silkscreen&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../styles/site.css">
+<link rel="stylesheet" href="../../styles/robota.css">
+</head>
+<body>
+<header class="site-bar"><div class="wrap bar__in">
+  <a class="mark" href="../../index.html"><span class="e">E</span>va Regelski</a>
+  <button class="navtoggle" type="button" aria-expanded="false" aria-controls="sitenav"><span></span><span class="visually-hidden">Menu</span></button>
+  <nav id="sitenav" aria-label="Main"><ul><li><a href="../../work.html" aria-current="page">Work</a></li><li><a href="../../development.html">Development</a></li><li><a href="../../illustration.html">Illustration</a></li><li><a href="../../about.html">About</a></li><li><a href="../../index.html#contact">Contact</a></li></ul></nav>
+</div></header>
+
+<section class="hero"><div class="wrap hero__in">
+  <div class="hero__grid">
+    <div>
+      <p class="client">International Aid Hackathon 2022</p>
+      <h1>A job-matching app for Ukrainian refugees, designed and built in 2.5 days</h1>
+      <p class="sub">Two UX designers and six engineers, one weekend, and a two-sided problem: refugees who needed work fast, and Washington employers who wanted to hire them. Won both the Innovation Track and Crowd Favorite.</p>
+    </div>
+    <figure class="hero__mark">
+      <svg viewBox="0 0 320 240" role="img" aria-label="Diagram: job seekers on one side and employers on the other, matched through a central filter">
+        <g fill="none" stroke="#b8f04a" stroke-width="1.1">
+          <path d="M34 54 L140 108"/><path d="M34 86 L140 114"/><path d="M34 118 L140 120"/>
+          <path d="M34 150 L140 126"/><path d="M34 182 L140 132"/>
+        </g>
+        <g fill="#b8f04a">
+          <circle cx="34" cy="54" r="3"/><circle cx="34" cy="86" r="3"/><circle cx="34" cy="118" r="3"/>
+          <circle cx="34" cy="150" r="3"/><circle cx="34" cy="182" r="3"/>
+        </g>
+        <g fill="none" stroke="#ff48b1" stroke-width="1.1">
+          <path d="M180 108 L286 54"/><path d="M180 114 L286 86"/><path d="M180 120 L286 118"/>
+          <path d="M180 126 L286 150"/><path d="M180 132 L286 182"/>
+        </g>
+        <g fill="#ff48b1">
+          <circle cx="286" cy="54" r="3"/><circle cx="286" cy="86" r="3"/><circle cx="286" cy="118" r="3"/>
+          <circle cx="286" cy="150" r="3"/><circle cx="286" cy="182" r="3"/>
+        </g>
+        <g fill="#111114" stroke="#b8f04a" stroke-width="1.4">
+          <rect x="140" y="96" width="40" height="48"/>
+        </g>
+        <g fill="none" stroke="rgba(247,246,242,.45)" stroke-width="1.2">
+          <path d="M150 110 h20 M150 120 h14 M150 130 h8"/>
+        </g>
+        <g fill="rgba(247,246,242,.55)" font-family="'Space Mono',monospace" font-size="8" letter-spacing="1">
+          <text x="18" y="212">SEEKERS</text><text x="136" y="212">FILTER</text><text x="250" y="212">EMPLOYERS</text>
+          <text x="18" y="30">2.5 DAYS</text>
+        </g>
+      </svg>
+      <figcaption>FIG. 00 — A TWO-SIDED MATCH</figcaption>
+    </figure>
+  </div>
+  <dl class="rail">
+    <div><dt>ROLE</dt><dd>Lead UX researcher and designer</dd></div>
+    <div><dt>TEAM</dt><dd>2 UX designers, 6 engineers</dd></div>
+    <div><dt>TIMELINE</dt><dd>2.5-day sprint</dd></div>
+    <div><dt>TOOLS</dt><dd>Figma, Procreate, MERN stack</dd></div>
+  </dl>
+</div></section>
+
+<section class="outcome"><dl class="wrap outcome__in">
+  <div><dt>RESULT</dt><dd>Won Innovation Track and Crowd Favorite</dd></div>
+  <div><dt>DELIVERABLE</dt><dd>Working high-fidelity mobile web build</dd></div>
+  <div><dt>CAUGHT IN TESTING</dt><dd>An accessibility failure, before any further build</dd></div>
+</dl></section>
+
+<figure class="band-art">
+  <img src="assets/banner-phones.jpg" alt="The Robota app shown on two phone screens — a sign-in screen and the yellow-and-blue job search home screen">
+  <figcaption>ROBOTA — UKRAINIAN FOR "WORK"</figcaption>
+</figure>
+
+<div class="wrap body">
+  <aside class="toc">
+    <p>ON THIS PAGE</p>
+    <a href="#brief" class="on">The brief</a>
+    <a href="#context">Why Washington</a>
+    <a href="#research">Research</a>
+    <a href="#persona">Katerina</a>
+    <a href="#sketching">Flow and sketches</a>
+    <a href="#wireframes">Wireframes</a>
+    <a href="#testing">Usability testing</a>
+    <a href="#next">Next steps</a>
+    <a href="#reflection">Reflection</a>
+  </aside>
+
+  <div>
+    <section class="sec" id="brief">
+      <h2>The brief</h2>
+      <p>General Assembly's 2022 International Aid Hackathon gave teams 2.5 days to build something meaningful for one of the most pressing humanitarian situations of the moment. Our team was eight people — two UX designers and six software engineers — competing against teams from across the country.</p>
+
+      <p>We knew we were building for the situation in Ukraine. We did not know what to build. So rather than picking a idea and defending it, <strong>we spent the first hours finding out where the need actually was</strong> — which is the decision the rest of the weekend rested on.</p>
+
+      <div class="two-up">
+        <figure>
+          <div class="shell"><img class="zoomable" data-group="robota" data-caption="Innovation Track winner — General Assembly International Aid Hackathon 2022" src="assets/award-innovation.jpg" alt="Certificate reading General Assembly International Aid Hackathon Innovation Track 2022, Winner Team 5" loading="lazy"></div>
+          <figcaption>Innovation Track — judged on the idea</figcaption>
+        </figure>
+        <figure>
+          <div class="shell"><img class="zoomable" data-group="robota" data-caption="Crowd Favorite winner — General Assembly International Aid Hackathon 2022" src="assets/award-crowd-favorite.jpg" alt="Certificate reading General Assembly International Aid Hackathon Crowd Favorite 2022, Winner Team 5" loading="lazy"></div>
+          <figcaption>Crowd Favorite — voted by the room</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="sec" id="context">
+      <h2>Why Washington, and why jobs</h2>
+      <p>Two findings narrowed the problem down to something an eight-person team could actually address in a weekend.</p>
+
+      <ul class="bul">
+        <li><strong>Washington state</strong> had the highest concentration of Ukrainian refugees in the US, which gave us a geographic focus instead of a global one.</li>
+        <li><strong>Housing and food were comparatively well served.</strong> Finding work was not. Employment was the gap.</li>
+      </ul>
+
+      <div class="insight">
+        <p>Refugees needed a fast, accessible way to search and apply for jobs. Washington employers actively wanted to hire refugee workers. Both sides wanted the same thing and couldn't find each other.</p>
+        <span>THE PROBLEM, ONCE WE'D SCOPED IT</span>
+      </div>
+
+      <p>Framing it as a two-sided match rather than a refugee services directory is what made it a product. <strong>The demand already existed on both sides; what was missing was the connection.</strong></p>
+    </section>
+
+    <section class="sec" id="research">
+      <h2>Research</h2>
+      <p>With 2.5 days total, research had to be narrow and fast. We ran two methods: user interviews, and a competitive task analysis.</p>
+
+      <h3>Task analysis</h3>
+      <p>We mapped the end-to-end flow of searching for and saving a job on Indeed — the incumbent everyone in our interviews already used. Mapping an existing product is the fastest way to get a structural baseline when you have no time to invent one from scratch.</p>
+
+      <div class="flow">
+        <ol class="flow__track">
+          <li class="flow__node flow__node--start"><span class="flow__n"></span>Open Indeed</li>
+          <li class="flow__node"><span class="flow__n"></span>Home page</li>
+          <li class="flow__node flow__node--input"><span class="flow__n"></span>Enter location <small>if it doesn't auto-populate</small></li>
+          <li class="flow__node flow__node--input"><span class="flow__n"></span>Enter "chef" in search bar</li>
+          <li class="flow__node"><span class="flow__n"></span>Filter by "full-time"</li>
+          <li class="flow__node"><span class="flow__n"></span>Update search</li>
+          <li class="flow__node"><span class="flow__n"></span>Click on job</li>
+          <li class="flow__node"><span class="flow__n"></span>Scroll to bottom</li>
+          <li class="flow__node flow__node--end"><span class="flow__n"></span>Click "Save this job"</li>
+        </ol>
+        <div class="flow__key">
+          <span><i class="k-start"></i>START</span>
+          <span><i class="k-step"></i>STEP</span>
+          <span><i class="k-input"></i>USER INPUT</span>
+          <span><i class="k-end"></i>GOAL</span>
+        </div>
+        <p class="flow__scroll">INDEED — NINE STEPS TO SAVE ONE JOB</p>
+      </div>
+
+      <h3>User interviews</h3>
+      <p>We interviewed six participants who were either Ukrainian refugees or had recently been through a job search. Four themes came out clearly:</p>
+
+      <figure class="figure">
+        <div class="shell"><img class="zoomable" data-group="robota" data-caption="The four themes from six user interviews" src="assets/interview-themes.png" alt="Diagram of four numbered themes: difficult to find relevant jobs, wants to use phone for quick job search, wants location in job searches, more options for search criteria" loading="lazy"></div>
+        <figcaption>Four themes, six interviews</figcaption>
+      </figure>
+
+      <ul class="bul">
+        <li>Finding <strong>relevant</strong> jobs was consistently difficult — not finding jobs, finding the right ones.</li>
+        <li>People wanted to search on their <strong>phones</strong>, on the go.</li>
+        <li><strong>Location</strong> was a high priority in every search.</li>
+        <li>People wanted more <strong>control over filters</strong> and criteria.</li>
+      </ul>
+
+      <p>Six participants in a 2.5-day sprint is a small sample and I'd call it directional rather than conclusive. But the themes were unanimous enough to design against, and the mobile-first signal in particular turned out to be the most consequential thing we learned.</p>
+    </section>
+
+    <section class="sec" id="persona">
+      <h2>Katerina</h2>
+      <p>I built a proto-persona from the interviews to keep eight people making the same decisions for the same reasons under time pressure.</p>
+
+      <figure class="figure figure--phone">
+        <div class="shell"><img class="zoomable" data-group="robota" data-caption="Katerina — proto-persona, 35, Seattle, married with two kids" src="assets/persona-katerina.png" alt="Illustrated portrait of Katerina, a Ukrainian refugee, labelled with her name" loading="lazy"></div>
+        <figcaption>Katerina — illustrated in Procreate</figcaption>
+      </figure>
+
+      <p>Katerina is 35, recently evacuated Ukraine, and now lives in Seattle. Her husband was not able to leave with her. With two kids to support and no local network, she needs full-time work as quickly as possible. She struggles to find jobs matching her skills, can't easily track what she's applied to, and needs options close to where she is.</p>
+
+      <p>A proto-persona built in an afternoon is not a researched persona, and I'd label it that way in any room. Its job here was narrower: <strong>settle arguments quickly.</strong> With six engineers building in parallel, "would this work for Katerina" resolved scope questions faster than debating them would have.</p>
+    </section>
+
+    <section class="sec" id="sketching">
+      <h2>Flow and sketches</h2>
+      <p>With the task analysis as a structural base, I mapped our own user flow, then sketched the screens it implied: a home screen, a search screen, search with filters, and results.</p>
+
+      <div class="flow">
+        <ol class="flow__track">
+          <li class="flow__node flow__node--start"><span class="flow__n"></span>Open website</li>
+          <li class="flow__node flow__node--decision"><span class="flow__n"></span>Logged in?
+            <span class="flow__split">
+              <span><b>YES</b> — straight to home</span>
+              <span><b>NO</b> — log in first</span>
+            </span>
+          </li>
+          <li class="flow__node"><span class="flow__n"></span>Home page</li>
+          <li class="flow__node flow__node--input"><span class="flow__n"></span>Enter location</li>
+          <li class="flow__node flow__node--input"><span class="flow__n"></span>Enter "chef" in search bar</li>
+          <li class="flow__node"><span class="flow__n"></span>Filter for "full-time"</li>
+          <li class="flow__node"><span class="flow__n"></span>Hit "Search"</li>
+          <li class="flow__node"><span class="flow__n"></span>Search results page</li>
+          <li class="flow__node"><span class="flow__n"></span>Click on job</li>
+          <li class="flow__node"><span class="flow__n"></span>Full job description</li>
+          <li class="flow__node flow__node--end"><span class="flow__n"></span>Save job</li>
+        </ol>
+        <div class="flow__key">
+          <span><i class="k-start"></i>START</span>
+          <span><i class="k-step"></i>STEP</span>
+          <span><i class="k-input"></i>USER INPUT</span>
+          <span><i class="k-dec"></i>DECISION</span>
+          <span><i class="k-end"></i>GOAL</span>
+        </div>
+        <p class="flow__scroll">ROBOTA — SEARCH AND FILTER COLLAPSED INTO ONE PASS, NO RETURN TRIP</p>
+      </div>
+
+      <figure class="figure">
+        <div class="shell"><img class="zoomable" data-group="robota" data-caption="Hand sketches of the four core screens: home, search, search with filters, and results" src="assets/sketches.png" alt="Four hand-drawn phone screen sketches annotated in orange, labelled Home, Search, Search plus Filter, and Search Results" loading="lazy"></div>
+        <figcaption>Home, search, search with filters, results — annotated as I went</figcaption>
+      </figure>
+
+      <ul class="annots">
+        <li><b>Home</b> — saved jobs and the menu (about, profile, etc.) sit top right; search and location pickers lead, then recommended and recently posted.</li>
+        <li><b>Search</b> — tapping the search bar opens popular industries as tiles.</li>
+        <li><b>Search + filter</b> — search suggestions drop down as you type; filters sit below, with "all filters" expanding the full set.</li>
+        <li><b>Search results</b> — popular filters stay pinned above the results list, each card carrying title, company, location, salary and an apply button.</li>
+      </ul>
+
+      <div class="insight">
+        <p>Mobile-first wasn't a preference. Our users had more consistent access to smartphones than to computers, so the phone was the only device we could count on.</p>
+        <span>THE EARLIEST DECISION, AND THE ONE THAT SHAPED EVERYTHING AFTER</span>
+      </div>
+    </section>
+
+    <section class="sec" id="wireframes">
+      <h2>Wireframes</h2>
+      <p>From sketches into mid-fidelity, then straight to high fidelity for the two features the research pointed at hardest.</p>
+
+      <div class="two-up">
+        <figure>
+          <div class="shell"><img class="zoomable" data-group="robota" data-caption="Search by popular industries, surfaced directly on the home screen" src="assets/wireframes-search.png" alt="Two app screens showing a search bar, location picker, recommended jobs, and a grid of industry tiles including construction and transportation" loading="lazy"></div>
+          <figcaption>Search by popular industries — right on the home screen</figcaption>
+        </figure>
+        <figure>
+          <div class="shell"><img class="zoomable" data-group="robota" data-caption="One-tap job saving and the saved jobs list" src="assets/wireframes-saved.png" alt="Two app screens showing a job listing with benefits tags and apply button, and a saved jobs list" loading="lazy"></div>
+          <figcaption>One tap to save, one place to find them again</figcaption>
+        </figure>
+      </div>
+
+      <h3>Search by popular industries</h3>
+      <p>Rather than requiring someone to know exactly what to type, we surfaced the top industries actively hiring Ukrainian refugees directly on the home screen. <strong>A blank search field assumes you already know the word for the job you want — in your second language.</strong> Tiles don't make that assumption.</p>
+
+      <h3>Saving jobs in one tap</h3>
+      <p>Tracking applications came up in interview after interview. We made saving a single tap from any listing, so someone can build a shortlist without breaking out of their search.</p>
+    </section>
+
+    <section class="sec" id="testing">
+      <h2>Usability testing</h2>
+      <p>Time and engineering constraints meant one usability session on the high-fidelity wireframes. We asked the participant to search for chef jobs in Seattle, find details about a role, save it, and navigate to their saved jobs.</p>
+
+      <figure class="figure figure--phone">
+        <div class="shell"><img class="zoomable" data-group="robota" data-caption="Usability findings — logo readability and text size flagged on the home screen" src="assets/usability-findings.png" alt="The Robota home screen annotated with two findings: logo readability, and text too small" loading="lazy"></div>
+        <figcaption>Two findings, both about legibility</figcaption>
+      </figure>
+
+      <div class="insight">
+        <p>Text in several areas of the app, including the logo, was too small to read comfortably.</p>
+        <span>THE ONE TEST WE HAD TIME FOR — AND IT FOUND THE RIGHT THING</span>
+      </div>
+
+      <p>This mattered more than a generic accessibility note would. <strong>Many Ukrainian refugees arriving in the US are older adults.</strong> Small text isn't a minor polish issue for that audience, it's a barrier to the core task. We flagged it as a priority fix ahead of any further development.</p>
+
+      <p>One session is one session, and I wouldn't claim it validated the design. What it did was catch a failure that a room full of twenty-somethings designing on retina screens had not noticed — which is the entire argument for testing with anyone at all, even once, even at hour 50 of a 60-hour sprint.</p>
+    </section>
+
+    <section class="sec" id="next">
+      <h2>Next steps</h2>
+      <p>Given more time and resources, the team identified three directions:</p>
+
+      <ul class="bul">
+        <li><strong>Translation toggle</strong> — seamless switching between English, Ukrainian, and other languages relevant to the refugee community.</li>
+        <li><strong>Expanded filter options</strong> — more control over search criteria, to surface relevant results faster.</li>
+        <li><strong>More usability testing</strong> — additional rounds to confirm our assumptions and catch what one session couldn't.</li>
+      </ul>
+
+      <div class="flag">
+        <p>The live build is no longer hosted. Robota was a hackathon project on temporary infrastructure, and the deployment has since lapsed — the screens on this page are the record of what was built.</p>
+      </div>
+    </section>
+
+    <section class="sec" id="reflection">
+      <h2>Reflection</h2>
+
+      <p><strong>Scoping was the design work.</strong> The strongest decision of the weekend wasn't a screen, it was refusing to start with an idea. Two research findings — Washington state, and employment rather than housing — turned "help Ukrainian refugees" into a problem eight people could actually finish. Everything after that was execution.</p>
+
+      <p><strong>Constraints made research better, not worse.</strong> With 2.5 days I couldn't run a study, so I ran six interviews and mapped a competitor. Neither is rigorous on its own. Together they gave enough structure to design against, and mapping Indeed in particular meant I wasn't inventing a flow from nothing while a clock ran.</p>
+
+      <p><strong>One test beat zero tests by a wide margin.</strong> The accessibility finding is the thing I'd point to in an interview. We nearly cut testing for time. Had we cut it, we'd have shipped a demo that our actual users — many of them older adults — would have struggled to read, and we'd have won the same awards without ever knowing.</p>
+
+      <p>What I'd do differently: I'd have pushed for one interview participant over 50 during research rather than discovering the legibility problem at the end. The persona said Katerina was 35 because our participants skewed young, and that assumption propagated all the way into type sizes. The test caught it. Research should have.</p>
+    </section>
+  </div>
+</div>
+
+<div class="lb" data-lb aria-hidden="true" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <div class="lb__top">
+    <span class="lb__count" data-lb-count></span>
+    <button class="lb__close" data-lb-close aria-label="Close viewer">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+  <div class="lb__stage" data-lb-stage data-zoom="false"><img data-lb-img alt=""></div>
+  <div class="lb__bottom">
+    <span data-lb-caption></span>
+    <span class="lb__nav">
+      <button data-lb-prev aria-label="Previous image"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <button data-lb-next aria-label="Next image"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
+    </span>
+  </div>
+</div>
+
+<section class="nextproj"><div class="wrap nextproj__in">
+  <div><span>NEXT PROJECT</span><h2>Rebuilding how compliance officers find the one person who needs attention</h2></div>
+  <a class="btn" href="../cyberstar-dashboard/index.html">View project</a>
+</div></section>
+<footer class="site-foot"><div class="wrap foot__in">
+  <p class="foot__mark"><span class="e">E</span>va Regelski</p>
+  <nav aria-label="Footer"><ul><li><a href="../../work.html">Work</a></li><li><a href="../../development.html">Development</a></li><li><a href="../../illustration.html">Illustration</a></li><li><a href="../../about.html">About</a></li></ul></nav>
+  <p class="foot__fine">© <span data-year>2026</span> Eva Regelski · Cleveland, Ohio</p>
+</div></footer>
+<script src="../../js/site.js"></script>
+<script>document.querySelectorAll('[data-year]').forEach(function(e){e.textContent=new Date().getFullYear()});</script>
+</body>
+</html>

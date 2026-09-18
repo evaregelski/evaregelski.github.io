@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Work — Eva Regelski</title>
+<meta name="description" content="UX and product design case studies by Eva Regelski — enterprise compliance software, design systems, and financial services.">
+<link rel="icon" href="assets/logo-mark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=Silkscreen&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/site.css">
+<link rel="stylesheet" href="styles/home.css">
+</head>
+<body>
+<header class="site-bar"><div class="wrap bar__in">
+  <a class="mark" href="index.html"><span class="e">E</span>va Regelski</a>
+  <button class="navtoggle" type="button" aria-expanded="false" aria-controls="sitenav"><span></span><span class="visually-hidden">Menu</span></button>
+  <nav id="sitenav" aria-label="Main"><ul><li><a href="work.html" aria-current="page">Work</a></li><li><a href="development.html">Development</a></li><li><a href="illustration.html">Illustration</a></li><li><a href="about.html">About</a></li><li><a href="index.html#contact">Contact</a></li></ul></nav>
+</div></header>
+
+<main>
+<section class="worklist grid-bg"><div class="wrap">
+  <div class="worklist__head">
+    <p class="eyebrow" style="font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;color:var(--muted)">CASE STUDIES</p>
+    <h1>Work</h1>
+    <p>Enterprise software for people who have to use it, not people who chose it. Compliance tooling for federal defense agencies, a design system built against a six-developer team, and a multi-channel campaign in mortgage lending.</p>
+  </div>
+  <div class="cards">
+      <a class="card" href="work/cyberstar-dashboard/index.html">
+        <div class="card__media"><img src="assets/dash-cover.jpg" alt="" loading="eager"></div>
+        <div class="card__body">
+          <span class="card__meta">CYBERSTAR — LEAD UX DESIGNER</span>
+          <h3>Management dashboard redesign</h3>
+          <p>Rebuilding how compliance officers track workforce qualifications across thousands of DoD personnel records. Two research rounds, a facilitated workshop, and a taxonomy rebuilt before a line of it shipped.</p>
+          <span class="card__out">Outcome: <b>Taxonomy flaw caught before development</b></span>
+        </div>
+      </a>
+      <a class="card" href="work/cyberstar-design-system/index.html">
+        <div class="card__media"><img src="assets/ds-cover.jpg" alt="" loading="eager"></div>
+        <div class="card__body">
+          <span class="card__meta">CYBERSTAR — DESIGN SYSTEMS</span>
+          <h3>Design system and rebrand</h3>
+          <p>A ground-up rebrand and tokenized system that embeds 8140 policy knowledge directly in the interface, where the decisions get made.</p>
+          <span class="card__out">Outcome: <b>One hue, one token layer</b></span>
+        </div>
+      </a>
+      <a class="card" href="work/keybank-mortgage/index.html">
+        <div class="card__media"><img src="assets/keybank-cover.jpg" alt="" loading="lazy"></div>
+        <div class="card__body">
+          <span class="card__meta">KEYBANK — UX DESIGNER</span>
+          <h3>Mortgage conditional approval campaign</h3>
+          <p>Research, strategy, writing and design for a seventeen-week cadence across nine channels that kept approved borrowers moving toward a completed application.</p>
+          <span class="card__out">Outcome: <b>Call scripts standardized bank-wide</b></span>
+        </div>
+      </a>
+      <a class="card" href="work/keybank-workshop/index.html">
+        <div class="card__media"><img src="assets/keybank-workshop-cover.jpg" alt="" loading="lazy"></div>
+        <div class="card__body">
+          <span class="card__meta">KEYBANK — LEAD FACILITATOR</span>
+          <h3>Corporate center design thinking workshop</h3>
+          <p>Designing and facilitating a half-day Design Thinking 101 workshop for twelve corporate center interns, from branch observation through prioritized ideas.</p>
+          <span class="card__out">Outcome: <b>Journey mapping rated 4.8 of 5</b></span>
+        </div>
+      </a>
+      <a class="card" href="work/robota/index.html">
+        <div class="card__media"><img src="assets/robota-cover.jpg" alt="" loading="lazy"></div>
+        <div class="card__body">
+          <span class="card__meta">HACKATHON — LEAD UX RESEARCHER &amp; DESIGNER</span>
+          <h3>Robota — job matching for Ukrainian refugees</h3>
+          <p>A mobile job-matching platform designed and built in a 2.5-day sprint with two designers and six engineers.</p>
+          <span class="card__out">Outcome: <b>Innovation Track and Crowd Favorite</b></span>
+        </div>
+      </a>
+  </div>
+</div></section>
+</main>
+
+<footer class="site-foot"><div class="wrap foot__in">
+  <p class="foot__mark"><span class="e">E</span>va Regelski</p>
+  <nav aria-label="Footer"><ul>
+    <li><a href="work.html">Work</a></li><li><a href="development.html">Development</a></li>
+    <li><a href="illustration.html">Illustration</a></li><li><a href="about.html">About</a></li>
+  </ul></nav>
+  <p class="foot__fine">© <span data-year>2026</span> Eva Regelski · Cleveland, Ohio</p>
+</div></footer>
+<script src="js/site.js"></script>
+<script>document.querySelectorAll('[data-year]').forEach(function(e){e.textContent=new Date().getFullYear()});</script>
+</body>
+</html>

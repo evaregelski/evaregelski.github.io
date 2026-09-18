@@ -1,0 +1,53 @@
+/* ==========================================================================
+   Illustration page — scoped styles.
+   Tokens live in site.css. Nothing here hard-codes a color or a family.
+   ========================================================================== */
+
+.plates{
+  display:grid;
+  gap:clamp(2.25rem,5vw,4rem);
+  padding-block:clamp(2rem,6vw,4rem);
+}
+
+/* Each plate reuses .figure/.shell from site.css — border, white ground,
+   centered, capped at 44rem so nothing upscales. Only the rhythm changes. */
+.plates .figure{margin:0}
+
+/* Tall multi-panel work is meant to be read, so it runs at full column width
+   and stays tall rather than being height-constrained like a phone mockup. */
+.plates .figure--tall .shell{max-width:44rem}
+
+/* Pieces photographed on paper keep their deckle and margin, so the shell
+   border sits just off the sheet rather than cropping it. */
+.plates .figure--paper .shell{padding:clamp(.4rem,1.2vw,.75rem)}
+
+.plates figcaption{
+  margin-top:.75rem;
+  font-family:var(--mono);
+  font-size:.64rem;
+  letter-spacing:.1em;
+  color:var(--muted);
+}
+
+/* Medium marker, set per plate. Quiet by default. */
+.medium{
+  display:block;
+  max-width:44rem;
+  margin:.7rem auto 0;
+  font-family:var(--mono);
+  font-size:.6rem;
+  letter-spacing:.14em;
+  color:var(--muted);
+}
+
+.plates .zoomable{transition:transform .25s var(--ease)}
+@media(hover:hover){
+  .plates .figure:hover .zoomable{transform:scale(1.008)}
+}
+
+.illo-outro{
+  padding-block:clamp(2.5rem,6vw,4rem);
+  border-top:1px solid var(--rule);
+}
+.illo-outro p{max-width:52ch;color:var(--muted)}
+.illo-outro h2{font-size:clamp(1.4rem,2.6vw,1.9rem);font-weight:600;margin-bottom:.9rem}

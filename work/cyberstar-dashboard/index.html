@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Management dashboard redesign — Eva Regelski</title>
+<meta name="description" content="Rebuilding how compliance officers find the one person who needs attention.">
+<link rel="icon" href="../../assets/logo-mark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=Silkscreen&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../styles/site.css">
+</head>
+<body>
+<header class="site-bar"><div class="wrap bar__in">
+  <a class="mark" href="../../index.html"><span class="e">E</span>va Regelski</a>
+  <button class="navtoggle" type="button" aria-expanded="false" aria-controls="sitenav"><span></span><span class="visually-hidden">Menu</span></button>
+  <nav id="sitenav" aria-label="Main"><ul><li><a href="../../work.html" aria-current="page">Work</a></li><li><a href="../../development.html">Development</a></li><li><a href="../../illustration.html">Illustration</a></li><li><a href="../../about.html">About</a></li><li><a href="../../index.html#contact">Contact</a></li></ul></nav>
+</div></header>
+
+<section class="hero"><div class="wrap hero__in">
+  <div class="hero__grid">
+    <div>
+      <p class="client">Cyberstar</p>
+      <h1>Rebuilding how compliance officers find the one person who needs attention</h1>
+      <p class="sub">A management dashboard for DoD agencies tracking cybersecurity workforce qualifications — redesigned end to end, against a six-developer team.</p>
+    </div>
+    <figure class="hero__mark">
+      <svg viewBox="0 0 320 240" role="img" aria-label="Diagram: progressive drill-down from agency to requirement">
+  <g fill="none" stroke="rgba(247,246,242,.28)" stroke-width="1" stroke-dasharray="3 4">
+    <line x1="30" y1="60" x2="290" y2="60"/><line x1="30" y1="110" x2="290" y2="110"/>
+    <line x1="30" y1="160" x2="290" y2="160"/><line x1="30" y1="205" x2="290" y2="205"/>
+  </g>
+  <g fill="none" stroke="#b8f04a" stroke-width="1.25">
+    <rect x="30" y="46" width="150" height="28"/>
+    <rect x="58" y="96" width="122" height="28"/>
+    <rect x="86" y="146" width="94" height="28"/>
+  </g>
+  <g fill="none" stroke="#ff48b1" stroke-width="1.25"><rect x="114" y="191" width="66" height="28"/></g>
+  <g fill="none" stroke="#b8f04a" stroke-width="1.25">
+    <path d="M44 74 L44 96"/><path d="M72 124 L72 146"/>
+  </g>
+  <g fill="none" stroke="#ff48b1" stroke-width="1.25"><path d="M100 174 L100 191"/></g>
+  <g fill="rgba(247,246,242,.8)" font-family="'Space Mono',monospace" font-size="8.5" letter-spacing=".8">
+    <text x="40" y="64">AGENCY</text><text x="68" y="114">GROUP</text>
+    <text x="96" y="164">PERSON</text><text x="124" y="209">REQUIREMENT</text>
+  </g>
+  <g fill="rgba(247,246,242,.45)" font-family="'Space Mono',monospace" font-size="7.5" letter-spacing=".8">
+    <text x="196" y="64">345</text><text x="196" y="114">N GROUPS</text>
+    <text x="196" y="164">MET / UNMET</text><text x="196" y="209">DUE DATE</text>
+  </g>
+  <g fill="none" stroke="rgba(184,240,74,.45)" stroke-width="1"><path d="M290 46 L296 46 L296 219 L290 219"/></g>
+  <text x="252" y="238" fill="rgba(247,246,242,.45)" font-family="'Space Mono',monospace" font-size="7.5">4 SCOPES</text>
+</svg>
+      <figcaption>FIG. 00 — PROGRESSIVE DRILL-DOWN</figcaption>
+    </figure>
+  </div>
+  <dl class="rail">
+    <div><dt>ROLE</dt><dd>Sole UX designer, in a product trio</dd></div>
+    <div><dt>TYPE</dt><dd>Product redesign + feature expansion</dd></div>
+    <div><dt>TOOLS</dt><dd>Figma, Miro, design studio workshop</dd></div>
+    <div><dt>DOMAIN</dt><dd>DoD DCWF 8140 compliance software</dd></div>
+  </dl>
+</div></section>
+
+<section class="outcome"><dl class="wrap outcome__in">
+  <div><dt>VALIDATED</dt><dd>Three concepts tested with real agency users before any high-fidelity work</dd></div>
+  <div><dt>SCOPE</dt><dd>Two research rounds, a facilitated workshop, five independent sketch sets</dd></div>
+  <div><dt>STATUS</dt><dd>In development — Section 508 required throughout</dd></div>
+</dl></section>
+
+<div class="wrap body">
+  <aside class="toc">
+    <p>ON THIS PAGE</p>
+    <a href="#problem" class="on">The problem</a>
+    <a href="#research">Research</a>
+    <a href="#analyze">Analyze</a>
+    <a href="#ideate">Ideate</a>
+    <a href="#concepts">Concepts</a>
+    <a href="#design">Iteration 1</a>
+    <a href="#final">Final design</a>
+    <a href="#results">Where it stands</a>
+    <a href="#reflection">Reflections</a>
+  </aside>
+  <div>
+<section class="sec" id="problem">
+  <h2>The problem</h2>
+  <p>The DCWF 8140 directive requires DoD agencies to map every cybersecurity role to a work role category, ensure personnel hold the required certifications, and maintain continuous compliance records. Compliance team leaders run that day to day, and the dashboard was where they were supposed to do it.</p>
+  <figure class="figure "><div class="shell"><img class="zoomable" data-group="problem" data-caption="The dashboard as it existed — functional, but limited in scope and actionability" src="assets/before.jpg" alt="The dashboard as it existed — functional, but limited in scope and actionability"></div><figcaption>The dashboard as it existed — functional, but limited in scope and actionability</figcaption></figure>
+  <p>I ran a feedback exercise directly on the live dashboard with compliance leaders, annotating their reactions in place.</p>
+  <figure class="figure "><div class="shell"><img class="zoomable" data-group="problem" data-caption="Annotated feedback captured on the existing dashboard" src="assets/before-annotated.jpg" alt="Annotated feedback captured on the existing dashboard"></div><figcaption>Annotated feedback captured on the existing dashboard</figcaption></figure>
+  <h3>What they told us</h3>
+  <ul class="bul">
+    <li>No group-level compliance view existed at all</li>
+    <li>"Users" didn't match the manager's mental model of "My Staff"</li>
+    <li>Raw counts with no percentages were hard to interpret</li>
+    <li>No active/inactive breakdowns by staff or group</li>
+    <li>No way to filter by group or see a group manager, so non-compliant groups couldn't be acted on</li>
+    <li>No way to select all groups and see a rolled-up view</li>
+  </ul>
+  <div class="insight">
+    <p>Managers could see that something was wrong, but couldn't identify who was non-compliant or act without leaving the dashboard entirely.</p>
+    <span>THE GAP SCALED WITH AGENCY SIZE — THE LARGER THE ORG, THE MORE PAINFUL</span>
+  </div>
+  <h3>The constraint that shaped everything</h3>
+  <p>Cyberstar runs a six-person engineering team. Every design decision was weighed against implementation cost, which meant maximizing user value while minimizing net-new development. Working with engineering, I found opportunities to reuse existing backend infrastructure — including the filtering and data capabilities already powering the reports page — rather than building from scratch.</p>
+</section>
+
+<section class="sec" id="research">
+  <h2>Research</h2>
+  <p>Round one triangulated the problem from four directions: interviews with compliance team leaders across multiple agencies, support ticket and complaint analysis, usage analytics, and contextual inquiry watching real compliance reviews.</p>
+  <figure class="figure"><div class="shell"><img class="zoomable" data-group="research" data-caption="DTRA interview synthesis, 1/14/26 — &quot;we can go directly from this dashboard to who is not compliant&quot;" src="assets/r1-board1.jpg" alt="DTRA interview synthesis, 1/14/26"></div><figcaption>DTRA interview synthesis, 1/14/26 — “we can go directly from this dashboard to who is not compliant”</figcaption></figure>
+  <figure class="figure"><div class="shell"><img class="zoomable" data-group="research" data-caption="DTRA follow-up — 2/03/26. Standout quote on four years of spreadsheets" src="assets/r1-board2.jpg" alt="DTRA follow-up — 2/03/26. Standout quote on four years of spreadsheets"></div><figcaption>DTRA follow-up — 2/03/26. Standout quote on four years of spreadsheets</figcaption></figure>
+  <div class="quotes">
+    <blockquote>I've been sifting through spreadsheets for the last 4 years and it is absolutely 0 fun, because it becomes this gigantic mess of data. That's why the visual part of the dashboards is so helpful.<cite>DTRA COMPLIANCE LEAD, 02/03/26</cite></blockquote>
+    <blockquote>I don't want to know once they're expired — viewing it after is less helpful, I can't take action to fix compliance the same way.<cite>ON PROACTIVE VS REACTIVE REPORTING</cite></blockquote>
+  </div>
+  <h3>Key findings</h3>
+  <ul class="bul">
+    <li>Actionability was the most urgent need — seeing exactly who was non-compliant and acting without leaving the dashboard</li>
+    <li>Framework filtering was essential: 8140, 8570, and Cyber Awareness carry different obligations</li>
+    <li>Managers were exporting to spreadsheets to do work the dashboard should have handled</li>
+    <li>Compliance leads are reporting intermediaries to agency CIOs, so summary views and exports drive their upward workflow</li>
+    <li>Large agencies needed org-scoped views; the flat list was unworkable at scale</li>
+    <li>Scalability came up unprompted: "things will get messier in the near future"</li>
+  </ul>
+</section>
+
+<section class="sec" id="analyze">
+  <h2>Analyze</h2>
+  <figure class="figure "><div class="shell"><img class="zoomable" data-group="analyze" data-caption="Problem statement and six How Might We questions, synthesized from round one" src="assets/hmw.jpg" alt="Problem statement and six How Might We questions, synthesized from round one"></div><figcaption>Problem statement and six How Might We questions, synthesized from round one</figcaption></figure>
+  <h3>Personas</h3>
+  <figure class="figure"><div class="shell"><img class="zoomable" data-group="analyze" data-caption="Leader persona — CISO. &quot;If you want it done right, you have to oversee it.&quot; Needs full visibility, pattern recognition, and clean upward reporting" src="assets/persona-molly.jpg" alt="Leader persona — CISO. &quot;If you want it done right, you have to oversee it.&quot; Needs full visibility, pattern recognition, and clean upward reporting"></div><figcaption>Leader persona — CISO. "If you want it done right, you have to oversee it." Needs full visibility, pattern recognition, and clean upward reporting</figcaption></figure>
+  <figure class="figure"><div class="shell"><img class="zoomable" data-group="analyze" data-caption="Admin persona — Compliance Policy Administrator. &quot;I've got this covered.&quot; Needs efficient self-reliant action, accurate records, and streamlined workflows" src="assets/persona-claire.jpg" alt="Admin persona — Compliance Policy Administrator. &quot;I've got this covered.&quot; Needs efficient self-reliant action, accurate records, and streamlined workflows"></div><figcaption>Admin persona — Compliance Policy Administrator. "I've got this covered." Needs efficient self-reliant action, accurate records, and streamlined workflows</figcaption></figure>
+  <div class="insight">
+    <p>Identify who is non-compliant, understand why, and take or delegate action — all without leaving the dashboard.</p>
+    <span>THE CORE JOB. THE EXISTING PRODUCT BROKE THIS LOOP AT EVERY STEP</span>
+  </div>
+  <h3>Design principles</h3>
+  <ul class="bul">
+    <li><strong>Actionability first</strong> — every view makes it obvious what needs attention and how to address it</li>
+    <li><strong>Progressive disclosure</strong> — high-level summaries by default, individual detail on demand</li>
+    <li><strong>Configurable, not complex</strong> — flexibility through filtering and view options without overwhelming the interface</li>
+    <li><strong>Developer efficiency</strong> — build on existing data infrastructure wherever possible</li>
+  </ul>
+</section>
+
+<section class="sec" id="ideate">
+  <h2>Ideate</h2>
+  <p>I facilitated a design studio workshop with the product trio, the CEO, and customer success. Four steps: ideation, scope and prioritization, assumption identification, and assumption prioritization.</p>
+  <figure class="figure"><div class="shell"><img class="zoomable" data-group="ideate" data-caption="Step 1 — Solution ideation. Participants generated layout concepts, feature ideas, and a temporal roadmap: current dashboard with drill-down, then a user-built dashboard, then tool integration" src="assets/ws1.jpg" alt="Step 1 — Solution ideation. Participants generated layout concepts, feature ideas, and a temporal roadmap: current dashboard with drill-down, then a user-built dashboard, then tool integration"></div><figcaption>Step 1 — Solution ideation. Participants generated layout concepts, feature ideas, and a temporal roadmap: current dashboard with drill-down, then a user-built dashboard, then tool integration</figcaption></figure>
+  <figure class="figure"><div class="shell"><img class="zoomable" data-group="ideate" data-caption="Step 2 — Features sorted into definitely in scope, maybe in scope, and not in scope" src="assets/ws2.jpg" alt="Step 2 — Features sorted into definitely in scope, maybe in scope, and not in scope"></div><figcaption>Step 2 — Features sorted into definitely in scope, maybe in scope, and not in scope</figcaption></figure>
+  <p>Confirmed as definitely in scope: consistent UI across the dashboard, multi-group selection, drill-down to non-compliant users with email visibility, a modal for drill-down detail, framework-based visuals defaulting to Cyber Awareness, reason for non-compliance, filtering and sorting of the drill-down list, supervisor and user email, and download from the dashboard page.</p>
+  <figure class="figure"><div class="shell"><img class="zoomable" data-group="ideate" data-caption="Step 3 — Assumptions surfaced that needed validation before committing to design: tabs and saved views, configurable widgets, complex filtering, and export" src="assets/ws3.jpg" alt="Step 3 — Assumptions surfaced that needed validation before committing to design: tabs and saved views, configurable widgets, complex filtering, and export"></div><figcaption>Step 3 — Assumptions surfaced that needed validation before committing to design: tabs and saved views, configurable widgets, complex filtering, and export</figcaption></figure>
+  <figure class="figure"><div class="shell"><img class="zoomable" data-group="ideate" data-caption="Step 4 — Assumptions mapped on importance against evidence strength. The high-importance, weak-evidence quadrant was flagged as leap-of-faith and tested first" src="assets/ws4.jpg" alt="Step 4 — Assumptions mapped on importance against evidence strength. The high-importance, weak-evidence quadrant was flagged as leap-of-faith and tested first"></div><figcaption>Step 4 — Assumptions mapped on importance against evidence strength. The high-importance, weak-evidence quadrant was flagged as leap-of-faith and tested first</figcaption></figure>
+  <p>The prioritization matrix is what made round two focused. Whether customers would actually use configuration features, and whether saved views would apply broadly, were the assumptions carrying the most risk — so those were the ones taken back to real users before any high-fidelity work.</p>
+  
+
+  <h3>Five independent sketch sets, one convergence</h3>
+  <p>Each participant sketched alone before any group discussion. Counting how many sketches independently arrived at the same idea turns a workshop into evidence.</p>
+  <div class="tally-group">
+<div class="tally"><span>Framework filtering (8140, 8570, Cyber Awareness)</span><div class="bar"><i style="width:100%"></i></div><span class="n">5/5</span></div>
+<div class="tally"><span>Drill-down to individual non-compliant users</span><div class="bar"><i style="width:80%"></i></div><span class="n">4/5</span></div>
+<div class="tally"><span>Configurable / modular dashboard layout</span><div class="bar"><i style="width:80%"></i></div><span class="n">4/5</span></div>
+<div class="tally"><span>Save views and filters</span><div class="bar"><i style="width:80%"></i></div><span class="n">4/5</span></div>
+<div class="tally"><span>Data export and download</span><div class="bar"><i style="width:80%"></i></div><span class="n">4/5</span></div>
+<div class="tally"><span>Compliance-over-time trend view</span><div class="bar"><i style="width:60%"></i></div><span class="n">3/5</span></div>
+<div class="tally"><span>Bulk actions (email, notifications)</span><div class="bar"><i style="width:60%"></i></div><span class="n">3/5</span></div>
+<div class="tally"><span>Active / inactive user counts</span><div class="bar"><i style="width:60%"></i></div><span class="n">3/5</span></div>
+<div class="tally"><span>Proactive expiration alerts</span><div class="bar"><i style="width:40%"></i></div>
+</div><span class="n">2/5</span></div>
+  <div class="sketch-grid">
+    <figure><div class="shell"><img class="zoomable" data-group="ideate" data-caption="Sketch 1 — Layout & framework filtering" src="assets/sk1.jpg" alt="Sketch 1 — Layout & framework filtering"></div><figcaption>Sketch 1 — Layout & framework filtering</figcaption></figure>
+    <figure><div class="shell"><img class="zoomable" data-group="ideate" data-caption="Sketch 2 — Actions, exports & configurability" src="assets/sk2.jpg" alt="Sketch 2 — Actions, exports & configurability"></div><figcaption>Sketch 2 — Actions, exports & configurability</figcaption></figure>
+    <figure><div class="shell"><img class="zoomable" data-group="ideate" data-caption="Sketch 3 — Modular dashboard & trends" src="assets/sk3.jpg" alt="Sketch 3 — Modular dashboard & trends"></div><figcaption>Sketch 3 — Modular dashboard & trends</figcaption></figure>
+    <figure><div class="shell"><img class="zoomable" data-group="ideate" data-caption="Sketch 4 — Non-compliant table & category tabs" src="assets/sk4.jpg" alt="Sketch 4 — Non-compliant table & category tabs"></div><figcaption>Sketch 4 — Non-compliant table & category tabs</figcaption></figure>
+    <figure><div class="shell"><img class="zoomable" data-group="ideate" data-caption="Sketch 5 — Sequential drill-down flow: group, framework, individual, position, proactive expiration alerts" src="assets/sk5.jpg" alt="Sketch 5 — sequential drill-down flow"></div><figcaption>Sketch 5 — Sequential drill-down flow: group, framework, individual, position, proactive expiration alerts</figcaption></figure>
+  </div>
+  
+</section>
+
+<section class="sec" id="concepts">
+  <h2>Three concepts, tested</h2>
+  <p>I built three low-fidelity directions in Figma and took them back to real users — deliberately unfinished, so people would react honestly instead of politely.</p>
+  <figure class="figure"><div class="shell"><img class="zoomable" data-group="concepts" data-caption="Option A — Configurable widgets. Drag-and-drop layout, multiple saved dashboard tabs, side modal for adding widget types, per-widget filter, edit, download and delete" src="assets/optA.jpg" alt="Option A — Configurable widgets. Drag-and-drop layout, multiple saved dashboard tabs, side modal for adding widget types, per-widget filter, edit, download and delete"></div><figcaption>Option A — Configurable widgets. Drag-and-drop layout, multiple saved dashboard tabs, side modal for adding widget types, per-widget filter, edit, download and delete</figcaption></figure>
+  <figure class="figure"><div class="shell"><img class="zoomable" data-group="concepts" data-caption="Option B — Chart framework tabs. Framework compliance charts as top-level tabs, rich filter modal, configurable table columns" src="assets/optB.jpg" alt="Option B — Chart framework tabs. Framework compliance charts as top-level tabs, rich filter modal, configurable table columns"></div><figcaption>Option B — Chart framework tabs. Framework compliance charts as top-level tabs, rich filter modal, configurable table columns</figcaption></figure>
+  <figure class="figure"><div class="shell"><img class="zoomable" data-group="concepts" data-caption="Option C — Simple framework tabs. One framework view per tab with a single chart and non-compliant list, less dense than Option B" src="assets/optC.jpg" alt="Option C — Simple framework tabs. One framework view per tab with a single chart and non-compliant list, less dense than Option B"></div><figcaption>Option C — Simple framework tabs. One framework view per tab with a single chart and non-compliant list, less dense than Option B</figcaption></figure>
+  <figure class="figure "><div class="shell"><img class="zoomable" data-group="concepts" data-caption="Round two mockup feedback session, 03/03/26" src="assets/r2-board.jpg" alt="Round two mockup feedback session, 03/03/26"></div><figcaption>Round two mockup feedback session, 03/03/26</figcaption></figure>
+  <h3>What testing changed</h3>
+  <div class="quotes">
+    <blockquote>That's the purpose of the dashboard — to give you the information right away, and then if you want to, drill into details.<cite>DTRA, 03/03/26</cite></blockquote>
+    <blockquote>I would prefer it to be my view. I don't want to control what other people are seeing.<cite>ON FILTER SCOPE — WHY SAVED VIEWS BECAME PER-USER</cite></blockquote>
+    <blockquote>It would be helpful to click on the user name and open their profile, to edit the user right away rather than going back to personnel.<cite>A HIGH-VALUE INTERACTION THAT APPEARED IN NONE OF THE THREE MOCKUPS</cite></blockquote>
+  </div>
+  <p>Two of three customer groups preferred Option A for long-term flexibility; all groups agreed Option B's framework tabs handled drill-down best. The final direction is a synthesis: Option A's configurable architecture with Option B's framework tabs as one of the available views.</p>
+  <p>The third quote is the one I'd point to in an interview. Clicking a name to open a profile and fix the problem immediately wasn't in any of the three concepts. It only surfaced because users had something concrete to react to, and it went straight into scope.</p>
+</section>
+
+<section class="sec" id="design">
+  <h2>Iteration 1<span class="chip chip--old">SUPERSEDED</span></h2>
+  <p>The first iteration answered everything research had surfaced: framework tabs, drill-down to individuals, per-user filtering and column configuration, supervisor contact inline. It tested well on layout and navigation.</p>
+  <figure class="figure"><div class="shell"><img class="zoomable" data-group="v1" data-caption="Iteration 1 — framework tabs, a single reason per person, and a three-state status model" src="assets/hifi-dash.jpg" alt="Iteration 1 dashboard"></div><figcaption>Iteration 1 — framework tabs, a single reason per person, and a three-state status model</figcaption></figure>
+  <div class="insight">
+    <p>Then testing surfaced something no amount of layout refinement would fix: the binary Compliant / Non-Compliant model didn't match how compliance managers think about their workforce.</p>
+    <span>THE HIGHEST-LEVERAGE CHANGE IN THE PROJECT — AND IT CAME FROM RESEARCH, NOT CRITIQUE</span>
+  </div>
+  <p>A person can be compliant right now and still have outstanding work. They might be awaiting a qualification matrix, operating under an active waiver, or still inside their qualification window. That person is fundamentally different from someone fully qualified with nothing left to do, and managers need to know which of their people require follow-up. The binary model hid exactly that distinction.</p>
+  <p>Real personnel also hold multiple work roles, each carrying requirements from different sources. A manager looking at Ted Mosby doesn't just need to know he's unqualified — they need to know which of his three roles is failing, which qualification is driving it, and whether the other roles are fine. The flat record couldn't express that, so it pushed managers back out to other screens to reconstruct the picture manually.</p>
+</section>
+
+<section class="sec" id="final">
+  <h2>Iteration 2 — the final design</h2>
+  <h3>A three-tier taxonomy</h3>
+  <p><strong>Unqualified</strong> — requirements are unmet. <strong>Compliant</strong> — meets requirements today, but work remains. <strong>Fully Qualified</strong> — everything met, nothing outstanding. Plus <strong>Combined</strong>, a rollup of Compliant and Fully Qualified.</p>
+  <p>That fourth number solves a reporting problem specific to this user. Compliance leads report upward to agency CIOs who want one figure. The three tiers give managers the operational detail they need; Combined preserves the clean headline they need to report — both audiences served without compromise.</p>
+  <div class="tiers">
+    <div class="tier">
+      <span class="tier__count">TIER 01</span>
+      <h4>Unqualified</h4>
+      <p>Requirements are unmet. Equivalent to the previous non-compliant state.</p>
+    </div>
+    <div class="tier tier--mid">
+      <span class="tier__count">TIER 02</span>
+      <h4>Compliant</h4>
+      <p>Meets requirements today, but work remains — awaiting a qual matrix, under an active waiver, or inside the qualification window.</p>
+    </div>
+    <div class="tier">
+      <span class="tier__count">TIER 03</span>
+      <h4>Fully Qualified</h4>
+      <p>All requirements met, nothing outstanding.</p>
+    </div>
+  </div>
+  <p class="rollup"><b>Combined</b> <span>= Compliant + Fully Qualified — the single headline figure for reporting upward to agency CIOs.</span></p>
+
+  <h4>Five statuses, one system</h4>
+  <p>The three tiers are expressed through five statuses in the Requirements column and the filter key. Each was specified with its tooltip copy, pill treatment, selected and unselected states, and full color ramp, so the same component reads identically in the profile, reports, and compliance review.</p>
+  <div class="statuses">
+    <div class="st">
+      <div><span class="st__pill st-unqualified">✕ Unqualified</span><span class="st__family">Family: Unmet · red</span></div>
+      <div><p class="st__copy">The qualification deadline has been missed. This person or requirement is outside any active extension, waiver, or exemption.</p><span class="st__note st__note--follow">FOLLOW-UP REQUIRED</span></div>
+    </div>
+    <div class="st">
+      <div><span class="st__pill st-progress">◴ Qual in progress</span><span class="st__family">Family: Attention · amber</span></div>
+      <div><p class="st__copy">Under instruction and within the qualification window — either the 9-month foundational or 12-month residential timeline under DoD 8140.</p><span class="st__note st__note--rolls">NO ACTION YET · COUNTS AS COMPLIANT</span></div>
+    </div>
+    <div class="st">
+      <div><span class="st__pill st-waiver">◎ Active waiver</span><span class="st__family">Family: Policy · purple</span></div>
+      <div><p class="st__copy">An approved waiver is covering this requirement. Check the expiry date and plan ahead if renewal will be needed.</p><span class="st__note st__note--rolls">NO ACTION WHILE VALID · COUNTS AS COMPLIANT</span></div>
+    </div>
+    <div class="st">
+      <div><span class="st__pill st-awaiting">◔ Awaiting qual matrix</span><span class="st__family">Family: Neutral · gray, dashed</span></div>
+      <div><p class="st__copy">No qualification matrix has been published for this work role yet. This person is considered compliant in the meantime — the gap is at the program level, not a failure by the individual.</p><span class="st__note st__note--rolls">NO ACTION · COUNTS AS COMPLIANT</span></div>
+    </div>
+    <div class="st">
+      <div><span class="st__pill st-qualified">✓ Fully qualified</span><span class="st__family">Family: Met · green</span></div>
+      <div><p class="st__copy">All requirements for this work role have been met.</p><span class="st__note st__note--none">NO ACTION NEEDED</span></div>
+    </div>
+  </div>
+  <p>The status system was specified at token level: tooltip copy, pill treatment, selected and unselected states, and hex values for every ramp. Two of the five statuses carry a footnote about rolling into the Compliant band, so the same component can be reused across the profile, reports, and compliance review without the copy going stale.</p>
+
+  <h3>The final dashboard</h3>
+  <figure class="figure"><div class="shell"><img class="zoomable" data-group="final" data-caption="The final Management Dashboard — personnel summary, four framework panels at once, requirement-level team list, and compliance breakdowns by work role and by group" src="assets/v2-dash.jpg" alt="Final management dashboard"></div><figcaption>The final Management Dashboard — personnel summary, four framework panels at once, requirement-level team list, and compliance breakdowns by work role and by group</figcaption></figure>
+
+  <h3>Try it</h3>
+  <div class="proto">
+    <div class="proto__bar"><i></i><i></i><i></i><span class="proto__url">evaregelski.github.io/Dashboard/dashboard.html</span></div>
+    <div class="proto__frame">
+      <iframe src="https://evaregelski.github.io/Dashboard/dashboard.html" title="Cyberstar management dashboard prototype" loading="lazy"></iframe>
+    </div>
+    <div class="proto__foot">
+      <span>LIVE HTML PROTOTYPE — FILTER, SORT, AND DRILL DOWN</span>
+      <a class="btn-sm" href="https://evaregelski.github.io/Dashboard/dashboard.html" target="_blank" rel="noopener">Open full prototype
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <h3>What changed, component by component</h3>
+  <p>Three components carry the taxonomy shift. Each opens on the final version; switch the tab to see what it replaced.</p>
+
+  <h4>All frameworks visible at once</h4>
+  <p>Iteration 1 used tabs, so comparing frameworks meant switching context. The final design shows All Frameworks, DCWF 8140, Cyber Awareness Challenge and 8570 simultaneously — answering the original HMW question directly. Each panel carries its own active and total counts, resolving the active/inactive gap flagged on the very first annotated screenshot.</p>
+  <div class="compare" data-compare>
+    <div class="compare__tabs" role="tablist">
+      <button role="tab" aria-selected="true" data-pane="final">Final</button>
+      <button role="tab" aria-selected="false" data-pane="v1">Iteration 1</button>
+    </div>
+    <figure data-pane="final" data-on="true"><div class="shell">
+      <img class="zoomable" data-group="cmp-panels" data-caption="Four framework panels together, each with active and total counts, the three-tier breakdown, and a Combined rollup" src="assets/v2-panels.jpg" alt="Four framework panels together, each with active and total counts, the three-tier breakdown, and a Combined rollup"></div>
+      <figcaption>Four framework panels together, each with active and total counts, the three-tier breakdown, and a Combined rollup</figcaption></figure>
+    <figure data-pane="v1" data-on="false"><div class="shell">
+      <img class="zoomable" data-group="cmp-panels" data-caption="Iteration 1 — framework tabs, one context at a time" src="assets/hifi-tabs.jpg" alt="Iteration 1 — framework tabs, one context at a time"></div>
+      <figcaption>Iteration 1 — framework tabs, one context at a time</figcaption></figure>
+  </div>
+
+  <h4>Requirement-level team list</h4>
+  <p>The table went from listing one reason for non-compliance to showing the actual requirements driving each person's status. Chips are marked Met or Unmet with a "+1 more unmet" affordance for overflow, work roles show "+2 others" where personnel hold multiple, and Due Date sorting supports acting before expiration rather than after.</p>
+  <div class="compare" data-compare>
+    <div class="compare__tabs" role="tablist">
+      <button role="tab" aria-selected="true" data-pane="final">Final</button>
+      <button role="tab" aria-selected="false" data-pane="v1">Iteration 1</button>
+    </div>
+    <figure data-pane="final" data-on="true"><div class="shell">
+      <img class="zoomable" data-group="cmp-table" data-caption="Team list — requirement chips marked Met or Unmet, work role with overflow, Due Date sorting, and the five-state filter legend" src="assets/v2-table.jpg" alt="Team list — requirement chips marked Met or Unmet, work role with overflow, Due Date sorting, and the five-state filter legend"></div>
+      <figcaption>Team list — requirement chips marked Met or Unmet, work role with overflow, Due Date sorting, and the five-state filter legend</figcaption></figure>
+    <figure data-pane="v1" data-on="false"><div class="shell">
+      <img class="zoomable" data-group="cmp-table" data-caption="Iteration 1 — one reason per person, three status states" src="assets/hifi-table.jpg" alt="Iteration 1 — one reason per person, three status states"></div>
+      <figcaption>Iteration 1 — one reason per person, three status states</figcaption></figure>
+  </div>
+
+  <h4>The personnel modal, rebuilt</h4>
+  <p>This changed more than any other single component. Work roles became first-class: each is its own card with its framework badge, whether it's primary or secondary, and its own status. Requirements are grouped by qualification type — Foundational, Residential-OJT, CPD — matching how DCWF actually categorizes them. Every line carries its own context: "Overdue since 01/14/2026," "in progress," "40 of 40 hours completed."</p>
+  <div class="compare" data-compare>
+    <div class="compare__tabs" role="tablist">
+      <button role="tab" aria-selected="true" data-pane="final">Final</button>
+      <button role="tab" aria-selected="false" data-pane="v1">Iteration 1</button>
+    </div>
+    <figure data-pane="final" data-on="true"><div class="shell">
+      <img class="zoomable" data-group="cmp-modal" data-caption="Rebuilt modal — each work role its own card with its own status, requirements grouped by qualification type, context on every line" src="assets/v2-modal.jpg" alt="Rebuilt modal — each work role its own card with its own status, requirements grouped by qualification type, context on every line"></div>
+      <figcaption>Rebuilt modal — each work role its own card with its own status, requirements grouped by qualification type, context on every line</figcaption></figure>
+    <figure data-pane="v1" data-on="false"><div class="shell">
+      <img class="zoomable" data-group="cmp-modal" data-caption="Iteration 1 — a flat record: one reason, one status, one time period" src="assets/hifi-modal-crop.jpg" alt="Iteration 1 — a flat record: one reason, one status, one time period"></div>
+      <figcaption>Iteration 1 — a flat record: one reason, one status, one time period</figcaption></figure>
+  </div>
+  <p>This is where the taxonomy becomes visible in the interface. A requirement's status rolls into its work role, and the work role's status rolls into the person. Ted Mosby is Unqualified because CISSP is overdue on his primary role, while his secondary role is progressing normally and his position requirements are fully met. Three different truths about one person, each readable on its own — exactly what the flat model destroyed.</p>
+
+  <h3>Filtering and configuration</h3>
+  <p>The filter expanded to match the new model: status, expiring window, requirement scope across work role element, qualification type, role order and requirement type, then personnel details. It reuses the existing reports page filtering infrastructure rather than requiring new backend logic.</p>
+  <div class="two-up">
+    <figure><div class="shell"><img class="zoomable" data-group="final" data-caption="Advanced filters — status, expiring window, requirement scope, and personnel narrowing" src="assets/v2-filter.jpg" alt="Advanced filter panel"></div><figcaption>Advanced filters — status, expiring window, requirement scope, and personnel narrowing</figcaption></figure>
+    <figure><div class="shell"><img class="zoomable" data-group="final" data-caption="Table configuration — per-user column visibility and drag-to-reorder" src="assets/v2-config.jpg" alt="Table configuration panel"></div><figcaption>Table configuration — per-user column visibility and drag-to-reorder</figcaption></figure>
+  </div>
+
+  <h3>Consistency as a strategy</h3>
+  <p>One visual language across every module. The framework panels, the work role chart and the group chart encode Unqualified, Compliant and Fully Qualified identically, and each surfaces a Combined rollup in the same position. A manager learns the system once and reads every chart fluently, which matters enormously in a tool used daily under time pressure.</p>
+
+  <h3>Engineering collaboration and smart reuse</h3>
+  <p>The six-person constraint shaped this iteration as much as the first. The three-tier taxonomy was designed in direct conversation with engineering to confirm the underlying qualification data could support the distinction without a costly data model migration. Establishing feasibility early prevented a redesign that looked good but couldn't ship.</p>
+
+  <h3>Accessibility and export</h3>
+  <p>Section 508 compliance was non-negotiable inside the DoD ecosystem: sufficient contrast, keyboard navigation, and screen-reader-compatible component structure. Download sits on the team list, eliminating the spreadsheet workaround that had been the default workflow for years.</p>
+</section>
+
+<section class="sec" id="results">
+  <h2>Where it stands</h2>
+  <div class="stats">
+    <div class="stat"><b>2</b><span>RESEARCH ROUNDS</span></div>
+    <div class="stat"><b>3</b><span>CONCEPTS VALIDATED</span></div>
+    <div class="stat"><b>6</b><span>ENGINEERS TO BUILD IT</span></div>
+  </div>
+  <p>The design is in development. The most consistent theme in testing was relief — managers felt it finally matched how they think about the work, moving from "what's the number?" to "who do I need to talk to, and what do they need to do?"</p>
+  <h3>Measurement plan at launch</h3>
+  <ul class="bul">
+    <li>Baseline task completion and time-on-task for core workflows</li>
+    <li>Export frequency as a proxy for needs the dashboard still isn't meeting</li>
+    <li>Dashboard-related support ticket volume against the current baseline</li>
+    <li>Follow-up research 60 to 90 days post-launch</li>
+  </ul>
+</section>
+
+<section class="sec" id="reflection">
+  <h2>Reflections</h2>
+  <p>Structured facilitation was a design multiplier. The workshop compressed weeks of back-and-forth into one session, surfaced the CEO's domain expertise, and produced more diverse ideas than I would have alone. The assumption prioritization matrix was new to me in this form, and mapping what we believed against what we could actually prove made round two far more focused.</p>
+  <p>The six-developer constraint was a genuine forcing function. Rather than designing the ideal product and hoping it got built, every feature decision was weighed against implementation cost from day one. That discipline produced a leaner design that is more likely to ship intact.</p>
+  <p>The two-round structure earned its keep. Several of the highest-value decisions — per-user rather than shared filter saves, clicking a name to open a profile — only emerged in round two, when users had something concrete in front of them. Building that loop in before high-fidelity work de-risked the whole project.</p>
+  <p>Good enterprise UX is ultimately about reducing cognitive load in high-stakes environments. Compliance managers don't have time to puzzle out a dashboard. They need to get in, find the problem, and act.</p>
+</section>
+</div>
+</div>
+
+
+<div class="lb" data-lb aria-hidden="true" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <div class="lb__top">
+    <span class="lb__count" data-lb-count></span>
+    <button class="lb__close" data-lb-close aria-label="Close viewer">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+  <div class="lb__stage" data-lb-stage data-zoom="false"><img data-lb-img alt=""></div>
+  <div class="lb__bottom">
+    <span data-lb-caption></span>
+    <span class="lb__nav">
+      <button data-lb-prev aria-label="Previous image"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <button data-lb-next aria-label="Next image"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
+    </span>
+  </div>
+</div>
+
+
+
+
+<section class="nextproj"><div class="wrap nextproj__in">
+  <div><span>NEXT PROJECT</span><h2>Making compliance software look as trustworthy as it is</h2></div>
+  <a class="btn" href="../cyberstar-design-system/index.html">View project</a>
+</div></section>
+<footer class="site-foot"><div class="wrap foot__in">
+  <p class="foot__mark"><span class="e">E</span>va Regelski</p>
+  <nav aria-label="Footer"><ul><li><a href="../../work.html">Work</a></li><li><a href="../../development.html">Development</a></li><li><a href="../../illustration.html">Illustration</a></li><li><a href="../../about.html">About</a></li></ul></nav>
+  <p class="foot__fine">© <span data-year>2026</span> Eva Regelski · Cleveland, Ohio</p>
+</div></footer>
+<script src="../../js/site.js"></script>
+<script>document.querySelectorAll('[data-year]').forEach(function(e){e.textContent=new Date().getFullYear()});</script>
+</body>
+</html>
