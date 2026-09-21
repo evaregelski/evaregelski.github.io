@@ -59,6 +59,7 @@
       <figcaption>FIG. 00 — PROGRESSIVE DRILL-DOWN</figcaption>
     </figure>
   </div>
+  <div class="lmline" aria-hidden="true"><span class="lmline__canvas" data-lm-line></span><span class="lmline__tint"></span></div>
   <dl class="rail">
     <div><dt>ROLE</dt><dd>Sole UX designer, in a product trio</dd></div>
     <div><dt>TYPE</dt><dd>Product redesign + feature expansion</dd></div>
@@ -132,10 +133,138 @@
 
 <section class="sec" id="analyze">
   <h2>Analyze</h2>
-  <figure class="figure "><div class="shell"><img class="zoomable" data-group="analyze" data-caption="Problem statement and six How Might We questions, synthesized from round one" src="assets/hmw.jpg" alt="Problem statement and six How Might We questions, synthesized from round one"></div><figcaption>Problem statement and six How Might We questions, synthesized from round one</figcaption></figure>
+  <div class="hmw">
+    <div class="hmw__problem">
+      <span class="hmw__lbl">PROBLEM STATEMENT</span>
+      <p>Managers need a dashboard that efficiently visualizes compliance data and provides flexible configuration options, so that they are able to track certifications and manage the compliance status of their team(s).</p>
+    </div>
+    <span class="hmw__lbl">HOW MIGHT WE — SYNTHESIZED FROM ROUND ONE</span>
+    <ol class="hmw__grid">
+      <li>Display non-compliant and at-risk users alongside compliance charts?</li>
+      <li>Enable users to easily take action on non-compliant and at-risk users?</li>
+      <li>Enable users to customize their dashboard to view compliance data in the way that best suits their needs?</li>
+      <li>Visualize compliance data for Cyber Awareness Challenge, 8140, and 8570 at the same time?</li>
+      <li>Provide functionality for proactive compliance management for certificates nearing expiration?</li>
+      <li>Make it easy for users to export compliance data directly from the dashboard?</li>
+    </ol>
+  </div>
   <h3>Personas</h3>
-  <figure class="figure"><div class="shell"><img class="zoomable" data-group="analyze" data-caption="Leader persona — CISO. &quot;If you want it done right, you have to oversee it.&quot; Needs full visibility, pattern recognition, and clean upward reporting" src="assets/persona-molly.jpg" alt="Leader persona — CISO. &quot;If you want it done right, you have to oversee it.&quot; Needs full visibility, pattern recognition, and clean upward reporting"></div><figcaption>Leader persona — CISO. "If you want it done right, you have to oversee it." Needs full visibility, pattern recognition, and clean upward reporting</figcaption></figure>
-  <figure class="figure"><div class="shell"><img class="zoomable" data-group="analyze" data-caption="Admin persona — Compliance Policy Administrator. &quot;I've got this covered.&quot; Needs efficient self-reliant action, accurate records, and streamlined workflows" src="assets/persona-claire.jpg" alt="Admin persona — Compliance Policy Administrator. &quot;I've got this covered.&quot; Needs efficient self-reliant action, accurate records, and streamlined workflows"></div><figcaption>Admin persona — Compliance Policy Administrator. "I've got this covered." Needs efficient self-reliant action, accurate records, and streamlined workflows</figcaption></figure>
+  <article class="persona">
+    <header class="persona__head">
+      <span class="persona__av" role="img" aria-label="Detective">🕵🏻‍♀️</span>
+      <h4 class="persona__name"><span class="persona__meet">MEET</span>Micromanaging Molly</h4>
+      <span class="persona__type">LEADER</span>
+    </header>
+    <div class="persona__bio">
+      <p>Molly is a meticulous and driven Chief Information Security Officer who thrives on achieving perfection in compliance. Her micromanaging style ensures that no detail is overlooked, but it can sometimes cause conflicts in priority management when everything feels urgent all the time. Molly actively uses Cyberstar to monitor her agency's compliance progress, leveraging its reports and dashboards to maintain control. Her high standards and unwavering commitment to excellence make her a formidable leader in the compliance space, though her hands-on approach occasionally creates challenges for collaboration and delegation.</p>
+    </div>
+    <div class="persona__body">
+      <div>
+        <dl class="persona__facts">
+          <dt>AGE</dt><dd>45</dd>
+          <dt>MINDSET</dt><dd><q>If you want it done right, you have to oversee it.</q></dd>
+          <dt>EDUCATION</dt><dd>B.S. in Computer Science, MBA</dd>
+          <dt>POSITION</dt><dd>Chief Information Security Officer (CISO)</dd>
+          <dt>CAREER</dt><dd>Mid-to-late career</dd>
+        </dl>
+        <div class="persona__block" style="margin-top:1.25rem">
+          <h5 class="persona__h">TECH LITERACY</h5>
+          <span class="persona__level">High</span>
+          <p>Not that familiar with Cyberstar, but knows the basics.</p>
+        </div>
+        <div class="persona__block">
+          <h5 class="persona__h">8140 POLICY KNOWLEDGE</h5>
+          <span class="persona__level">High</span>
+          <p>Holds the ultimate accountability for her agency's 8140 compliance posture.</p>
+        </div>
+      </div>
+      <div>
+        <div class="persona__block">
+          <h5 class="persona__h">PAIN POINTS</h5>
+          <ul class="persona__list">
+            <li>Wants to drill down into every detail of compliance — unless things look good</li>
+            <li>Accuracy of reporting in the app</li>
+            <li>Time availability</li>
+            <li>Competing priorities — learning the app in depth isn't her highest priority</li>
+            <li>Frustrated by team members who slack on compliance deadlines</li>
+            <li>Needs more in-app communication tools</li>
+            <li>Finds it difficult to delegate tasks</li>
+            <li>Dislikes ambiguity in reporting</li>
+          </ul>
+        </div>
+        <div class="persona__block">
+          <h5 class="persona__h">USER GOALS</h5>
+          <ul class="persona__list">
+            <li>Reach 100% team compliance</li>
+            <li>Understand patterns of non-compliance, and the events behind them — such as losing a vendor who was providing training</li>
+            <li>Get quick resolution to every problem, big or small</li>
+            <li>Report up to her supervisors with positive results that make her and her team look good</li>
+            <li>Keep the app performing accurately, to her high standards</li>
+            <li>Eliminate any potential gaps in compliance</li>
+            <li>Keep a tight grip on all compliance-related activity so nothing is overlooked</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <article class="persona persona--admin">
+    <header class="persona__head">
+      <span class="persona__av" role="img" aria-label="Mechanic">👩🏼‍🔧</span>
+      <h4 class="persona__name"><span class="persona__meet">MEET</span>Capable Claire</h4>
+      <span class="persona__type">ADMIN</span>
+    </header>
+    <div class="persona__bio">
+      <p>Claire is a capable and confident Cyberstar system admin who thrives on self-reliance. She manages the system with minimal oversight and ensures compliance requirements are met without fuss. Her strong technical skills and practical approach make her a dependable resource for her team. While she may not always seek out collaboration or innovation, Claire's expertise and efficiency ensure that Cyberstar runs smoothly for her agency under her watch.</p>
+    </div>
+    <div class="persona__body">
+      <div>
+        <dl class="persona__facts">
+          <dt>AGE</dt><dd>50</dd>
+          <dt>MINDSET</dt><dd><q>I've got this covered.</q></dd>
+          <dt>EDUCATION</dt><dd>B.S. in Information Systems</dd>
+          <dt>POSITION</dt><dd>Compliance Policy Administrator</dd>
+          <dt>CAREER</dt><dd>Mid career</dd>
+        </dl>
+        <div class="persona__block" style="margin-top:1.25rem">
+          <h5 class="persona__h">TECH LITERACY</h5>
+          <span class="persona__level">High</span>
+          <p>A Cyberstar admin who has spent a lot of time in the product and rarely needs assistance.</p>
+        </div>
+        <div class="persona__block">
+          <h5 class="persona__h">8140 POLICY KNOWLEDGE</h5>
+          <span class="persona__level">Above average</span>
+          <p>Needs to be able to implement the policy set forth by her CISO.</p>
+        </div>
+      </div>
+      <div>
+        <div class="persona__block">
+          <h5 class="persona__h">PAIN POINTS</h5>
+          <ul class="persona__list">
+            <li>Accuracy of records</li>
+            <li>Efficiency of reports</li>
+            <li>Configurations</li>
+            <li>Feels stretched thin balancing admin duties with other responsibilities</li>
+            <li>Focuses more on functionality than on exploring innovative ways to leverage Cyberstar</li>
+            <li>Struggles with communication due to her independent nature</li>
+          </ul>
+        </div>
+        <div class="persona__block">
+          <h5 class="persona__h">USER GOALS</h5>
+          <ul class="persona__list">
+            <li>Relies heavily on the app, so needs to perform actions easily without compromising the accuracy of reporting</li>
+            <li>Monitor and report on compliance at every level</li>
+            <li>Generate, analyze and share out reports easily and quickly</li>
+            <li>Ensure adequate signatures are on reports and user agreements</li>
+            <li>Ensure review processes are configured in Cyberstar</li>
+            <li>Continue to manage Cyberstar without needing external help</li>
+            <li>Keep compliance workflows streamlined and the system problem-free for her team</li>
+            <li>Stay informed about updates and changes in Cyberstar to maintain her expertise</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </article>
   <div class="insight">
     <p>Identify who is non-compliant, understand why, and take or delegate action — all without leaving the dashboard.</p>
     <span>THE CORE JOB. THE EXISTING PRODUCT BROKE THIS LOOP AT EVERY STEP</span>
@@ -153,10 +282,84 @@
   <h2>Ideate</h2>
   <p>I facilitated a design studio workshop with the product trio, the CEO, and customer success. Four steps: ideation, scope and prioritization, assumption identification, and assumption prioritization.</p>
   <figure class="figure"><div class="shell"><img class="zoomable" data-group="ideate" data-caption="Step 1 — Solution ideation. Participants generated layout concepts, feature ideas, and a temporal roadmap: current dashboard with drill-down, then a user-built dashboard, then tool integration" src="assets/ws1.jpg" alt="Step 1 — Solution ideation. Participants generated layout concepts, feature ideas, and a temporal roadmap: current dashboard with drill-down, then a user-built dashboard, then tool integration"></div><figcaption>Step 1 — Solution ideation. Participants generated layout concepts, feature ideas, and a temporal roadmap: current dashboard with drill-down, then a user-built dashboard, then tool integration</figcaption></figure>
-  <figure class="figure"><div class="shell"><img class="zoomable" data-group="ideate" data-caption="Step 2 — Features sorted into definitely in scope, maybe in scope, and not in scope" src="assets/ws2.jpg" alt="Step 2 — Features sorted into definitely in scope, maybe in scope, and not in scope"></div><figcaption>Step 2 — Features sorted into definitely in scope, maybe in scope, and not in scope</figcaption></figure>
+  <div class="scope" role="group" aria-label="Step 2 — features sorted into definitely, maybe, and not in scope">
+    <div class="scope__col">
+      <h5 class="scope__h">DEFINITELY IN SCOPE <b>14</b></h5>
+      <ul>
+        <li>Consistent UI across the dashboard</li>
+        <li>Multi-group selection for compliance views</li>
+        <li>Data labels on hover</li>
+        <li>Drill-down to non-compliant users, with their emails</li>
+        <li>Clickable email addresses</li>
+        <li>Click through to a separate page with all the data</li>
+        <li>Modal pop-up for drill-down detail</li>
+        <li>Expand the area below the graph with a table</li>
+        <li>Framework-based visuals, defaulting to Cyber Awareness</li>
+        <li>Show the reason for non-compliance</li>
+        <li>Impersonate a non-compliant user</li>
+        <li>Download the dashboard from the dashboard page</li>
+        <li>Filtering and sorting of the non-compliance drill-down</li>
+        <li>Display supervisor and user email</li>
+      </ul>
+    </div>
+    <div class="scope__col scope__col--maybe">
+      <h5 class="scope__h">MAYBE IN SCOPE <b>4</b></h5>
+      <ul>
+        <li>Download a dashboard report based on existing filters</li>
+        <li>Visual download of dashboard info</li>
+        <li>Non-compliance reason — refined logic to identify it and show it as its own field</li>
+        <li>Non-compliance reason — a simple overdue vs. expired view</li>
+      </ul>
+    </div>
+    <div class="scope__col scope__col--out">
+      <h5 class="scope__h">NOT IN SCOPE <b>1</b></h5>
+      <ul>
+        <li>Ad hoc email actions from the dashboard</li>
+      </ul>
+    </div>
+  </div>
+  <p class="scope-note">STEP 2 — FEATURES SORTED BY THE GROUP INTO DEFINITELY, MAYBE, AND NOT IN SCOPE</p>
   <p>Confirmed as definitely in scope: consistent UI across the dashboard, multi-group selection, drill-down to non-compliant users with email visibility, a modal for drill-down detail, framework-based visuals defaulting to Cyber Awareness, reason for non-compliance, filtering and sorting of the drill-down list, supervisor and user email, and download from the dashboard page.</p>
   <figure class="figure"><div class="shell"><img class="zoomable" data-group="ideate" data-caption="Step 3 — Assumptions surfaced that needed validation before committing to design: tabs and saved views, configurable widgets, complex filtering, and export" src="assets/ws3.jpg" alt="Step 3 — Assumptions surfaced that needed validation before committing to design: tabs and saved views, configurable widgets, complex filtering, and export"></div><figcaption>Step 3 — Assumptions surfaced that needed validation before committing to design: tabs and saved views, configurable widgets, complex filtering, and export</figcaption></figure>
-  <figure class="figure"><div class="shell"><img class="zoomable" data-group="ideate" data-caption="Step 4 — Assumptions mapped on importance against evidence strength. The high-importance, weak-evidence quadrant was flagged as leap-of-faith and tested first" src="assets/ws4.jpg" alt="Step 4 — Assumptions mapped on importance against evidence strength. The high-importance, weak-evidence quadrant was flagged as leap-of-faith and tested first"></div><figcaption>Step 4 — Assumptions mapped on importance against evidence strength. The high-importance, weak-evidence quadrant was flagged as leap-of-faith and tested first</figcaption></figure>
+  <div class="matrix" role="group" aria-label="Step 4 — assumptions mapped on importance against strength of evidence">
+    <span></span>
+    <span class="matrix__ax matrix__ax--x">STRONG EVIDENCE</span>
+    <span class="matrix__ax matrix__ax--x">WEAK EVIDENCE</span>
+
+    <span class="matrix__ax matrix__ax--y">MORE IMPORTANT</span>
+    <div class="matrix__q">
+      <h5>Build with confidence</h5><small>MORE IMPORTANT · STRONG EVIDENCE</small>
+      <ul>
+        <li>Customers need to see the reason for non-compliance</li>
+        <li>Users want to report by position type</li>
+      </ul>
+    </div>
+    <div class="matrix__q matrix__q--leap">
+      <h5>Leap of faith — test these</h5><small>MORE IMPORTANT · WEAK EVIDENCE</small>
+      <ul>
+        <li>Customers will use configuration to build out their own dashboard <span class="matrix__tag">TESTED FIRST</span></li>
+        <li>Saved views will apply to all users of a component <span class="matrix__tag">TESTED FIRST</span></li>
+        <li>Current report filtering can be repurposed for dashboards</li>
+      </ul>
+    </div>
+
+    <span class="matrix__ax matrix__ax--y">LESS IMPORTANT</span>
+    <div class="matrix__q">
+      <h5>Low risk</h5><small>LESS IMPORTANT · STRONG EVIDENCE</small>
+      <ul>
+        <li>Customers will find value in bulk actions, like email</li>
+        <li>Email links should open in Outlook</li>
+      </ul>
+    </div>
+    <div class="matrix__q">
+      <h5>Revisit later</h5><small>LESS IMPORTANT · WEAK EVIDENCE</small>
+      <ul>
+        <li>Customers want to see compliance trends over time</li>
+      </ul>
+    </div>
+  </div>
+  <p class="matrix-note">STEP 4 — THE CLEAREST ASSUMPTIONS FROM THE BOARD, IN THE QUADRANTS WHERE THE GROUP PLACED THEM</p>
+  <figure class="figure"><div class="shell"><img class="zoomable" data-group="ideate" data-caption="The original assumption-mapping board from the workshop" src="assets/ws4.jpg" alt="The original workshop board: around twenty sticky notes plotted on axes of importance and strength of evidence, with the top-right quadrant labelled leap of faith"></div><figcaption>The original board — around twenty assumptions, a few moved mid-discussion</figcaption></figure>
   <p>The prioritization matrix is what made round two focused. Whether customers would actually use configuration features, and whether saved views would apply broadly, were the assumptions carrying the most risk — so those were the ones taken back to real users before any high-fidelity work.</p>
   
 
@@ -395,7 +598,7 @@
 
 <section class="nextproj"><div class="wrap nextproj__in">
   <div><span>NEXT PROJECT</span><h2>Making compliance software look as trustworthy as it is</h2></div>
-  <a class="btn" href="../cyberstar-design-system/index.html">View project</a>
+  <a class="lmb" href="../cyberstar-design-system/index.html"><span class="lmb__ring" aria-hidden="true"><span class="lmb__canvas" data-lm-btn></span><span class="lmb__tint"></span></span>View project</a>
 </div></section>
 <footer class="site-foot"><div class="wrap foot__in">
   <p class="foot__mark"><span class="e">E</span>va Regelski</p>
@@ -403,6 +606,7 @@
   <p class="foot__fine">© <span data-year>2026</span> Eva Regelski · Cleveland, Ohio</p>
 </div></footer>
 <script src="../../js/site.js"></script>
+<script src="../../js/liquid-metal.js" defer></script>
 <script>document.querySelectorAll('[data-year]').forEach(function(e){e.textContent=new Date().getFullYear()});</script>
 </body>
 </html>

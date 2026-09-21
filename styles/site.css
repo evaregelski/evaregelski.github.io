@@ -361,3 +361,362 @@ p{margin:0}a{color:inherit;text-decoration:none}ul{margin:0;padding:0;list-style
 /* two figures that must read as a matched pair (e.g. persona portraits) */
 .two-up--match .shell{aspect-ratio:3/4;display:grid}
 .two-up--match .shell img{width:100%;height:100%;object-fit:cover}
+
+/* ==========================================================================
+   .lmb — liquid metal button. The shader fills the pill; a dark face sits
+   2px inside it, so only a thin metallic ring shows. Recoloured lime→pink
+   to match the home hero. Reserved for key actions only.
+   ========================================================================== */
+.lmb{
+  position:relative;isolation:isolate;display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
+  padding:.9em 1.75em;border:0;border-radius:999px;background:transparent;
+  color:var(--paper);font:inherit;font-size:.95rem;font-weight:600;text-decoration:none;cursor:pointer;
+  box-shadow:0 0 0 1px rgba(17,17,20,.3),0 20px 12px rgba(17,17,20,.06),0 9px 9px rgba(17,17,20,.12),0 2px 5px rgba(17,17,20,.15);
+  transition:transform .45s cubic-bezier(.34,1.56,.64,1),box-shadow .15s ease
+}
+.lmb__ring{position:absolute;inset:0;z-index:-2;border-radius:inherit;overflow:hidden;background:#bdbdc2}
+.lmb__canvas{position:absolute;inset:0}
+.lmb__canvas canvas{display:block;width:100%!important;height:100%!important}
+.lmb__tint{
+  position:absolute;inset:0;mix-blend-mode:color;
+  background:linear-gradient(100deg,var(--lime) 0%,#e6f7b0 40%,#ff9bd4 68%,var(--pink) 100%)
+}
+.lmb::before{
+  content:"";position:absolute;inset:2px;z-index:-1;border-radius:inherit;
+  background:linear-gradient(180deg,#26262c 0%,#0a0a0c 100%)
+}
+.lmb:hover{transform:translateY(-2px)}
+.lmb:active{transform:translateY(1px) scale(.98)}
+.lmb:focus-visible{outline:2px solid var(--lime);outline-offset:4px}
+/* no WebGL: a static brand ring instead of silver */
+.lmb.is-failed .lmb__canvas{display:none}
+.lmb.is-failed .lmb__ring{background:linear-gradient(100deg,var(--lime),var(--pink))}
+
+/* ==========================================================================
+   .hmw — problem statement and How Might We questions, as markup rather
+   than a screenshot of sticky notes. Reusable in any case study.
+   ========================================================================== */
+.hmw{margin:1.75rem 0}
+.hmw__lbl{display:block;font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;color:var(--muted);margin-bottom:.8rem}
+.hmw__problem{
+  padding:1.4rem 1.5rem;margin-bottom:1.75rem;background:var(--ink);color:var(--paper);border-radius:4px;
+  border-left:4px solid var(--lime)
+}
+.hmw__problem .hmw__lbl{color:var(--lime)}
+/* .sec p greys every paragraph; override it here or the text drops to 2.85:1 on ink */
+.hmw .hmw__problem p{margin:0;font-size:clamp(1.02rem,1vw+.7rem,1.18rem);line-height:1.6;max-width:62ch;color:var(--paper)}
+.hmw__grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:.75rem;counter-reset:hmw}
+.hmw__grid li{
+  position:relative;padding:2rem 1.1rem 1.1rem;background:var(--white);border:1px solid var(--rule);
+  border-radius:4px;font-size:.93rem;line-height:1.5;color:var(--ink)
+}
+.hmw__grid li::before{
+  counter-increment:hmw;content:"HMW " counter(hmw,decimal-leading-zero);
+  position:absolute;top:.75rem;left:1.1rem;font-family:var(--mono);font-size:.58rem;letter-spacing:.12em;color:var(--muted)
+}
+.hmw__grid li::after{content:"";position:absolute;left:0;top:1rem;bottom:1rem;width:3px;background:var(--lime);border-radius:0 2px 2px 0}
+
+/* ==========================================================================
+   .persona — a persona card in markup. Replaces screenshotted persona
+   templates, including their empty "journey" and "solutions" boxes.
+   --acc sets each persona's accent so a pair reads as distinct.
+   ========================================================================== */
+.persona{
+  --acc:var(--pink);
+  margin:1.75rem 0;background:var(--white);border:1px solid var(--rule);border-radius:6px;overflow:hidden
+}
+.persona + .persona{margin-top:1.25rem}
+.persona--admin{--acc:var(--peri)}
+.persona__head{display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;border-bottom:1px solid var(--rule);
+  background:linear-gradient(90deg,color-mix(in srgb,var(--acc) 10%,var(--white)),var(--white) 70%)}
+.persona__av{flex:none;display:grid;place-items:center;width:3.25rem;height:3.25rem;font-size:1.9rem;line-height:1;
+  background:var(--white);border:2px solid var(--acc);border-radius:50%}
+.persona__name{margin:0;font-size:clamp(1.15rem,2vw,1.4rem);font-weight:600;line-height:1.2}
+.persona__meet{display:block;font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;color:var(--muted);font-weight:400;margin-bottom:.2rem}
+.persona__type{margin-left:auto;flex:none;font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;
+  padding:.4em .85em;border-radius:999px;border:1.5px solid var(--acc);color:var(--ink)}
+.persona__bio{padding:1.25rem 1.5rem 0}
+.persona .persona__bio p{margin:0;color:var(--muted);max-width:none;line-height:1.65}
+.persona__body{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;padding:1.25rem 1.5rem 1.5rem}
+@media(max-width:44rem){.persona__body{grid-template-columns:1fr}.persona__head{flex-wrap:wrap}}
+.persona__facts{display:grid;grid-template-columns:auto 1fr;gap:.45rem 1rem;margin:0;font-size:.9rem;align-content:start}
+.persona__facts dt{font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;color:var(--muted);padding-top:.2rem}
+.persona__facts dd{margin:0;color:var(--ink)}
+.persona__facts dd q{font-style:italic}
+.persona__h{font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;color:var(--muted);font-weight:400;margin:0 0 .6rem}
+.persona__block + .persona__block{margin-top:1.25rem}
+.persona__level{display:inline-block;margin-bottom:.35rem;font-size:.82rem;font-weight:600;
+  padding:.2em .65em;border-radius:3px;background:color-mix(in srgb,var(--acc) 14%,var(--white))}
+.persona .persona__block p{margin:0;font-size:.88rem;color:var(--muted);max-width:none;line-height:1.55}
+.persona__list{list-style:none;margin:0;padding:0}
+.persona__list li{position:relative;padding-left:1.1rem;font-size:.88rem;line-height:1.5;color:var(--muted)}
+.persona__list li + li{margin-top:.4rem}
+.persona__list li::before{content:"";position:absolute;left:0;top:.55em;width:6px;height:6px;border-radius:1px;background:var(--acc)}
+
+/* ==========================================================================
+   .scope — a workshop scoping board (in / maybe / out) in markup.
+   ========================================================================== */
+.scope{display:grid;grid-template-columns:1.35fr 1fr 1fr;gap:.75rem;margin:1.75rem 0 .75rem}
+@media(max-width:52rem){.scope{grid-template-columns:1fr}}
+.scope__col{--acc:var(--lime);background:var(--white);border:1px solid var(--rule);border-top:4px solid var(--acc);border-radius:4px;padding:1rem 1.1rem 1.1rem}
+.scope__col--maybe{--acc:var(--peri)}
+.scope__col--out{--acc:#b9b9c2}
+.scope__h{display:flex;justify-content:space-between;align-items:baseline;gap:.5rem;margin:0 0 .85rem;
+  font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;font-weight:400;color:var(--ink)}
+.scope__h b{font-weight:400;color:var(--muted)}
+.scope__col ul{list-style:none;margin:0;padding:0}
+.scope__col li{position:relative;padding-left:1.1rem;font-size:.88rem;line-height:1.45;color:var(--ink)}
+.scope__col li + li{margin-top:.45rem}
+.scope__col li::before{content:"";position:absolute;left:0;top:.5em;width:7px;height:7px;border-radius:2px;background:var(--acc)}
+.scope__col--out li{color:var(--muted)}
+.scope-note,.matrix-note{font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;color:var(--muted);margin:0 0 2rem}
+
+/* ==========================================================================
+   .matrix — assumption map: importance against strength of evidence.
+   The more-important / weak-evidence quadrant is the leap of faith.
+   ========================================================================== */
+.matrix{display:grid;grid-template-columns:auto 1fr 1fr;grid-template-rows:auto 1fr 1fr;gap:.6rem;margin:1.75rem 0 .75rem}
+.matrix__ax{font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;color:var(--muted);display:flex;align-items:center;justify-content:center}
+.matrix__ax--x{padding-bottom:.1rem}
+.matrix__ax--y{writing-mode:vertical-rl;transform:rotate(180deg);padding-right:.1rem}
+.matrix__q{background:var(--white);border:1px solid var(--rule);border-radius:4px;padding:1rem 1.1rem 1.1rem;min-height:9rem}
+.matrix__q h5{margin:0 0 .15rem;font-size:.95rem;font-weight:600;color:var(--ink)}
+.matrix__q small{display:block;margin-bottom:.8rem;font-family:var(--mono);font-size:.56rem;letter-spacing:.1em;color:var(--muted)}
+.matrix__q ul{list-style:none;margin:0;padding:0}
+.matrix__q li{font-size:.86rem;line-height:1.45;color:var(--muted)}
+.matrix__q li + li{margin-top:.5rem}
+.matrix__q--leap{border:2px solid var(--pink);background:color-mix(in srgb,var(--pink) 7%,var(--white))}
+.matrix__q--leap li{color:var(--ink)}
+.matrix__tag{display:inline-block;margin-left:.35rem;padding:.12em .5em;border-radius:3px;vertical-align:.1em;
+  font-family:var(--mono);font-size:.54rem;letter-spacing:.1em;background:var(--ink);color:var(--paper)}
+@media(max-width:44rem){
+  .matrix{grid-template-columns:1fr;grid-template-rows:none}
+  .matrix__ax{display:none}   /* each quadrant carries its own axis label on small screens */
+}
+
+/* ==========================================================================
+   .swim — a swimlane timeline in markup (weeks across, channels down).
+   Too wide for a reading column by nature, so it scrolls inside its own
+   frame with lane labels pinned left. Every item is labelled, so colour
+   is never the only thing carrying meaning.
+   ========================================================================== */
+.swim{--lab:9.5rem;--col:4.3rem;margin:1.75rem 0 .75rem;border:1px solid var(--rule);border-radius:4px;background:var(--white);overflow-x:auto;-webkit-overflow-scrolling:touch}
+.swim__in{min-width:calc(var(--lab) + 17 * var(--col));padding-bottom:.5rem}
+.swim__row{display:grid;grid-template-columns:var(--lab) repeat(17,minmax(var(--col),1fr));align-items:center;position:relative;min-height:2.6rem}
+.swim__row + .swim__row{border-top:1px dashed #ececef}
+.swim__lab{position:sticky;left:0;z-index:4;align-self:stretch;display:flex;align-items:center;padding:.4rem .75rem;
+  background:var(--white);border-right:1px solid var(--rule);font-size:.78rem;font-weight:600;color:var(--ink);line-height:1.25}
+.swim__head{position:sticky;top:0;z-index:5;border-bottom:1px solid var(--rule);background:var(--white)}
+.swim__wk{grid-row:1;text-align:center;padding:.55rem 0 .45rem;font-family:var(--mono);font-size:.6rem;letter-spacing:.06em;color:var(--ink)}
+.swim__wk small{display:block;margin-top:.15rem;font-size:.54rem;color:var(--muted)}
+.swim__phase{display:grid;grid-template-columns:var(--lab) 1fr;background:#f6f6f8;border-top:1px solid var(--rule)}
+.swim__phase span{position:sticky;left:0;padding:.35rem .75rem;font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;color:var(--muted);background:#f6f6f8}
+.swim__phase em{font-style:normal;padding:.35rem .5rem;font-size:.72rem;color:var(--muted)}
+.swim__rail{grid-row:1;height:3px;border-radius:2px;align-self:center;opacity:.55;background:var(--c)}
+.swim__pill{grid-row:1;z-index:2;justify-self:start;margin:.3rem .15rem;padding:.28rem .5rem;border-radius:4px;
+  font-size:.68rem;font-weight:600;line-height:1.2;white-space:nowrap;background:var(--c);color:var(--t)}
+.swim__bar{grid-row:1;z-index:2;margin:.3rem .15rem;padding:.28rem .5rem;border-radius:4px;font-size:.68rem;font-weight:600;
+  line-height:1.2;white-space:nowrap;background:var(--c);color:var(--t)}
+.swim__start{position:absolute;left:var(--lab);top:0;bottom:0;width:2px;background:var(--ink);z-index:1}
+.swim-hint{display:none;font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;color:var(--muted);margin:.5rem 0 0}
+@media(max-width:60rem){.swim-hint{display:block}}
+.swim .c-email{--c:#1f63c4;--t:#fff}.swim .c-dm{--c:#f2b233;--t:#111114}.swim .c-leads{--c:#fde68a;--t:#111114}
+.swim .c-control{--c:#cfe8bd;--t:#111114}.swim .c-tile{--c:#0b7a6b;--t:#fff}.swim .c-inter{--c:#7f2aa6;--t:#fff}
+.swim .c-modal{--c:#c23b17;--t:#fff}.swim .c-sms{--c:#a8d98a;--t:#111114}
+
+/* ==========================================================================
+   .dt — the five-phase design thinking framework, in markup.
+   .dt--full shows every phase with its description; .dt--mini is the
+   compact "you are here" strip that opens each section, with one phase
+   marked aria-current. Phase names are ink, so colour never carries text.
+   ========================================================================== */
+.dt{--discover:#cf6d22;--analyze:#b3501a;--ideate:#1b8a6f;--prototype:#1f4f9c;--test:#0a7fa3;
+  list-style:none;margin:1.75rem 0 .75rem;padding:0;display:grid;grid-template-columns:repeat(5,1fr);gap:.75rem;position:relative}
+.dt li{position:relative;text-align:center}
+.dt__tile{position:relative;z-index:1;display:grid;place-items:center;width:3.4rem;height:3.4rem;margin:0 auto .7rem;border-radius:6px;background:var(--c)}
+.dt__tile svg{width:1.7rem;height:1.7rem;stroke:#fff;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.dt__name{display:block;font-size:.92rem;font-weight:600;color:var(--ink)}
+.dt__name::after{content:"";display:block;width:1.6rem;height:3px;margin:.4rem auto 0;border-radius:2px;background:var(--c)}
+.dt__desc{display:block;margin-top:.55rem;font-size:.8rem;line-height:1.5;color:var(--muted)}
+/* connector running behind the tiles */
+.dt::before{content:"";position:absolute;top:1.7rem;left:10%;right:10%;height:2px;background:linear-gradient(90deg,var(--discover),var(--analyze),var(--ideate),var(--prototype),var(--test));opacity:.35}
+.dt .p-discover{--c:var(--discover)}.dt .p-analyze{--c:var(--analyze)}.dt .p-ideate{--c:var(--ideate)}
+.dt .p-prototype{--c:var(--prototype)}.dt .p-test{--c:var(--test)}
+
+.dt--mini{gap:.4rem;margin:1.25rem 0 1.5rem}
+.dt--mini .dt__tile{width:2.3rem;height:2.3rem;margin-bottom:.45rem;border-radius:5px}
+.dt--mini .dt__tile svg{width:1.15rem;height:1.15rem}
+.dt--mini::before{top:1.15rem}
+.dt--mini .dt__name{font-size:.72rem;font-weight:500;color:var(--muted)}
+.dt--mini .dt__name::after{display:none}
+.dt--mini li:not([aria-current]) .dt__tile{opacity:.28}
+.dt--mini li[aria-current] .dt__name{color:var(--ink);font-weight:600}
+.dt--mini li[aria-current] .dt__tile{box-shadow:0 0 0 3px var(--white),0 0 0 5px var(--c)}
+
+@media(max-width:44rem){
+  .dt--full{grid-template-columns:1fr;gap:1rem}
+  .dt--full::before{display:none}
+  .dt--full li{display:grid;grid-template-columns:3.4rem 1fr;gap:0 1rem;text-align:left;align-items:start}
+  .dt--full .dt__tile{grid-row:span 2;margin:0}
+  .dt--full .dt__name::after{margin-left:0}
+  .dt--full .dt__desc{margin-top:.35rem}
+}
+
+/* ==========================================================================
+   .sheet — a research worksheet: title, purpose, and its prompts.
+   ========================================================================== */
+.sheet{margin:1.25rem 0;background:var(--white);border:1px solid var(--rule);border-radius:6px;padding:1.25rem 1.4rem 1.4rem}
+.sheet__h{margin:0;font-size:1.1rem;font-weight:600;color:var(--ink)}
+.sheet .sheet__intro{margin:.4rem 0 1.1rem;font-size:.86rem;color:var(--muted);max-width:none;line-height:1.55}
+.sheet__grid{display:grid;grid-template-columns:repeat(var(--n,3),1fr);gap:.6rem}
+@media(max-width:44rem){.sheet__grid{grid-template-columns:1fr 1fr}}
+.sheet__box{background:#f4f4f6;border-radius:5px;padding:.75rem .85rem}
+.sheet__box h6{margin:0 0 .45rem;font-size:.8rem;font-weight:600;color:var(--ink)}
+.sheet__box ul{list-style:none;margin:0;padding:0}
+.sheet__box li{font-size:.78rem;line-height:1.45;color:var(--muted)}
+.sheet__box li + li{margin-top:.2rem}
+.sheet__box--wide{grid-column:1/-1}
+.sheet__tag{display:inline-block;margin-left:.5rem;vertical-align:.15em;font-family:var(--mono);font-size:.55rem;letter-spacing:.12em;
+  padding:.2em .55em;border-radius:3px;background:color-mix(in srgb,var(--discover,#cf6d22) 14%,var(--white));color:var(--ink)}
+
+/* ==========================================================================
+   .awards — award badges in markup instead of certificate screenshots.
+   Text on ink uses explicit colours so the .sec p grey rule can't reach it.
+   ========================================================================== */
+.awards{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:.75rem;margin:1.75rem 0 .75rem}
+.award{display:flex;flex-direction:column;gap:.35rem;padding:1.4rem 1.4rem 1.3rem;background:var(--ink);border-radius:6px;position:relative;overflow:hidden}
+.award::after{content:"";position:absolute;right:-2.5rem;top:-2.5rem;width:8rem;height:8rem;border-radius:50%;
+  background:radial-gradient(circle,color-mix(in srgb,var(--lime) 30%,transparent),transparent 70%)}
+.award__icon{width:2.4rem;height:2.4rem;margin-bottom:.4rem}
+.award__icon svg{width:100%;height:100%;fill:none;stroke:var(--lime);stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.award__kicker{font-family:var(--mono);font-size:.56rem;letter-spacing:.12em;color:rgba(247,246,242,.62)}
+.award__name{font-size:1.35rem;font-weight:600;line-height:1.2;color:var(--paper)}
+.award__win{font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;color:var(--lime)}
+.award__how{margin-top:.35rem;font-size:.85rem;color:rgba(247,246,242,.72)}
+
+/* theme cards: same shell as the HMW grid, relabelled, with a per-card accent */
+.hmw__grid--themes li::before{content:"THEME " counter(hmw,decimal-leading-zero)}
+.hmw__grid--themes li::after{background:var(--acc,var(--lime))}
+.hmw__grid--themes b{display:block;margin-bottom:.35rem;font-weight:600;color:var(--ink)}
+.hmw__grid--themes span{color:var(--muted);font-size:.86rem}
+
+/* ---- Cryptid Quest additions -------------------------------------------- */
+/* four-phase variant of .dt (Discover, Define, Design, Deliver) */
+.dt--four{grid-template-columns:repeat(4,1fr)}
+.dt .p-define{--c:#5566d1}.dt .p-design{--c:#2b76bf}.dt .p-deliver{--c:#0c7f96}
+.dt--four .p-discover{--c:#7b5cc4}
+.dt--four::before{background:linear-gradient(90deg,#7b5cc4,#5566d1,#2b76bf,#0c7f96)}
+
+/* .focus — non-sequential focus areas (no connector, unlike .dt) */
+.focus{list-style:none;margin:1.75rem 0 .75rem;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(12rem,1fr));gap:.75rem}
+.focus li{display:flex;gap:.9rem;align-items:flex-start;padding:1.1rem;background:var(--white);border:1px solid var(--rule);border-radius:6px}
+.focus .dt__tile{flex:none;margin:0;width:2.8rem;height:2.8rem}
+.focus .dt__tile svg{width:1.4rem;height:1.4rem}
+.focus b{display:block;font-size:.95rem;font-weight:600;color:var(--ink)}
+.focus span.focus__d{display:block;margin-top:.25rem;font-size:.84rem;line-height:1.45;color:var(--muted)}
+
+/* .venn — the four-part tutorial framework, drawn */
+.venn{display:block;width:100%;max-width:28rem;height:auto;margin:1.75rem auto .75rem}
+.venn text{font-family:var(--font);fill:var(--ink)}
+.venn .venn__lbl{font-size:17px;font-weight:600}
+.venn .venn__mid{font-family:var(--mono);font-size:9.5px;letter-spacing:1.4px}
+
+/* .cardsort — the pile of cards participants sorted */
+.cardsort__pile{display:flex;flex-wrap:wrap;justify-content:center;gap:.7rem .8rem;margin:1.75rem auto .6rem;max-width:34rem}
+.cardsort__pile span{padding:.75rem 1.1rem;background:var(--white);border:1px solid #d9d4ea;border-radius:4px;
+  box-shadow:0 2px 0 #e7e3f3,0 6px 14px rgba(17,17,20,.07);font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;color:#5a3f9e;font-weight:700}
+.cardsort__pile span:nth-child(odd){transform:rotate(-2.5deg)}
+.cardsort__pile span:nth-child(3n){transform:rotate(3deg)}
+.cardsort__pile span:nth-child(4n){transform:rotate(-4deg)}
+.scope--even{grid-template-columns:repeat(3,1fr)}
+@media(max-width:52rem){.scope--even{grid-template-columns:1fr}}
+.scope__col--purple{--acc:#7b5cc4}.scope__col--blue{--acc:#2b76bf}.scope__col--teal{--acc:#0c7f96}
+
+/* .tree — a site map as nested lists */
+.tree{margin:1.75rem 0 .75rem}
+.tree__root{display:block;width:-moz-max-content;width:max-content;margin:0 auto 1.25rem;padding:.55rem 1.4rem;background:var(--ink);color:var(--paper);border-radius:4px;font-weight:600;font-size:.95rem;position:relative}
+.tree__root::after{content:"";position:absolute;left:50%;top:100%;width:2px;height:1.25rem;background:var(--rule)}
+.tree__branches{display:grid;grid-template-columns:1.7fr 1fr 1fr;gap:.75rem}
+@media(max-width:52rem){.tree__branches{grid-template-columns:1fr}}
+.tree__branch{background:var(--white);border:1px solid var(--rule);border-top:4px solid var(--acc,#7b5cc4);border-radius:4px;padding:1rem 1.1rem}
+.tree__branch h5{margin:0 0 .15rem;font-size:.95rem;font-weight:600;color:var(--ink)}
+.tree__branch small{display:block;margin-bottom:.8rem;font-family:var(--mono);font-size:.56rem;letter-spacing:.12em;color:var(--muted)}
+.tree__kids{list-style:none;margin:0;padding:0;display:grid;gap:.55rem 1.1rem}
+.tree__branch--wide .tree__kids{grid-template-columns:1fr 1fr}
+.tree__kids>li>b{display:block;font-size:.86rem;font-weight:600;color:var(--ink)}
+.tree__kids ul{list-style:none;margin:.25rem 0 0 .3rem;padding-left:.8rem;border-left:2px solid #e2def2}
+.tree__kids ul li{position:relative;padding:.1rem 0;font-size:.8rem;line-height:1.4;color:var(--muted)}
+.tree__kids ul li::before{content:"";position:absolute;left:-.8rem;top:.7em;width:.55rem;height:2px;background:#e2def2}
+
+/* the four-phase strip is an overview, not "you are here" — keep every phase full strength */
+.dt--four.dt--mini li .dt__tile{opacity:1}
+.dt--four.dt--mini .dt__name{color:var(--ink);font-weight:600}
+
+/* ==========================================================================
+   .lmline — the liquid chrome hairline dividing each case study hero from
+   its role/team/timeline/tools rail. 2px, fading out at both ends, tinted
+   lime→pink like the home hero and the key buttons.
+   ========================================================================== */
+.lmline{
+  position:relative;isolation:isolate;overflow:hidden;height:2px;border-radius:2px;
+  margin-top:clamp(2.5rem,5vw,3.5rem);background:var(--rule-dark);
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);
+          mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)
+}
+.lmline + .rail{margin-top:0;border-top:0}
+.lmline__canvas{position:absolute;inset:0}
+.lmline__canvas canvas{display:block;width:100%!important;height:100%!important}
+.lmline__tint{position:absolute;inset:0;mix-blend-mode:color;
+  background:linear-gradient(90deg,var(--lime) 0%,#e6f7b0 38%,#ff9bd4 68%,var(--pink) 100%)}
+/* no WebGL: a still brand gradient in place of the old flat rule */
+.lmline.is-failed .lmline__canvas{display:none}
+.lmline.is-failed{background:linear-gradient(90deg,var(--lime),var(--pink));opacity:.6}
+
+/* ==========================================================================
+   .bp — a service blueprint in markup: stages across, lanes down, with the
+   lines of interaction, visibility and internal interaction between lanes.
+   Key moments carry a numbered tag matching the outcomes listed after it.
+   ========================================================================== */
+.bp{--lab:9.5rem;--col:8.2rem;margin:1.75rem 0 .75rem;border:1px solid var(--rule);border-radius:4px;background:var(--white);overflow-x:auto;-webkit-overflow-scrolling:touch}
+.bp__in{min-width:calc(var(--lab) + 8 * var(--col));padding:.9rem .6rem 1rem 0}
+.bp__row{display:grid;grid-template-columns:var(--lab) repeat(8,minmax(var(--col),1fr));gap:0 .5rem;align-items:stretch;padding:.3rem 0}
+.bp__lab{position:sticky;left:0;z-index:3;display:flex;align-items:center;padding:0 .75rem;background:var(--white);
+  border-right:1px solid var(--rule);font-size:.76rem;font-weight:600;color:var(--ink);line-height:1.25}
+.bp__card{position:relative;padding:.55rem .6rem;border-radius:6px;font-size:.72rem;line-height:1.35;color:var(--ink);background:var(--c)}
+.bp__row--customer .bp__card{--c:#eee0fd}.bp__row--front .bp__card{--c:#fdedbb}
+.bp__row--back .bp__card{--c:#dbe9fb}.bp__row--support .bp__card{--c:#ececef}
+.bp__line{display:grid;grid-template-columns:var(--lab) 1fr;align-items:center;margin:.15rem 0}
+.bp__line span{position:sticky;left:0;z-index:3;padding:.1rem .75rem;background:var(--white);border-right:1px solid var(--rule);
+  font-family:var(--mono);font-size:.54rem;letter-spacing:.1em;color:var(--pink-text)}
+.bp__line i{display:block;border-top:1.5px dashed #f2a9bd}
+.bp__card--key{box-shadow:0 0 0 2px var(--pink)}
+.bp__tag{display:inline-grid;place-items:center;width:1.2rem;height:1.2rem;border-radius:50%;background:var(--pink);color:var(--ink);
+  font-family:var(--mono);font-size:.6rem;font-weight:700;line-height:1}
+.bp__card .bp__tag{position:absolute;top:-.55rem;right:-.45rem}
+.bp-out{list-style:none;margin:1.25rem 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(14rem,1fr));gap:.75rem}
+.bp-out li{padding:1rem 1.1rem;background:var(--white);border:1px solid var(--rule);border-radius:6px}
+.bp-out b{display:flex;align-items:center;gap:.55rem;margin-bottom:.4rem;font-size:.95rem;font-weight:600;color:var(--ink)}
+.bp-out span.bp-out__d{display:block;font-size:.85rem;line-height:1.5;color:var(--muted)}
+
+/* persona with the illustrated portrait as a side panel */
+.persona--art{display:grid;grid-template-columns:12rem minmax(0,1fr)}
+.persona__art{display:grid;place-items:center;padding:1rem;border-right:1px solid var(--rule);background:color-mix(in srgb,var(--acc) 7%,var(--white))}
+.persona__art img{display:block;width:100%;height:auto}
+@media(max-width:44rem){
+  .persona--art{grid-template-columns:1fr}
+  .persona__art{border-right:0;border-bottom:1px solid var(--rule)}
+  .persona__art img{max-width:12rem}
+}
+.persona--simple .persona__body{grid-template-columns:auto 1fr}
+@media(max-width:44rem){.persona--simple .persona__body{grid-template-columns:1fr}}
+
+/* numbered usability tasks — same card shell as the HMW grid */
+.hmw__grid--tasks li::before{content:"TASK " counter(hmw,decimal-leading-zero)}
+.hmw__grid--tasks li::after{background:var(--acc,var(--lime))}
+
+/* .feat — a feature: explanation beside its looping prototype clip */
+.feat{display:grid;grid-template-columns:minmax(0,1fr) 14rem;gap:1.75rem;align-items:center;margin:2rem 0}
+.feat h3{margin-top:0}
+.feat__clip{border-radius:10px;overflow:hidden;background:var(--white)}
+.feat__clip video{display:block;width:100%;height:auto}
+@media(max-width:44rem){.feat{grid-template-columns:1fr}.feat__clip{max-width:15rem;margin-inline:auto}}

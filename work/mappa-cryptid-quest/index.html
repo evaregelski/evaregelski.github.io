@@ -53,6 +53,7 @@
       <figcaption>FIG. 00 — MISS ONE AND PLAYERS DISENGAGE</figcaption>
     </figure>
   </div>
+  <div class="lmline" aria-hidden="true"><span class="lmline__canvas" data-lm-line></span><span class="lmline__tint"></span></div>
   <dl class="rail">
     <div><dt>ROLE</dt><dd>Researcher, designer, tester</dd></div>
     <div><dt>TEAM</dt><dd>Five, with Margaret Payne, Rae Bernstein, Andrew Koo and Shalyse Pierce</dd></div>
@@ -97,10 +98,7 @@
 
       <p>That second priority is the whole project in one line. <strong>Every game has a tutorial. Most of them are resented.</strong> The brief wasn't to build one, it was to build one players wouldn't want to skip — while also letting them skip it.</p>
 
-      <figure class="figure figure--wide">
-        <div class="shell"><img class="zoomable" data-group="mappa" data-caption="Four phases: Discover, Define, Design, Deliver" src="assets/design-process.png" alt="Process diagram showing four phases — Discover, Define, Design, Deliver" loading="lazy"></div>
-        <figcaption>Discover, Define, Design, Deliver</figcaption>
-      </figure>
+      <ol class="dt dt--four dt--mini" aria-label="Our process: Discover, Define, Design, Deliver"><li class="p-discover"><span class="dt__tile" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.3 15.3 20.5 20.5"/></svg></span><span class="dt__name">Discover</span></li><li class="p-define"><span class="dt__tile" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></span><span class="dt__name">Define</span></li><li class="p-design"><span class="dt__tile" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg></span><span class="dt__name">Design</span></li><li class="p-deliver"><span class="dt__tile" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.27 6.96 12 12.01l8.73-5.05M12 22.08V12"/></svg></span><span class="dt__name">Deliver</span></li></ol>
     </section>
 
     <section class="sec" id="discover">
@@ -134,17 +132,13 @@
       <h3>Fifteen interviews</h3>
       <p>Ages 20 to 43. Four women, ten men, one non-binary participant. Four themes came out.</p>
 
-      <figure class="figure">
-        <div class="shell"><img class="zoomable" data-group="mappa" data-caption="Affinity map: four main types of gamers, plotted across variety/balance and progression/challenge" src="assets/affinity-themes.png" alt="Affinity map diagram plotting four gamer types across axes of variety and balance against progression and challenge" loading="lazy"></div>
-        <figcaption>Where the interview themes landed</figcaption>
-      </figure>
-
-      <ul class="bul">
-        <li>Players split into two camps: those who <strong>play to escape and relax</strong>, often while multitasking, and those who play for <strong>socialization, excitement and lore</strong>.</li>
-        <li>Tutorials should be <strong>minimal and skippable</strong> — but still engaging enough to keep players invested.</li>
-        <li>Players want to feel like they're <strong>making progress</strong> and overcoming challenges, large and small.</li>
-        <li>Players value <strong>variety</strong>, and a balance between challenge and task completion.</li>
-      </ul>
+      <ol class="hmw__grid hmw__grid--themes" aria-label="Four themes from fifteen interviews">
+        <li style="--acc:#7b5cc4"><b>Two main types of gamers</b><span>Those who play to escape and relax, often while multitasking — and those who play for socialization, excitement and lore.</span></li>
+        <li style="--acc:#2b76bf"><b>Optional tutorials that engage</b><span>Minimal and skippable, but still engaging enough to keep players invested.</span></li>
+        <li style="--acc:#7b5cc4"><b>Progression and challenge</b><span>Players want to feel like they're making progress and overcoming challenges, large and small.</span></li>
+        <li style="--acc:#2b76bf"><b>Variety and balance</b><span>Players value variety, and a balance between challenge and task completion.</span></li>
+      </ol>
+      <p class="scope-note">WHERE THE INTERVIEW THEMES LANDED</p>
 
       <div class="insight">
         <p>Minimal and skippable, but engaging enough to stay invested. Those pull in opposite directions, and holding both is the actual design problem.</p>
@@ -170,10 +164,12 @@
       <p><strong>Brian and Gil want opposite things from a tutorial.</strong> Brian wants it gone. Gil wants it gentle. Designing for one breaks the other — which is why skip controls and non-invasive prompts stopped being nice-to-haves and became the mechanism.</p>
 
       <h3>How might we</h3>
-      <figure class="figure figure--wide">
-        <div class="shell"><img class="zoomable" data-group="mappa" data-caption="Three focus areas: tutorial, information architecture, building progress" src="assets/three-focuses.png" alt="Three labelled blocks: Tutorial, Information Architecture, Building Progress" loading="lazy"></div>
-        <figcaption>Where research pointed us</figcaption>
-      </figure>
+      <ul class="focus" aria-label="Three focus areas">
+        <li style="--c:#7b5cc4"><span class="dt__tile" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z"/><path d="M13 13l6 6"/></svg></span><div><b>Tutorial</b><span class="focus__d">Teach the game without getting in the way</span></div></li>
+        <li style="--c:#2b76bf"><span class="dt__tile" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="5" rx="1"/><rect x="2" y="17" width="6" height="5" rx="1"/><rect x="16" y="17" width="6" height="5" rx="1"/><path d="M12 7v5M5 17v-3h14v3"/></svg></span><div><b>Information architecture</b><span class="focus__d">Give every control an obvious home</span></div></li>
+        <li style="--c:#0c7f96"><span class="dt__tile" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2"/></svg></span><div><b>Building progress</b><span class="focus__d">Keep players feeling they're getting somewhere</span></div></li>
+      </ul>
+      <p class="scope-note">WHERE RESEARCH POINTED US</p>
 
       <div class="insight">
         <p>Players need a fast, low-friction way to learn Cryptid Quest so they can start making progress, have fun with friends, and settle into immersive gameplay — without feeling talked down to.</p>
@@ -187,10 +183,21 @@
       <h2>The tutorial</h2>
       <p>Before designing anything I wanted the approach grounded in both our research and established practice. A tutorial has to do four things at once: <strong>teach the game, comfort the player, excite them about what's ahead, and respect their intelligence.</strong> Miss any one and players disengage.</p>
 
-      <figure class="figure figure--phone">
-        <div class="shell"><img class="zoomable" data-group="mappa" data-caption="The four-part framework — teach, comfort, excite, respect — overlapping at the centre" src="assets/perfect-tutorial.png" alt="Venn-style diagram with four overlapping circles labelled Teach, Comfort, Excite and Respect, meeting at a point marked Perfect Tutorial" loading="lazy"></div>
-        <figcaption>The framework that became our north star</figcaption>
-      </figure>
+      <svg class="venn" viewBox="0 0 440 330" role="img" aria-label="Four overlapping circles — teach, comfort, excite, respect — meeting at the centre, the perfect tutorial">
+        <g>
+          <circle cx="220" cy="112" r="78" fill="rgba(255,72,177,.24)"/>
+          <circle cx="220" cy="218" r="78" fill="rgba(255,72,177,.24)"/>
+          <circle cx="166" cy="165" r="78" fill="rgba(43,160,210,.24)"/>
+          <circle cx="274" cy="165" r="78" fill="rgba(43,160,210,.24)"/>
+        </g>
+        <circle cx="220" cy="165" r="7" fill="#ff48b1"/>
+        <text class="venn__mid" x="220" y="189" text-anchor="middle">PERFECT TUTORIAL</text>
+        <text class="venn__lbl" x="220" y="24" text-anchor="middle">Teach</text>
+        <text class="venn__lbl" x="220" y="320" text-anchor="middle">Respect</text>
+        <text class="venn__lbl" x="80" y="171" text-anchor="end">Comfort</text>
+        <text class="venn__lbl" x="360" y="171" text-anchor="start">Excite</text>
+      </svg>
+      <p class="scope-note" style="text-align:center">THE FRAMEWORK THAT BECAME OUR NORTH STAR</p>
 
       <h3>Three days, sketched</h3>
       <p>Mappa asked us to structure onboarding around the first three days of play. We ran a design studio and sketched flows against all four principles.</p>
@@ -217,48 +224,54 @@
       <h2>Information architecture</h2>
       <p>We had a sense of best practice from the research, but a sense isn't validation. <strong>We ran a hybrid open/closed card sort with 41 participants</strong> to find out how players would naturally group game features and controls.</p>
 
-      <figure class="figure figure--phone">
-        <div class="shell"><img class="zoomable" data-group="mappa" data-caption="The cards participants sorted — quests, wallet, emotes, helpers, voice chat, world map, progress bar, toggle tutorial" src="assets/card-sort-cards.png" alt="Scattered cards labelled Toggle Tutorial, Wallet, World Map, Voice Chat, Emotes, Progress Bar, Helpers and Quests" loading="lazy"></div>
-        <figcaption>41 participants, one pile of controls</figcaption>
-      </figure>
+      <div class="cardsort__pile" role="list" aria-label="Cards participants sorted">
+        <span role="listitem">TOGGLE TUTORIAL</span><span role="listitem">WALLET</span><span role="listitem">WORLD MAP</span><span role="listitem">VOICE CHAT</span>
+        <span role="listitem">EMOTES</span><span role="listitem">PROGRESS BAR</span><span role="listitem">HELPERS</span><span role="listitem">QUESTS</span>
+      </div>
+      <p class="scope-note" style="text-align:center">41 PARTICIPANTS, ONE PILE OF CONTROLS</p>
 
       <p>The results largely confirmed our assumptions — which is a useful outcome, not a wasted study. <strong>It meant we could design against evidence rather than instinct</strong>, and it settled three homes for everything in the game.</p>
 
-      <div class="three-up">
-        <figure>
-          <div class="shell"><img class="zoomable" data-group="mappa" data-caption="Card sort result — main menu grouping" src="assets/card-sort-menu.png" alt="Card sort column: Friends, Player Profile, Player Stats, Share Link to Game, Wallet" loading="lazy"></div>
-          <figcaption>Main menu</figcaption>
-        </figure>
-        <figure>
-          <div class="shell"><img class="zoomable" data-group="mappa" data-caption="Card sort result — system preferences grouping" src="assets/card-sort-prefs.png" alt="Card sort column: Customize Controls, Logout, Settings, Text Chat, Toggle Tutorial, Voice Chat" loading="lazy"></div>
-          <figcaption>System preferences</figcaption>
-        </figure>
-        <figure>
-          <div class="shell"><img class="zoomable" data-group="mappa" data-caption="Card sort result — HUD grouping" src="assets/card-sort-hud.png" alt="Card sort column: Clues, Emotes, Fast Travel, Helpers, Inventory, Items, Progress Bar, Quests, Shop, World Map" loading="lazy"></div>
-          <figcaption>Heads-up display</figcaption>
-        </figure>
+      <div class="scope scope--even" role="group" aria-label="Card sort results">
+        <div class="scope__col scope__col--purple"><h5 class="scope__h">MAIN MENU <b>5</b></h5><ul>
+          <li>Friends</li><li>Player profile</li><li>Player stats</li><li>Share link to game</li><li>Wallet</li></ul></div>
+        <div class="scope__col scope__col--blue"><h5 class="scope__h">SYSTEM PREFERENCES <b>6</b></h5><ul>
+          <li>Customize controls</li><li>Logout</li><li>Settings</li><li>Text chat</li><li>Toggle tutorial</li><li>Voice chat</li></ul></div>
+        <div class="scope__col scope__col--teal"><h5 class="scope__h">HEADS-UP DISPLAY <b>10</b></h5><ul>
+          <li>Clues</li><li>Emotes</li><li>Fast travel</li><li>Helpers</li><li>Inventory</li><li>Items</li><li>Progress bar</li><li>Quests</li><li>Shop</li><li>World map</li></ul></div>
       </div>
+      <p class="scope-note">WHERE PARTICIPANTS PUT EACH CONTROL — THE THREE HOMES FOR EVERYTHING IN THE GAME</p>
 
       <h3>Site map</h3>
-      <figure class="figure figure--wide">
-        <div class="shell"><img class="zoomable" data-group="mappa" data-caption="Full game site map — main menu, system preferences, and items on screen during gameplay" src="assets/sitemap-full.png" alt="Full game site map branching into main button, system preferences and on-screen gameplay items" loading="lazy"></div>
-        <figcaption>Everything, in three homes</figcaption>
-      </figure>
-
-      <div class="three-up">
-        <figure>
-          <div class="shell"><img class="zoomable" data-group="mappa" data-caption="Main menu branch — Friends, Shop, Profile, Quests, Inventory, Helpers" src="assets/sitemap-menu.png" alt="Site map detail of the main button branch" loading="lazy"></div>
-          <figcaption><b>Main menu</b> — everything players reach for constantly, in one quick-access place</figcaption>
-        </figure>
-        <figure>
-          <div class="shell"><img class="zoomable" data-group="mappa" data-caption="System preferences branch — logout, account settings, controls, toggle tutorial" src="assets/sitemap-prefs.png" alt="Site map detail of the system preferences branch" loading="lazy"></div>
-          <figcaption><b>System preferences</b> — account, controls, and toggling the tutorial on or off at any time</figcaption>
-        </figure>
-        <figure>
-          <div class="shell"><img class="zoomable" data-group="mappa" data-caption="HUD branch — world map, skip tutorial, communication" src="assets/sitemap-hud.png" alt="Site map detail of the on-screen gameplay branch" loading="lazy"></div>
-          <figcaption><b>HUD</b> — visible at all times: world map, skip tutorial, communication hub</figcaption>
-        </figure>
+      <div class="tree" role="group" aria-label="Game site map">
+        <span class="tree__root">Main page</span>
+        <div class="tree__branches">
+          <div class="tree__branch tree__branch--wide" style="--acc:#7b5cc4"><h5>Main menu button</h5><small>EVERYTHING PLAYERS REACH FOR CONSTANTLY</small>
+            <ul class="tree__kids">
+              <li><b>Friends</b><ul><li>Share link to game</li><li>Direct message friends</li><li>Add friends (connect contacts)</li></ul></li>
+              <li><b>Shop</b><ul><li>Wallet → money</li><li>Cosmetic items → stat-boosting items (affect gameplay)</li></ul></li>
+              <li><b>Player profile</b><ul><li>Player stats</li><li>Edit character</li></ul></li>
+              <li><b>Quests</b><ul><li>Progress bar</li><li>Clues</li></ul></li>
+              <li><b>Inventory</b><ul><li>Wallet → money</li><li>Items</li></ul></li>
+              <li><b>Helpers</b><ul><li>Helper stats</li></ul></li>
+            </ul></div>
+          <div class="tree__branch" style="--acc:#2b76bf"><h5>System preferences</h5><small>ACCOUNT, CONTROLS, TUTORIAL</small>
+            <ul class="tree__kids">
+              <li><b>Logout</b></li>
+              <li><b>Account settings</b></li>
+              <li><b>Settings</b><ul><li>Customize controls</li><li>Toggle tutorial</li></ul></li>
+            </ul></div>
+          <div class="tree__branch" style="--acc:#0c7f96"><h5>On screen during play</h5><small>THE HEADS-UP DISPLAY</small>
+            <ul class="tree__kids">
+              <li><b>World map</b><ul><li>Fast travel</li></ul></li>
+              <li><b>Skip tutorial</b></li>
+              <li><b>Communication</b><ul><li>Voice chat</li><li>Emotes</li><li>Text chat</li></ul></li>
+            </ul></div>
+        </div>
       </div>
+      <p class="scope-note">EVERYTHING, IN THREE HOMES</p>
+
+      
 
       <p>Note where <strong>toggle tutorial</strong> sits — in preferences <em>and</em> on the HUD. Players told us they wanted tutorials skippable; putting the escape hatch only in a settings menu would have been a way of saying yes while meaning no.</p>
     </section>
@@ -274,16 +287,14 @@
 
       <p>Ten participants walked the full three days, with tasks broken out by day.</p>
 
-      <figure class="figure figure--wide">
-        <div class="shell"><img class="zoomable" data-group="mappa" data-caption="Test tasks grouped by day" src="assets/test-tasks.png" alt="Banner showing Day 1 onboarding and first task, Day 2 shop and inventory, Day 3 completing first quest" loading="lazy"></div>
-        <figcaption></figcaption>
-      </figure>
-
-      <ul class="bul">
-        <li><strong>Day 1</strong> — account creation, tutorial walkthrough, main menu navigation, map navigation, quest navigation, learning more about a quest.</li>
-        <li><strong>Day 2</strong> — login and explore, collect loot, visit the shop, check inventory.</li>
-        <li><strong>Day 3</strong> — login and explore, find a chest and collect items, complete the Yeti quest.</li>
-      </ul>
+      <div class="scope scope--even" role="group" aria-label="Usability test tasks by day">
+        <div class="scope__col scope__col--purple"><h5 class="scope__h">DAY 1 · ONBOARDING</h5><ul>
+          <li>Account creation</li><li>Tutorial walkthrough</li><li>Main menu navigation</li><li>Map navigation</li><li>Quest navigation</li><li>Learning more about a quest</li></ul></div>
+        <div class="scope__col scope__col--blue"><h5 class="scope__h">DAY 2 · SHOP &amp; INVENTORY</h5><ul>
+          <li>Login and explore</li><li>Collect loot</li><li>Visit the shop</li><li>Check inventory</li></ul></div>
+        <div class="scope__col scope__col--teal"><h5 class="scope__h">DAY 3 · FIRST QUEST</h5><ul>
+          <li>Login and explore</li><li>Find a chest and collect items</li><li>Complete the Yeti quest</li></ul></div>
+      </div>
 
       <p>We collected three kinds of data: quantitative error rates, qualitative emotional response, and a System Usability Score with written feedback.</p>
 
@@ -320,16 +331,10 @@
         </div>
       </div>
 
-      <div class="two-up">
-        <figure>
-          <div class="shell"><img class="zoomable" data-group="mappa" data-caption="Average error rate across tasks" src="assets/chart-error-rate.png" alt="Bar chart of average error rate by category" loading="lazy"></div>
-          <figcaption>Average error rate</figcaption>
-        </figure>
-        <figure>
-          <div class="shell"><img class="zoomable" data-group="mappa" data-caption="Success rate by task, with the problem tasks annotated" src="assets/chart-success-by-task.png" alt="Stacked bar chart of success rate by task with the problematic tasks annotated in red" loading="lazy"></div>
-          <figcaption>Success rate by task — the red bands are where to look</figcaption>
-        </figure>
-      </div>
+      <figure class="figure">
+        <div class="shell"><img class="zoomable" data-group="mappa" data-caption="Success rate by task, with the problem tasks annotated" src="assets/chart-success-by-task.png" alt="Stacked bar chart of success rate by task with the problematic tasks annotated in red" loading="lazy"></div>
+        <figcaption>Success rate by task — the red bands are where to look</figcaption>
+      </figure>
 
       <p>Breaking success down <em>by task</em> rather than reporting one average is what made the results actionable. An 8% error rate tells you nothing about what to fix. The per-task view named the specific screens that were failing.</p>
 
@@ -464,8 +469,8 @@
 </div>
 
 <section class="nextproj"><div class="wrap nextproj__in">
-  <div><span>NEXT PROJECT</span><h2>A job-matching app for Ukrainian refugees, designed and built in 2.5 days</h2></div>
-  <a class="btn" href="../robota/index.html">View project</a>
+  <div><span>NEXT PROJECT</span><h2>One app for the person booking the groom and the person doing it</h2></div>
+  <a class="lmb" href="../petco/index.html"><span class="lmb__ring" aria-hidden="true"><span class="lmb__canvas" data-lm-btn></span><span class="lmb__tint"></span></span>View project</a>
 </div></section>
 <footer class="site-foot"><div class="wrap foot__in">
   <p class="foot__mark"><span class="e">E</span>va Regelski</p>
@@ -473,6 +478,7 @@
   <p class="foot__fine">© <span data-year>2026</span> Eva Regelski · Cleveland, Ohio</p>
 </div></footer>
 <script src="../../js/site.js"></script>
+<script src="../../js/liquid-metal.js" defer></script>
 <script>document.querySelectorAll('[data-year]').forEach(function(e){e.textContent=new Date().getFullYear()});</script>
 </body>
 </html>

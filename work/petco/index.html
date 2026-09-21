@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PetCo — booking and grooming app — Eva Regelski</title>
+<meta name="description" content="Redesigning PetCo's appointment experience as one app with two portals — for pet owners booking grooming and the groomers doing it — joined by a service blueprint.">
+<meta property="og:title" content="PetCo — booking and grooming app — Eva Regelski">
+<meta property="og:description" content="One app for the person booking the groom and the person doing it.">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:image" content="https://evaregelski.github.io/assets/petco-cover.jpg">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../assets/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=Silkscreen&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../styles/site.css">
+</head>
+<body>
+<header class="site-bar"><div class="wrap bar__in">
+  <a class="mark" href="../../index.html"><span class="e">E</span>va Regelski</a>
+  <button class="navtoggle" type="button" aria-expanded="false" aria-controls="sitenav"><span></span><span class="visually-hidden">Menu</span></button>
+  <nav id="sitenav" aria-label="Main"><ul><li><a href="../../work.html" aria-current="page">Work</a></li><li><a href="../../development.html">Development</a></li><li><a href="../../illustration.html">Illustration</a></li><li><a href="../../resume.html">Resume</a></li><li><a href="../../about.html">About</a></li><li><a href="../../index.html#contact">Contact</a></li></ul></nav>
+</div></header>
+
+<section class="hero"><div class="wrap hero__in">
+  <div class="hero__grid">
+    <div>
+      <p class="client">PetCo</p>
+      <h1>One app for the person booking the groom and the person doing it</h1>
+      <p class="sub">PetCo wanted a better way to manage grooming appointments. We designed a single app with two portals — one for pet owners, one for groomers — joined by a service blueprint, so what one side enters is exactly what the other side needs.</p>
+    </div>
+    <figure class="hero__mark">
+      <svg viewBox="0 0 320 240" role="img" aria-label="Diagram: a pet owner and a groomer connected through one app, with booking details flowing one way and messages flowing back">
+        <rect x="134" y="52" width="52" height="96" rx="9" fill="#111114" stroke="#b8f04a" stroke-width="1.4"/>
+        <rect x="143" y="64" width="34" height="5" rx="2" fill="rgba(247,246,242,.3)"/>
+        <rect x="143" y="76" width="34" height="18" rx="2" fill="rgba(184,240,74,.35)"/>
+        <rect x="143" y="100" width="34" height="18" rx="2" fill="rgba(255,72,177,.35)"/>
+        <circle cx="46" cy="100" r="18" fill="none" stroke="#b8f04a" stroke-width="1.4"/>
+        <circle cx="274" cy="100" r="18" fill="none" stroke="#ff48b1" stroke-width="1.4"/>
+        <g fill="none" stroke-width="1.2">
+          <path d="M66 88 H130" stroke="#b8f04a"/><path d="M190 88 H254" stroke="#b8f04a"/>
+          <path d="M254 112 H190" stroke="#ff48b1"/><path d="M130 112 H66" stroke="#ff48b1"/>
+        </g>
+        <g fill="#b8f04a"><path d="M130 88 l-6 -3.5 v7z"/><path d="M254 88 l-6 -3.5 v7z"/></g>
+        <g fill="#ff48b1"><path d="M190 112 l6 -3.5 v7z"/><path d="M66 112 l6 -3.5 v7z"/></g>
+        <g fill="rgba(247,246,242,.62)" font-family="'Space Mono',monospace" font-size="8" letter-spacing="1" text-anchor="middle">
+          <text x="46" y="140">OWNER</text><text x="160" y="170">ONE APP</text><text x="274" y="140">GROOMER</text>
+          <text x="98" y="80">BOOKING</text><text x="222" y="80">PET INFO</text><text x="222" y="130">MESSAGES</text><text x="98" y="130">UPDATES</text>
+        </g>
+      </svg>
+      <figcaption>FIG. 00 — ONE APP, TWO PORTALS, ONE CONVERSATION</figcaption>
+    </figure>
+  </div>
+  <div class="lmline" aria-hidden="true"><span class="lmline__canvas" data-lm-line></span><span class="lmline__tint"></span></div>
+  <dl class="rail">
+    <div><dt>ROLE</dt><dd>Researcher, designer, tester</dd></div>
+    <div><dt>TEAM</dt><dd>With Faith Park and Margaret Payne</dd></div>
+    <div><dt>TIMELINE</dt><dd>3-week sprint</dd></div>
+    <div><dt>TOOLS</dt><dd>Figma, Procreate, G-Suite, Trello</dd></div>
+  </dl>
+</div></section>
+
+<section class="outcome"><dl class="wrap outcome__in">
+  <div><dt>CUSTOMER PORTAL</dt><dd>83% of testers finished every task in under 5 minutes</dd></div>
+  <div><dt>EMPLOYEE PORTAL</dt><dd>Every tester finished every task in under 3 minutes</dd></div>
+  <div><dt>DELIVERED</dt><dd>Two high-fidelity prototypes and a service blueprint</dd></div>
+</dl></section>
+
+<div class="wrap body">
+  <aside class="toc">
+    <p>ON THIS PAGE</p>
+    <a href="#brief" class="on">The brief</a>
+    <a href="#research">Research</a>
+    <a href="#audit">The current app</a>
+    <a href="#users">The users</a>
+    <a href="#blueprint">Service blueprint</a>
+    <a href="#sketching">Sketching</a>
+    <a href="#customer">Customer portal</a>
+    <a href="#employee">Employee portal</a>
+    <a href="#testing">Testing</a>
+    <a href="#iterations">Iterations</a>
+    <a href="#reflection">Next steps</a>
+  </aside>
+
+  <div>
+    <section class="sec" id="brief">
+      <h2>The brief</h2>
+      <p>PetCo wanted to modernize appointment management for both customers and employees: a mobile app that helps clients manage time, place, location and appointments, while giving employees a better way to communicate with pet owners and reach the information they need to provide great care.</p>
+
+      <div class="two-up">
+        <figure><div class="shell" style="padding:1.25rem"><p style="margin:0;font-size:.95rem;line-height:1.6"><b>Business needs</b><br>A mobile app that streamlines appointment management for both clients and PetCo staff.</p></div></figure>
+        <figure><div class="shell" style="padding:1.25rem"><p style="margin:0;font-size:.95rem;line-height:1.6"><b>User goals</b><br>Trustworthy, easy-to-find service providers, and booking that doesn't require a phone call.</p></div></figure>
+      </div>
+
+      <div class="hmw">
+        <div class="hmw__problem">
+          <span class="hmw__lbl">THE PROBLEM — TWO SIDES OF ONE APPOINTMENT</span>
+          <p>PetCo customers needed a faster, more confident way to find and book credible services for their pets, without digging through reviews elsewhere or calling to schedule.</p>
+          <p style="margin-top:.9rem">PetCo employees needed better visibility into pet information and a direct line to owners, so they could deliver higher-quality, more personalized care.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" id="research">
+      <h2>Research</h2>
+      <p>Competitive and comparative analysis, an audit of the current app, HEART metrics, user interviews and affinity mapping. We interviewed six people — pet owners and PetCo employees — and four themes came out.</p>
+
+      <ol class="hmw__grid hmw__grid--themes" aria-label="Four themes from six interviews">
+        <li style="--acc:#1f4f9c"><b>Credibility and quality</b><span>Users prioritize credibility and quality when booking appointments.</span></li>
+        <li style="--acc:#3fcf9a"><b>Online booking</b><span>Users prefer to book appointments online — but are often required to call.</span></li>
+        <li style="--acc:#1f4f9c"><b>Poor CRM</b><span>Poor CRM management leads to frustrated customers and frustrated employees.</span></li>
+        <li style="--acc:#3fcf9a"><b>Reviews</b><span>Users rely on reviews when choosing services.</span></li>
+      </ol>
+      <p class="scope-note">FOUR THEMES, SIX INTERVIEWS</p>
+    </section>
+
+    <section class="sec" id="audit">
+      <h2>The current app</h2>
+      <p>With the needs defined, we audited the existing app to see where it fell short. Three gaps stood out.</p>
+
+      <h3>An inconsistent homepage</h3>
+      <p>Two users with identical profiles saw completely different homepages — one with a pet profile section, one without. <strong>The inconsistency eroded trust</strong> and left significant screen space unused.</p>
+      <figure class="figure">
+        <div class="shell"><img class="zoomable" data-group="petco" data-caption="Two identical profiles, two different homepages — and a lot of unused space" src="assets/audit-homepages.png" alt="Two versions of the original PetCo home screen side by side, one with a pet profile and one without, annotated: a lot of unused space and inconsistent homepages" loading="lazy"></div>
+        <figcaption>Two identical profiles, two different homepages — and a lot of unused space</figcaption>
+      </figure>
+
+      <h3>No way to change a booking</h3>
+      <p>After booking, users couldn't reschedule or cancel in the app. Every change required a phone call — <strong>a friction point that contradicts the whole purpose of mobile booking.</strong></p>
+      <figure class="figure">
+        <div class="shell"><img class="zoomable" data-group="petco" data-caption="Booked — but changing or cancelling meant calling the store" src="assets/audit-call.png" alt="The original grooming confirmation screen, annotated: must call to change or cancel appointments" loading="lazy"></div>
+        <figcaption>Booked — but changing or cancelling meant calling the store</figcaption>
+      </figure>
+
+      <h3>No way to judge a stylist</h3>
+      <p>The grooming flow gave users no way to see a stylist's reviews or profile before booking — even though research showed <strong>reviews are the primary factor</strong> in choosing a service provider.</p>
+      <figure class="figure">
+        <div class="shell"><img class="zoomable" data-group="petco" data-caption="Choosing a stylist from a bare dropdown, with nothing to go on" src="assets/audit-stylists.png" alt="The original stylist and time picker, a plain dropdown of names, annotated: no way to see reviews or more info on stylists" loading="lazy"></div>
+        <figcaption>Choosing a stylist from a bare dropdown, with nothing to go on</figcaption>
+      </figure>
+    </section>
+
+    <section class="sec" id="users">
+      <h2>The users</h2>
+      <p>I built two proto-personas, one for each side of the appointment. The illustrations are mine.</p>
+
+      <article class="persona persona--art persona--simple">
+        <div class="persona__art"><img src="assets/persona-maeve.png" alt="Illustration of Maeve, a red-haired woman, hugging Bingo, a white husky, labelled Maeve and Bingo" loading="lazy"></div>
+        <div>
+          <header class="persona__head"><h4 class="persona__name"><span class="persona__meet">CUSTOMER PERSONA</span>Maeve and Bingo</h4><span class="persona__type">CUSTOMER</span></header>
+          <div class="persona__bio"><p>Maeve is new to Pittsburgh and needs a groomer she can trust with an anxious dog. She doesn't have time to research extensively — she needs credible options fast, and confidence that Bingo is in good hands.</p></div>
+          <div class="persona__body">
+            <dl class="persona__facts"><dt>AGE</dt><dd>32</dd><dt>LOCATION</dt><dd>Pittsburgh</dd><dt>WORK</dt><dd>Teacher</dd><dt>PET</dt><dd>Bingo, an anxious husky</dd></dl>
+            <div class="persona__block"><h5 class="persona__h">FRUSTRATIONS</h5><ul class="persona__list">
+              <li>Can't find recent reviews</li><li>Navigating confusing technology</li><li>Feeling anxious about Bingo's safety</li></ul></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="persona persona--art persona--simple persona--admin">
+        <div class="persona__art"><img src="assets/persona-phil.png" alt="Illustration of Phil, a groomer in a blue shirt, bending forward with one hand raised, labelled Phil, PetCo employee" loading="lazy"></div>
+        <div>
+          <header class="persona__head"><h4 class="persona__name"><span class="persona__meet">EMPLOYEE PERSONA</span>Phil</h4><span class="persona__type">EMPLOYEE</span></header>
+          <div class="persona__bio"><p>Phil is a skilled groomer who loves working with animals but finds the tech side of his job frustrating. Clunky CRM tools and poor owner communication get in the way of the work he actually cares about.</p></div>
+          <div class="persona__body">
+            <dl class="persona__facts"><dt>AGE</dt><dd>25</dd><dt>LOCATION</dt><dd>Pittsburgh</dd><dt>WORK</dt><dd>Groomer at PetCo</dd></dl>
+            <div class="persona__block"><h5 class="persona__h">FRUSTRATIONS</h5><ul class="persona__list">
+              <li>Finds CRM systems confusing</li><li>Hates wasting his time</li><li>Pet owners who don't disclose important information about their pets</li></ul></div>
+          </div>
+        </div>
+      </article>
+
+      <p><strong>Maeve's biggest worry and Phil's biggest frustration are the same gap, seen from opposite sides.</strong> She worries nobody knows Bingo is anxious; he's frustrated nobody told him. The service blueprint was built around closing it.</p>
+    </section>
+
+    <section class="sec" id="blueprint">
+      <h2>Service blueprint</h2>
+      <p>The blueprint maps Maeve booking a grooming appointment all the way through to picking Bingo up — what she does, what PetCo does in front of her, what happens behind the scenes, and the systems underneath. It had to serve user needs and business needs at the same time.</p>
+      <div class="bp" role="region" aria-label="Service blueprint: booking a grooming appointment through to pick-up" tabindex="0"><div class="bp__in"><div class="bp__row bp__row--customer"><span class="bp__lab">Customer actions</span><div class="bp__card bp__card--key" style="grid-column:2">Book grooming appointment on the app<span class="bp__tag" aria-label="key moment 1">1</span></div><div class="bp__card" style="grid-column:3">Bring Bingo to PetCo</div><div class="bp__card" style="grid-column:4">Check into appointment</div><div class="bp__card" style="grid-column:5">Walk into PetCo</div><div class="bp__card" style="grid-column:6">Drop Bingo off</div><div class="bp__card" style="grid-column:7">Wait for Bingo</div><div class="bp__card bp__card--key" style="grid-column:8">Receive notification that Bingo is ready<span class="bp__tag" aria-label="key moment 3">3</span></div><div class="bp__card" style="grid-column:9">Pick up Bingo</div></div><div class="bp__line"><span>LINE OF INTERACTION</span><i></i></div><div class="bp__row bp__row--front"><span class="bp__lab">Frontstage actions</span><div class="bp__card" style="grid-column:2">Receive email or text confirmation</div><div class="bp__card" style="grid-column:3">Receive email or text reminder</div><div class="bp__card bp__card--key" style="grid-column:5">Send “We’re ready for you!” message<span class="bp__tag" aria-label="key moment 2">2</span></div><div class="bp__card" style="grid-column:6">Receive Bingo</div><div class="bp__card bp__card--key" style="grid-column:7">Send picture and message about Bingo during the appointment<span class="bp__tag" aria-label="key moment 3">3</span></div><div class="bp__card" style="grid-column:8">Send notification that Bingo is ready</div><div class="bp__card" style="grid-column:9">Return Bingo</div></div><div class="bp__line"><span>LINE OF VISIBILITY</span><i></i></div><div class="bp__row bp__row--back"><span class="bp__lab">Backstage actions</span><div class="bp__card bp__card--key" style="grid-column:2">View appointment details in CRM<span class="bp__tag" aria-label="key moment 1">1</span></div><div class="bp__card bp__card--key" style="grid-column:3">Prepare for appointment<span class="bp__tag" aria-label="key moment 1">1</span></div><div class="bp__card" style="grid-column:4">Receive customer check-in</div><div class="bp__card" style="grid-column:6">Groom Bingo</div><div class="bp__card" style="grid-column:7">Finish grooming Bingo</div><div class="bp__card" style="grid-column:9">Enter notes for Bingo in his pet profile</div></div><div class="bp__line"><span>LINE OF INTERNAL INTERACTION</span><i></i></div><div class="bp__row bp__row--support"><span class="bp__lab">Support processes</span><div class="bp__card" style="grid-column:2">Appointment database</div><div class="bp__card" style="grid-column:3">Order supplies</div></div></div></div>
+      <p class="swim-hint">SCROLL SIDEWAYS TO SEE THE WHOLE VISIT →</p>
+      <ol class="bp-out" aria-label="What the key moments deliver">
+        <li><b><span class="bp__tag">1</span>Increase brand trust</b><span class="bp-out__d">Maeve enters Bingo's details when she books, and Phil reads them before the appointment. She's confident his needs are known — transparency that builds trust on both sides.</span></li>
+        <li><b><span class="bp__tag">2</span>Align with COVID-19 policies</b><span class="bp-out__d">Phil messages Maeve when he's ready, so she isn't waiting in the store. Less foot traffic, and a contactless handover.</span></li>
+        <li><b><span class="bp__tag">3</span>Increase customer satisfaction</b><span class="bp-out__d">Direct in-app messaging keeps owners informed throughout, down to a photo of Bingo mid-groom — better for customers, employees and the business.</span></li>
+      </ol>
+    </section>
+
+    <section class="sec" id="sketching">
+      <h2>Sketching</h2>
+      <p>With the service design in place, we sketched the core screens. <strong>One early decision became the structural foundation for everything after:</strong> both portals live inside the same app, and your login routes you to the right one.</p>
+      <figure class="figure">
+        <div class="shell"><img class="zoomable" data-group="petco" data-caption="Early sketches of the customer home, services and booking screens" src="assets/sketches.png" alt="Four hand-drawn phone sketches for the customer portal: welcome, services, grooming, and booking details" loading="lazy"></div>
+        <figcaption>Early sketches of the customer home, services and booking screens</figcaption>
+      </figure>
+      <p>From there we went back to the problem statements and sketched flows for both sides: helping customers find credible services, and giving employees easier access to pet information and owner communication.</p>
+    </section>
+
+    <section class="sec" id="customer">
+      <h2>Customer portal</h2>
+      <div class="feat">
+        <div><h3>Rescheduling an appointment</h3><p>Upcoming appointments sit right on the home screen, with one-tap reschedule and cancel — directly closing one of the three gaps from the audit. Here Maeve moves Bingo from 9:00 to 11:45 without a phone call.</p></div>
+        <div class="feat__clip"><video data-loop muted loop playsinline controls preload="none" poster="assets/poster-rescheduling.jpg" aria-label="Maeve reschedules Bingo’s appointment from her home screen"><source src="assets/rescheduling.mp4" type="video/mp4"></video></div>
+      </div>
+      <div class="feat">
+        <div><h3>Stylist profiles</h3><p>I led the design of stylist profiles: ratings, reviews and a portfolio of previous work, right inside the booking flow. They give customers the credibility signals research showed they rely on most.</p></div>
+        <div class="feat__clip"><video data-loop muted loop playsinline controls preload="none" poster="assets/poster-stylists.jpg" aria-label="Browsing stylist profiles while booking a grooming appointment"><source src="assets/stylists.mp4" type="video/mp4"></video></div>
+      </div>
+      <div class="feat">
+        <div><h3>Choosing a date and time</h3><p>A flexible selector that defaults to a weekly view — the format most users preferred — with a monthly calendar still available. This screen went through several rounds of iteration from testing.</p></div>
+        <div class="feat__clip"><video data-loop muted loop playsinline controls preload="none" poster="assets/poster-datetime.jpg" aria-label="Picking a day and time slot in the weekly selector"><source src="assets/datetime.mp4" type="video/mp4"></video></div>
+      </div>
+    </section>
+
+    <section class="sec" id="employee">
+      <h2>Employee portal</h2>
+      <div class="feat">
+        <div><h3>Viewing pet information</h3><p>Phil’s home screen shows the day’s schedule with quick access to each pet’s profile — breed, size, allergies and behavioral notes entered by the owner at booking. He has the context he needs before the appointment starts.</p></div>
+        <div class="feat__clip"><video data-loop muted loop playsinline controls preload="none" poster="assets/poster-petinfo.jpg" aria-label="Phil opens Bingo’s pet profile from today’s schedule"><source src="assets/petinfo.mp4" type="video/mp4"></video></div>
+      </div>
+      <div class="feat">
+        <div><h3>Messaging pet owners</h3><p>Employees can message owners straight from the home screen or the messages tab, keeping communication in one place instead of scattered outside the app.</p></div>
+        <div class="feat__clip"><video data-loop muted loop playsinline controls preload="none" poster="assets/poster-messaging.jpg" aria-label="Phil messages Maeve that Bingo is ready"><source src="assets/messaging.mp4" type="video/mp4"></video></div>
+      </div>
+    </section>
+
+    <section class="sec" id="testing">
+      <h2>Testing</h2>
+      <p>We tested mid-fidelity grayscale prototypes of both portals. Stripping out colour and imagery kept feedback on usability, not styling. Six testers took part across both experiences.</p>
+
+      <h3>Customer tasks</h3>
+      <ol class="hmw__grid hmw__grid--tasks" aria-label="Customer usability tasks">
+        <li style="--acc:#1f4f9c">Book a grooming appointment with a groomer you'd feel safe leaving your pet with</li>
+        <li style="--acc:#1f4f9c">Change the appointment from 9:00 am to 11:45 am</li>
+        <li style="--acc:#1f4f9c">Speak to a vet quickly, on video</li>
+      </ol>
+
+      <h3>Employee tasks</h3>
+      <ol class="hmw__grid hmw__grid--tasks" aria-label="Employee usability tasks">
+        <li style="--acc:#3fcf9a">Prepare for a grooming appointment with Bingo by learning more about him</li>
+        <li style="--acc:#3fcf9a">Message Maeve to bring Bingo in for his appointment</li>
+        <li style="--acc:#3fcf9a">Clock in to work</li>
+        <li style="--acc:#3fcf9a">View appointments for March 17th</li>
+      </ol>
+
+      <div class="chart">
+        <div class="chart__head"><p class="chart__q">Customer portal</p><span class="chart__n">SHARE OF TESTERS · n=6</span></div>
+        <div class="chart__row" data-key="1"><span class="chart__label">Finished every task in under 5 minutes</span><div class="chart__track"><div class="chart__fill" style="width:83%"></div></div><span class="chart__val">83%</span></div>
+        <div class="chart__row" data-key="2"><span class="chart__label">Made one error or fewer</span><div class="chart__track"><div class="chart__fill" style="width:66%"></div></div><span class="chart__val">66%</span></div>
+      </div>
+      <div class="chart">
+        <div class="chart__head"><p class="chart__q">Employee portal</p><span class="chart__n">SHARE OF TESTERS · n=6</span></div>
+        <div class="chart__row" data-key="1"><span class="chart__label">Finished every task in under 3 minutes</span><div class="chart__track"><div class="chart__fill" style="width:100%"></div></div><span class="chart__val">100%</span></div>
+        <div class="chart__row" data-key="2"><span class="chart__label">Made one error or fewer</span><div class="chart__track"><div class="chart__fill" style="width:83%"></div></div><span class="chart__val">83%</span></div>
+      </div>
+
+      <p>Customer testers struggled with the date and time selector, and found stylist selection small and hard to tap. Employee testers were thrown by a home button centered in the navigation bar rather than on the left.</p>
+    </section>
+
+    <section class="sec" id="iterations">
+      <h2>Iterations</h2>
+
+      <h3>Stylist selection — customer portal</h3>
+      <p>Testers found the dropdown list of stylists hard to navigate, so we replaced it with <strong>scrollable cards</strong> that are easier to browse and tap.</p>
+      <figure class="figure">
+        <div class="shell"><img class="zoomable" data-group="petco" data-caption="From a dropdown of names to scrollable stylist cards" src="assets/iter-stylists.png" alt="Before and after: a dropdown stylist list replaced by a row of stylist cards with photos and ratings" loading="lazy"></div>
+        <figcaption>From a dropdown of names to scrollable stylist cards</figcaption>
+      </figure>
+
+      <h3>Date and time — customer portal</h3>
+      <p>The calendar was hard to read at phone size, so the flow now <strong>leads with the weekly time-slot view</strong>, with the monthly calendar still in the top corner for people who prefer it.</p>
+      <figure class="figure">
+        <div class="shell"><img class="zoomable" data-group="petco" data-caption="Weekly slots first, monthly calendar one tap away" src="assets/iter-datetime.png" alt="Before and after: a monthly calendar picker replaced by a weekly row of days with morning and afternoon time slots" loading="lazy"></div>
+        <figcaption>Weekly slots first, monthly calendar one tap away</figcaption>
+      </figure>
+
+      <h3>Home button — employee portal</h3>
+      <p>We moved the home button to the <strong>left of the navigation bar</strong>, matching standard mobile conventions.</p>
+      <figure class="figure">
+        <div class="shell"><img class="zoomable" data-group="petco" data-caption="The home button moved from the center to the left" src="assets/iter-home.png" alt="Before and after: the employee navigation bar with the home button moved from the center to the far left" loading="lazy"></div>
+        <figcaption>The home button moved from the center to the left</figcaption>
+      </figure>
+
+      <h3>A second round, in full colour</h3>
+      <p>After building the high-fidelity prototype we tested again with three users. Most first-round changes held up, and two more refinements came out of it.</p>
+      <div class="two-up">
+        <figure>
+          <div class="shell"><img class="zoomable" data-group="petco" data-caption="Customer portal: larger home screen type, and an explicit booking confirmation" src="assets/hifi-customer.png" alt="The high-fidelity customer home and booking screens, annotated to show larger type and a new confirmation message" loading="lazy"></div>
+          <figcaption>Customer — larger type on the home screen, and an explicit booking confirmation instead of a silent redirect</figcaption>
+        </figure>
+        <figure>
+          <div class="shell"><img class="zoomable" data-group="petco" data-caption="Employee portal: a more visible time clock, and owners' last names beside pets" src="assets/hifi-employee.png" alt="The high-fidelity employee schedule and messages screens, annotated to show the time clock and owner names" loading="lazy"></div>
+          <figcaption>Employee — a more visible time clock, and last names beside owners, since some pets have human names</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="sec" id="reflection">
+      <h2>Next steps, and what I'd take from it</h2>
+      <ul class="focus" aria-label="Next steps">
+        <li style="--c:#1f4f9c"><span class="dt__tile" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 17h14M6 17l1.5-5h9L18 17"/><circle cx="8" cy="17" r="2"/><circle cx="16" cy="17" r="2"/><path d="M8 12l1-3h6l1 3"/></svg></span><div><b>Curbside pickup</b><span class="focus__d">Find out why customers aren't using curbside, and bring what we learn into the app</span></div></li>
+        <li style="--c:#0c7f96"><span class="dt__tile" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l3 2"/></svg></span><div><b>Faster rescheduling</b><span class="focus__d">Surface previously selected times so rescheduling takes fewer taps</span></div></li>
+        <li style="--c:#1f4f9c"><span class="dt__tile" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><rect x="7" y="10" width="3" height="7"/><rect x="14" y="6" width="3" height="11"/></svg></span><div><b>Compare against the original</b><span class="focus__d">Measure the redesign against the original app with real data</span></div></li>
+        <li style="--c:#0c7f96"><span class="dt__tile" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M11 18h2"/></svg></span><div><b>Tablet and iPad</b><span class="focus__d">Adapt for larger screens — the original app renders at phone size on an iPad</span></div></li>
+      </ul>
+
+      <p><strong>This project reinforced how much the employee experience shapes the customer experience</strong>, and how designing for both within the same product means keeping each user's context clearly in view.</p>
+      <p>The blueprint is where that stopped being abstract. Every feature Maeve sees has a counterpart Phil depends on: the notes she types when she books are the pet profile he reads before the groom, and the "ready for you" message he sends is her cue to walk in. Designed separately, either portal could have looked finished and still left the gap between them.</p>
+      <p>The numbers are directional, not conclusive — six testers in the first round and three in the second. What they did settle was where the friction lived, and every change we made traces back to a specific moment someone struggled.</p>
+    </section>
+  </div>
+</div>
+
+<div class="lb" data-lb aria-hidden="true" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <div class="lb__top"><span class="lb__count" data-lb-count></span>
+    <button class="lb__close" data-lb-close aria-label="Close viewer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <div class="lb__stage" data-lb-stage data-zoom="false"><img data-lb-img alt=""></div>
+  <div class="lb__bottom"><span data-lb-caption></span>
+    <span class="lb__nav"><button data-lb-prev aria-label="Previous image"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button><button data-lb-next aria-label="Next image"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button></span></div>
+</div>
+
+<section class="nextproj"><div class="wrap nextproj__in">
+  <div><span>NEXT PROJECT</span><h2>Rebuilding how compliance officers find the one person who needs attention</h2></div>
+  <a class="lmb" href="../cyberstar-dashboard/index.html"><span class="lmb__ring" aria-hidden="true"><span class="lmb__canvas" data-lm-btn></span><span class="lmb__tint"></span></span>View project</a>
+</div></section>
+<footer class="site-foot"><div class="wrap foot__in">
+  <p class="foot__mark"><span class="e">E</span>va Regelski</p>
+  <nav aria-label="Footer"><ul><li><a href="../../work.html">Work</a></li><li><a href="../../development.html">Development</a></li><li><a href="../../illustration.html">Illustration</a></li><li><a href="../../resume.html">Resume</a></li><li><a href="../../about.html">About</a></li></ul></nav>
+  <p class="foot__fine">© <span data-year>2026</span> Eva Regelski · Cleveland, Ohio</p>
+</div></footer>
+<script src="../../js/site.js"></script>
+<script src="../../js/liquid-metal.js" defer></script>
+<script>
+document.querySelectorAll('[data-year]').forEach(function(e){e.textContent=new Date().getFullYear()});
+/* prototype clips play only while on screen, and never under reduced motion */
+(function(){
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) return;
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){
+    if(e.isIntersecting){var p=e.target.play(); p&&p.catch(function(){});} else e.target.pause();
+  });},{threshold:.4});
+  document.querySelectorAll('video[data-loop]').forEach(function(v){io.observe(v);});
+})();
+</script>
+</body>
+</html>

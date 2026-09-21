@@ -40,3 +40,6 @@
 
 .proto__frame--game{height:min(34rem,70vh)}
 .proto__frame--game .proto__fallback p{max-width:38ch}
+
+/* play buttons carry the liquid metal ring — clear the old lime pill styling */
+.play__btn.lmb{background:transparent;border:0;color:var(--paper)}

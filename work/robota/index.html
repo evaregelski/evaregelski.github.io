@@ -64,6 +64,7 @@
       <figcaption>FIG. 00 — A TWO-SIDED MATCH</figcaption>
     </figure>
   </div>
+  <div class="lmline" aria-hidden="true"><span class="lmline__canvas" data-lm-line></span><span class="lmline__tint"></span></div>
   <dl class="rail">
     <div><dt>ROLE</dt><dd>Lead UX researcher and designer</dd></div>
     <div><dt>TEAM</dt><dd>2 UX designers, 6 engineers</dd></div>
@@ -99,15 +100,19 @@
 
       <p>We knew we were building for the situation in Ukraine. We did not know what to build. So rather than picking a idea and defending it, <strong>we spent the first hours finding out where the need actually was</strong> — which is the decision the rest of the weekend rested on.</p>
 
-      <div class="two-up">
-        <figure>
-          <div class="shell"><img class="zoomable" data-group="robota" data-caption="Innovation Track winner — General Assembly International Aid Hackathon 2022" src="assets/award-innovation.jpg" alt="Certificate reading General Assembly International Aid Hackathon Innovation Track 2022, Winner Team 5" loading="lazy"></div>
-          <figcaption>Innovation Track — judged on the idea</figcaption>
-        </figure>
-        <figure>
-          <div class="shell"><img class="zoomable" data-group="robota" data-caption="Crowd Favorite winner — General Assembly International Aid Hackathon 2022" src="assets/award-crowd-favorite.jpg" alt="Certificate reading General Assembly International Aid Hackathon Crowd Favorite 2022, Winner Team 5" loading="lazy"></div>
-          <figcaption>Crowd Favorite — voted by the room</figcaption>
-        </figure>
+      <div class="awards">
+        <div class="award"><span class="award__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></span>
+          <span class="award__kicker">GENERAL ASSEMBLY · INTERNATIONAL AID HACKATHON 2022</span>
+          <span class="award__name">Innovation Track</span>
+          <span class="award__win">WINNER — TEAM 5</span>
+          <span class="award__how">Judged on the idea</span>
+        </div>
+        <div class="award"><span class="award__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg></span>
+          <span class="award__kicker">GENERAL ASSEMBLY · INTERNATIONAL AID HACKATHON 2022</span>
+          <span class="award__name">Crowd Favorite</span>
+          <span class="award__win">WINNER — TEAM 5</span>
+          <span class="award__how">Voted by the room</span>
+        </div>
       </div>
     </section>
 
@@ -159,17 +164,13 @@
       <h3>User interviews</h3>
       <p>We interviewed six participants who were either Ukrainian refugees or had recently been through a job search. Four themes came out clearly:</p>
 
-      <figure class="figure">
-        <div class="shell"><img class="zoomable" data-group="robota" data-caption="The four themes from six user interviews" src="assets/interview-themes.png" alt="Diagram of four numbered themes: difficult to find relevant jobs, wants to use phone for quick job search, wants location in job searches, more options for search criteria" loading="lazy"></div>
-        <figcaption>Four themes, six interviews</figcaption>
-      </figure>
-
-      <ul class="bul">
-        <li>Finding <strong>relevant</strong> jobs was consistently difficult — not finding jobs, finding the right ones.</li>
-        <li>People wanted to search on their <strong>phones</strong>, on the go.</li>
-        <li><strong>Location</strong> was a high priority in every search.</li>
-        <li>People wanted more <strong>control over filters</strong> and criteria.</li>
-      </ul>
+      <ol class="hmw__grid hmw__grid--themes" aria-label="Four themes from six user interviews">
+        <li style="--acc:#ffd500"><b>Difficult to find relevant jobs</b><span>Not finding jobs — finding the right ones. This came up consistently.</span></li>
+        <li style="--acc:#0057b7"><b>Wants to search by phone, on the go</b><span>People wanted a quick job search on their phones.</span></li>
+        <li style="--acc:#ffd500"><b>Wants location in job searches</b><span>Location was a high priority in every search.</span></li>
+        <li style="--acc:#0057b7"><b>More options for search criteria</b><span>People wanted more control over filters and criteria.</span></li>
+      </ol>
+      <p class="scope-note">FOUR THEMES, SIX INTERVIEWS</p>
 
       <p>Six participants in a 2.5-day sprint is a small sample and I'd call it directional rather than conclusive. But the themes were unanimous enough to design against, and the mobile-first signal in particular turned out to be the most consequential thing we learned.</p>
     </section>
@@ -328,7 +329,7 @@
 
 <section class="nextproj"><div class="wrap nextproj__in">
   <div><span>NEXT PROJECT</span><h2>A tutorial that teaches the game without talking down to the player</h2></div>
-  <a class="btn" href="../mappa-cryptid-quest/index.html">View project</a>
+  <a class="lmb" href="../mappa-cryptid-quest/index.html"><span class="lmb__ring" aria-hidden="true"><span class="lmb__canvas" data-lm-btn></span><span class="lmb__tint"></span></span>View project</a>
 </div></section>
 <footer class="site-foot"><div class="wrap foot__in">
   <p class="foot__mark"><span class="e">E</span>va Regelski</p>
@@ -336,6 +337,7 @@
   <p class="foot__fine">© <span data-year>2026</span> Eva Regelski · Cleveland, Ohio</p>
 </div></footer>
 <script src="../../js/site.js"></script>
+<script src="../../js/liquid-metal.js" defer></script>
 <script>document.querySelectorAll('[data-year]').forEach(function(e){e.textContent=new Date().getFullYear()});</script>
 </body>
 </html>

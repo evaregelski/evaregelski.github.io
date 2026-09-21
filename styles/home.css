@@ -134,3 +134,33 @@
   display:block;margin-top:.2rem;font-family:var(--mono);
   font-size:.62rem;letter-spacing:.08em;color:var(--muted)
 }
+
+/* ==========================================================================
+   Liquid metal hero background (candidate — compared against .aurora)
+   Neutral metal from the shader, recoloured to lime→pink by a CSS layer
+   with mix-blend-mode:color, which keeps the metal's light and shadow but
+   swaps its hue. A paper veil keeps the text column calm and at contrast.
+   ========================================================================== */
+.lm{position:absolute;inset:0;z-index:0;pointer-events:none;display:none}
+.home-hero.is-metal .lm{display:block}
+.home-hero.is-metal::before,.home-hero.is-metal::after{display:none}
+.lm__canvas{position:absolute;inset:0}
+.lm__canvas canvas{display:block;width:100%!important;height:100%!important}
+.lm__tint{
+  position:absolute;inset:0;mix-blend-mode:color;
+  background:linear-gradient(115deg,var(--lime) 0%,#d9f59a 34%,#ff9bd4 68%,var(--pink) 100%)
+}
+.lm__veil{
+  position:absolute;inset:0;
+  background:linear-gradient(90deg,
+    rgba(247,246,242,.93) 0%, rgba(247,246,242,.86) 46%,
+    rgba(247,246,242,.32) 66%, rgba(247,246,242,0) 84%)
+}
+/* stacked layout: portrait drops below the text, so calm the whole field */
+@media(max-width:60rem){
+  .lm__veil{background:rgba(247,246,242,.74)}
+}
+/* no WebGL: fall back to the aurora rather than a blank panel */
+.lm.is-failed{display:none!important}
+.home-hero.is-metal:has(.lm.is-failed)::before,
+.home-hero.is-metal:has(.lm.is-failed)::after{display:block}
