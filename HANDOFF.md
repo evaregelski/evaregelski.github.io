@@ -60,6 +60,8 @@ Defined in `styles/site.css` under `:root`. Do not hard-code these values.
   own colour, or it drops to about 2.85:1. This caught the dashboard problem statement once already
 - Transparent source images (many AVIFs from the old site) must be saved as PNG with alpha. Converting to
   RGB fills transparency with black — this happened twice
+- **Motion is content-driven and reduced-motion safe.** Every animation is either CSS (killed by the global
+  rule in `site.css`) or checks `prefers-reduced-motion` in JS. Keep new motion tied to what a page is about
 - Colour inside diagrams is checked: text on a coloured fill meets 4.5:1, white icons on a tile meet 3:1
 - **Design system page icons are subset.** Its two Material Symbols links request only the 28 icons in use
   (`&icon_names=…`, alphabetical) at one instance (opsz 20, wght 400, FILL 0, GRAD 0). Add a new icon to the
@@ -98,6 +100,10 @@ taxonomy rows · `.ramp` colour ramp strip · `.chart` native bar chart · `.pul
 | `.flow` | Numbered flowchart with wrap-around arrows (in `robota.css`) | Robota |
 | `.aurora` / `.aurora--soft` | Slow colour wash behind a section | Work, Illustration, Development, Resume, About |
 | `.glass` | Frosted panel; only over an `.aurora` | Kind words cards |
+| `.spec--glass` | Home portrait card in frosted glass over the liquid metal hero | Home |
+| `.select-screen` | About art split into a still UI layer and an idling figure layer; they recombine into the original exactly | About |
+| `.track--live` | Resume timeline that draws itself on scroll (`js/resume.js`); static and fully drawn without JS or under reduced motion | Resume |
+| Attract mode | Game covers drift in slowly behind Play, pausing on hover (`development.css`) | Development |
 
 **Liquid metal** — `js/liquid-metal.js`, a vanilla port of Paper Shaders (Apache-2.0), loaded only on
 pages that use it. Rebuild from `entry.js` with esbuild if it changes.

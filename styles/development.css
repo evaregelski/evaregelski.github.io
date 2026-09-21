@@ -43,3 +43,11 @@
 
 /* play buttons carry the liquid metal ring — clear the old lime pill styling */
 .play__btn.lmb{background:transparent;border:0;color:var(--paper)}
+
+/* Attract mode: like an arcade cabinet waiting for a player, each cover drifts
+   in slowly behind its Play button, and holds still the moment you point at it.
+   The global reduced-motion rule in site.css switches it off entirely. */
+.play{overflow:hidden}
+.play img{transform-origin:50% 45%;animation:attract 22s ease-in-out infinite alternate}
+.play:hover img,.play:focus-visible img{animation-play-state:paused}
+@keyframes attract{from{transform:scale(1)}to{transform:scale(1.06) translate(-1%,-1.2%)}}

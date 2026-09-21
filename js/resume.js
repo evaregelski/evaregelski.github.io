@@ -35,3 +35,28 @@
 
   apply(null);
 })();
+
+/* Resume page — the timeline draws itself as you scroll.
+   The lit rail's tip tracks a line 62% of the way down the viewport, and each
+   role's dot lights once that line reaches it. Scrolling back up un-draws it. */
+(function () {
+  var tracks = [].slice.call(document.querySelectorAll('.track'));
+  if (!tracks.length || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  tracks.forEach(function (t) { t.classList.add('track--live'); });
+  var TOP = 10, BOTTOM = 32, ticking = false;          // the rail's inset from the track, in px
+  function update() {
+    ticking = false;
+    var line = window.innerHeight * 0.62;
+    tracks.forEach(function (t) {
+      var r = t.getBoundingClientRect(), railH = Math.max(1, r.height - TOP - BOTTOM);
+      var p = Math.min(1, Math.max(0, (line - r.top - TOP) / railH));
+      t.style.setProperty('--p', p.toFixed(4));
+      t.querySelectorAll('.role').forEach(function (role) {
+        role.classList.toggle('is-lit', role.getBoundingClientRect().top + 14 < line);
+      });
+    });
+  }
+  window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+  window.addEventListener('resize', update);
+  update();
+})();

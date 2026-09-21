@@ -164,3 +164,37 @@
 .lm.is-failed{display:none!important}
 .home-hero.is-metal:has(.lm.is-failed)::before,
 .home-hero.is-metal:has(.lm.is-failed)::after{display:block}
+
+/* ==========================================================================
+   Portrait card over the liquid metal hero — frosted glass (chosen over a chrome bezel and a floating cut-out).
+   Text colours are explicit: the card may sit on light metal, not ink.
+   ========================================================================== */
+/* A — frosted glass: the metal shows, blurred, through the card */
+.spec--glass{background:rgba(255,255,255,.34);color:var(--ink);border:1px solid rgba(255,255,255,.7);
+  -webkit-backdrop-filter:blur(18px) saturate(1.5);backdrop-filter:blur(18px) saturate(1.5);
+  box-shadow:0 1px 2px rgba(17,17,20,.05),0 18px 40px rgba(17,17,20,.12)}
+.spec--glass .spec__frame{border-color:rgba(255,255,255,.85);background:transparent}
+@supports not ((backdrop-filter:blur(2px)) or (-webkit-backdrop-filter:blur(2px))){.spec--glass{background:rgba(255,255,255,.88)}}
+
+/* shared: labels read dark whenever the card isn't ink */
+:is(.spec--glass) .spec__head{color:#44444e}
+:is(.spec--glass) .spec__head .rev{color:var(--ink);font-weight:700}
+:is(.spec--glass) .dim{color:#44444e}
+:is(.spec--glass) .dim::before,
+:is(.spec--glass) .dim::after{background:rgba(17,17,20,.2)}
+
+/* ==========================================================================
+   About — the select screen idles.
+   The illustration is split into two layers: the title, menu and stat bars
+   stay still; only the figure breathes, the way a game character idles on a
+   select screen. At rest the two layers recombine into the original exactly.
+   ========================================================================== */
+.select-screen{position:relative}
+.select-screen img{display:block;width:100%;height:auto}
+.select-screen__ui{position:absolute;inset:0}
+.select-screen__fig{transform-origin:69% 100%;animation:idle 4.6s ease-in-out infinite}
+@keyframes idle{0%,100%{transform:translateY(0) scaleY(1)}50%{transform:translateY(-1.5px) scaleY(1.005)}}
+
+/* the pixel portrait: a two-frame sprite bob, one art-pixel high */
+.why .pixel{animation:sprite 1.3s steps(1,end) infinite}
+@keyframes sprite{0%{transform:translateY(0)}50%{transform:translateY(-2px)}}
