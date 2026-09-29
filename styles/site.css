@@ -140,10 +140,19 @@ p{margin:0}a{color:inherit;text-decoration:none}ul{margin:0;padding:0;list-style
 .lb__count{font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;color:var(--muted-dark)}
 .lb__close{width:2.5rem;height:2.5rem;display:grid;place-items:center;color:var(--paper);border:1px solid var(--rule-dark);border-radius:3px;background:none;cursor:pointer}
 .lb__close:hover{border-color:var(--lime);color:var(--lime)}
-.lb__stage{overflow:auto;display:grid;place-items:center}
-.lb__stage img{max-width:100%;max-height:100%;object-fit:contain;cursor:zoom-in;border-radius:2px}
-.lb__stage[data-zoom="true"]{place-items:start}
+/* `place-items:center` centres the overflow too, which clips the TOP of a tall
+   image (a phone screenshot loses its status bar). `safe center` falls back to
+   start-alignment the moment the content is bigger than the box. */
+.lb__stage{overflow:auto;display:grid;min-height:0;
+  align-content:safe center;justify-content:safe center}
+.lb__stage img,.lb__stage video{max-width:100%;max-height:100%;object-fit:contain;
+  cursor:zoom-in;border-radius:2px;display:block}
+.lb__stage video{cursor:default}
+.lb__stage[data-zoom="true"]{align-content:start;justify-content:start}
 .lb__stage[data-zoom="true"] img{max-width:none;max-height:none;width:auto;cursor:zoom-out}
+.lb__stage [hidden]{display:none!important}
+/* a video that opens in the viewer gets the same affordance as an image */
+.zoomable{cursor:zoom-in}
 .lb__bottom{display:flex;justify-content:space-between;align-items:center;gap:1rem;color:var(--muted-dark);
   font-family:var(--mono);font-size:.66rem;letter-spacing:.08em}
 .lb__nav{display:flex;gap:.5rem}
@@ -363,360 +372,308 @@ p{margin:0}a{color:inherit;text-decoration:none}ul{margin:0;padding:0;list-style
 .two-up--match .shell img{width:100%;height:100%;object-fit:cover}
 
 /* ==========================================================================
-   .lmb — liquid metal button. The shader fills the pill; a dark face sits
-   2px inside it, so only a thin metallic ring shows. Recoloured lime→pink
-   to match the home hero. Reserved for key actions only.
+   Case study — work-first layout
    ========================================================================== */
-.lmb{
-  position:relative;isolation:isolate;display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
-  padding:.9em 1.75em;border:0;border-radius:999px;background:transparent;
-  color:var(--paper);font:inherit;font-size:.95rem;font-weight:600;text-decoration:none;cursor:pointer;
-  box-shadow:0 0 0 1px rgba(17,17,20,.3),0 20px 12px rgba(17,17,20,.06),0 9px 9px rgba(17,17,20,.12),0 2px 5px rgba(17,17,20,.15);
-  transition:transform .45s cubic-bezier(.34,1.56,.64,1),box-shadow .15s ease
+
+/* the aurora wash, tuned for the dark case-study hero.
+   .hero::before already carries the drifting grid, so the wash rides on its
+   own elements rather than fighting for the same pseudo-element. */
+.hero__in{z-index:1}
+.hero__wash{position:absolute;inset:-25%;z-index:0;pointer-events:none;
+  filter:blur(80px);will-change:transform;
+  background:
+    radial-gradient(34% 42% at 16% 40%, rgba(184,240,74,.30), transparent 70%),
+    radial-gradient(28% 36% at 56% 78%, rgba(91,79,214,.36), transparent 70%);
+  animation:aurora-a 26s var(--ease) infinite alternate}
+.hero__wash--b{
+  background:
+    radial-gradient(24% 32% at 74% 24%, rgba(255,72,177,.30), transparent 70%),
+    radial-gradient(20% 26% at 34% 86%, rgba(184,240,74,.16), transparent 70%);
+  animation:aurora-b 34s var(--ease) infinite alternate}
+
+/* the divider along the bottom edge of the hero */
+.hero__edge{position:absolute;left:0;right:0;bottom:0;height:2px;z-index:2;pointer-events:none;
+  background:linear-gradient(90deg,var(--lime) 0%,var(--peri) 20%,var(--pink) 40%,
+    var(--lime) 60%,var(--peri) 80%,var(--pink) 100%);
+  background-size:300% 100%;animation:edge-flow 22s linear infinite}
+@keyframes edge-flow{to{background-position:300% 0}}
+
+/* the finished work, shown before the process */
+.showcase{background:var(--paper);padding-block:clamp(2.5rem,6vw,4rem)}
+.showcase__head{display:flex;align-items:baseline;justify-content:space-between;gap:1.5rem;
+  flex-wrap:wrap;padding-bottom:1rem;margin-bottom:1.5rem;border-bottom:1px solid var(--rule)}
+.showcase__head h2{font-size:clamp(1.4rem,2.6vw,2rem);font-weight:600;margin:0}
+.showcase__head span{font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;color:var(--muted)}
+.showcase__main{margin:0}
+.showcase__main .shell{border:1px solid var(--rule);border-radius:4px;overflow:hidden;
+  background:var(--white);max-height:34rem}
+.showcase__main .shell img{width:100%;display:block;object-fit:cover;object-position:top center;cursor:zoom-in}
+.showcase__main figcaption{margin-top:.75rem;font-family:var(--mono);font-size:.64rem;
+  letter-spacing:.08em;color:var(--muted)}
+
+.feat{display:grid;grid-template-columns:repeat(auto-fit,minmax(14rem,1fr));gap:1rem;margin-top:1.75rem}
+.feat figure{margin:0}
+.feat .shell{border:1px solid var(--rule);border-radius:4px;overflow:hidden;background:var(--white);aspect-ratio:16/10}
+.feat .shell img{width:100%;height:100%;object-fit:cover;object-position:top center;cursor:zoom-in;
+  transition:transform .3s var(--ease)}
+.feat .shell:hover img{transform:scale(1.03)}
+.feat figcaption{margin-top:.7rem;font-size:.88rem;color:var(--muted);line-height:1.5}
+.feat b{display:block;color:var(--ink);font-size:.95rem;font-weight:600;margin-bottom:.25rem}
+
+/* section scaffolding — step label, then the one point that matters */
+.sec__step{font-family:var(--mono);font-size:.66rem;letter-spacing:.16em;color:var(--pink-text);margin-bottom:.8rem}
+.sec__lead{font-size:clamp(1.12rem,1.5vw,1.38rem);line-height:1.45;font-weight:500;color:var(--ink);
+  max-width:44ch;padding-left:1.1rem;border-left:4px solid var(--lime);margin:1.1rem 0 1.5rem}
+
+/* one big image, a strip of small ones under it */
+.shots{margin:1.75rem 0}
+.shots__main{margin:0}
+.shots__main .shell{border:1px solid var(--rule);border-radius:4px;overflow:hidden;
+  background:var(--white);max-width:44rem}
+.shots__main .shell img{width:100%;display:block;cursor:zoom-in}
+.shots__main figcaption{max-width:44rem;margin-top:.7rem;font-family:var(--mono);font-size:.64rem;
+  letter-spacing:.08em;color:var(--muted);line-height:1.6}
+.shots__strip{display:grid;grid-template-columns:repeat(auto-fill,minmax(6rem,1fr));gap:.6rem;
+  max-width:44rem;margin-top:.9rem}
+.shots__strip figure{margin:0}
+.shots__strip img{width:100%;aspect-ratio:4/3;object-fit:cover;object-position:top center;
+  border:1px solid var(--rule);border-radius:3px;cursor:zoom-in;
+  transition:border-color .15s var(--ease),transform .15s var(--ease)}
+.shots__strip img:hover{border-color:var(--ink);transform:translateY(-2px)}
+.shots__note{max-width:44rem;margin-top:.7rem;font-family:var(--mono);font-size:.6rem;
+  letter-spacing:.1em;color:var(--muted)}
+
+/* plain quote, smaller than .pull */
+.said{margin:1.5rem 0;padding:1.1rem 1.35rem;background:var(--white);border:1px solid var(--rule);
+  border-left:4px solid var(--peri);border-radius:3px;max-width:56ch}
+.said p{margin:0;font-size:1rem;line-height:1.55;color:var(--ink)}
+.said cite{display:block;margin-top:.6rem;font-style:normal;font-family:var(--mono);
+  font-size:.6rem;letter-spacing:.1em;color:var(--muted)}
+
+/* the small-team constraint, given its own frame */
+.constraint{margin:2rem 0;padding:1.5rem 1.75rem;background:var(--ink);color:var(--paper);border-radius:4px}
+.constraint h3{margin:0 0 .75rem;font-size:1.1rem;font-weight:600;color:var(--paper)}
+.constraint p{color:var(--muted-dark);max-width:58ch;line-height:1.7}
+.constraint p + p{margin-top:.85rem}
+.constraint strong{color:var(--lime);font-weight:600}
+
+/* impact statement, above the first mockup */
+.impactband{background:var(--lime);color:var(--ink)}
+.impactband__in{padding-block:clamp(2rem,4.5vw,3rem)}
+.impactband__label{font-family:var(--mono);font-size:.64rem;letter-spacing:.16em;
+  color:rgba(17,17,20,.58);margin:0}
+.impactband__text{font-size:clamp(1.35rem,3vw,2.15rem);line-height:1.25;font-weight:600;
+  letter-spacing:-.02em;max-width:30ch;margin:.9rem 0 0}
+.impactband__facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.5rem;
+  margin:1.75rem 0 0;padding-top:1.5rem;border-top:1px solid rgba(17,17,20,.22)}
+.impactband__facts dt{font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;
+  color:rgba(17,17,20,.6);margin-bottom:.35rem}
+.impactband__facts dd{margin:0;font-weight:600;line-height:1.35;font-size:.95rem}
+@media(max-width:46rem){.impactband__facts{grid-template-columns:1fr;gap:1.1rem}}
+
+/* persona cards that open the full sheet */
+.personas{display:grid;grid-template-columns:repeat(auto-fit,minmax(17rem,1fr));gap:1rem;margin:1.75rem 0}
+.pcard{display:flex;flex-direction:column;text-align:left;padding:0;font:inherit;color:inherit;
+  background:var(--white);border:1px solid var(--rule);border-radius:4px;overflow:hidden;cursor:pointer;
+  transition:transform .2s var(--ease),border-color .2s var(--ease),box-shadow .2s var(--ease)}
+.pcard:hover,.pcard:focus-visible{transform:translateY(-3px);border-color:var(--ink);
+  box-shadow:0 10px 24px rgba(17,17,20,.08)}
+.pcard__top{display:flex;align-items:center;gap:.85rem;padding:1.05rem 1.25rem;border-bottom:1px solid var(--rule)}
+.pcard__avatar{width:2.6rem;height:2.6rem;border-radius:50%;flex:none;display:grid;place-items:center;
+  font-family:var(--mono);font-size:.78rem;font-weight:700}
+.pcard--leader .pcard__avatar{background:#ffeba4;color:#5c4a00}
+.pcard--admin .pcard__avatar{background:#e7e4f8;color:#3b3475}
+.pcard__role{display:block;font-family:var(--mono);font-size:.58rem;letter-spacing:.12em;
+  color:var(--muted);margin-bottom:.22rem}
+.pcard__name{font-size:1rem;font-weight:600;color:var(--ink);line-height:1.2}
+.pcard__body{padding:1.1rem 1.25rem;flex:1;display:flex;flex-direction:column;gap:.85rem}
+.pcard__quote{margin:0;font-size:.98rem;line-height:1.45;color:var(--ink);font-weight:500}
+.pcard__needs{list-style:none;margin:0;padding:0;font-size:.86rem;color:var(--muted);line-height:1.5}
+.pcard__needs li{position:relative;padding-left:1rem}
+.pcard__needs li + li{margin-top:.32rem}
+.pcard__needs li::before{content:"";position:absolute;left:0;top:.58em;width:5px;height:5px;
+  background:var(--lime);border-radius:1px}
+.pcard__open{margin-top:auto;padding-top:.9rem;border-top:1px solid var(--rule);display:flex;
+  align-items:center;gap:.4rem;font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;
+  color:var(--pink-text);transition:gap .15s var(--ease)}
+.pcard:hover .pcard__open{gap:.7rem}
+.pcard__thumb{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+
+/* ---------- impact band: soft wash instead of a flat lime slab ---------- */
+.impactband{background:var(--paper);color:var(--ink);border-bottom:1px solid var(--rule)}
+.impactband__label{color:var(--muted);display:flex;align-items:center;gap:.6rem}
+.impactband__label::before{content:"";width:1.6rem;height:3px;background:var(--lime);border-radius:2px;flex:none}
+.impactband__facts{border-top:1px solid var(--rule)}
+.impactband__facts dt{color:var(--muted)}
+.impactband__facts dd{color:var(--ink)}
+
+/* ---------- the live prototype, leading the showcase ---------- */
+.proto--lead{margin:0 0 2rem}
+.proto--lead .proto__frame{height:min(44rem,76vh)}
+.proto--lead .proto__bar{background:#e6e4dd}
+.proto__live{display:inline-flex;align-items:center;gap:.4rem;font-family:var(--mono);
+  font-size:.58rem;letter-spacing:.1em;color:var(--ink);background:var(--lime);
+  padding:.25em .6em;border-radius:99px;flex:none}
+.proto__live::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--ink)}
+.proto__hint{margin:.85rem 0 0;font-size:.92rem;color:var(--muted);max-width:52ch}
+
+/* ---------- persona modal: the full sheet as real markup ---------- */
+.pmodal{position:fixed;inset:0;z-index:120;display:none;overflow:auto;
+  background:rgba(17,17,20,.74);padding:clamp(.75rem,4vw,3rem);
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.pmodal[data-open="true"]{display:block}
+.pmodal__card{background:var(--paper);border-radius:6px;max-width:54rem;margin:0 auto;
+  overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,.38)}
+.pmodal__head{display:flex;align-items:flex-start;gap:1rem;padding:1.4rem 1.6rem;
+  border-bottom:1px solid var(--rule);background:var(--white)}
+.pmodal__avatar{width:3rem;height:3rem;border-radius:50%;flex:none;display:grid;place-items:center;
+  font-family:var(--mono);font-size:.85rem;font-weight:700}
+.pmodal--leader .pmodal__avatar{background:#ffeba4;color:#5c4a00}
+.pmodal--admin .pmodal__avatar{background:#e7e4f8;color:#3b3475}
+.pmodal__titles{flex:1;min-width:0}
+.pmodal__kind{font-family:var(--mono);font-size:.58rem;letter-spacing:.14em;color:var(--muted);display:block}
+.pmodal__name{font-size:1.3rem;font-weight:600;color:var(--ink);margin:.25rem 0 .2rem;line-height:1.2}
+.pmodal__role{font-size:.92rem;color:var(--muted);margin:0}
+.pmodal__x{flex:none;width:2.2rem;height:2.2rem;display:grid;place-items:center;cursor:pointer;
+  border:1px solid var(--rule);border-radius:4px;background:none;color:var(--muted)}
+.pmodal__x:hover{border-color:var(--ink);color:var(--ink)}
+.pmodal__body{padding:1.5rem 1.6rem}
+.pmodal__quote{margin:0 0 1.4rem;padding-left:1rem;border-left:4px solid var(--lime);
+  font-size:clamp(1.05rem,1.6vw,1.25rem);line-height:1.4;font-weight:500;color:var(--ink)}
+.pmodal__bio{margin:0 0 1.5rem;color:var(--muted);line-height:1.7;max-width:64ch}
+.pmodal__meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(8rem,1fr));gap:1rem;
+  margin:0 0 1.5rem;padding:1rem 0;border-block:1px solid var(--rule)}
+.pmodal__meta dt{font-family:var(--mono);font-size:.56rem;letter-spacing:.13em;color:var(--muted);margin-bottom:.3rem}
+.pmodal__meta dd{margin:0;font-size:.9rem;font-weight:600;color:var(--ink);line-height:1.35}
+.pmodal__cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1.25rem}
+.pmodal__col{background:var(--white);border:1px solid var(--rule);border-radius:4px;padding:1.1rem 1.25rem}
+.pmodal__col h4{margin:0 0 .7rem;font-size:.92rem;font-weight:600;color:var(--ink);
+  display:flex;align-items:center;gap:.5rem}
+.pmodal__col h4::before{content:"";width:.7rem;height:3px;border-radius:2px;flex:none}
+.pmodal__col--pain h4::before{background:var(--pink)}
+.pmodal__col--goals h4::before{background:var(--lime)}
+.pmodal__col--know h4::before{background:var(--peri)}
+.pmodal__col ul{list-style:none;margin:0;padding:0;font-size:.88rem;color:var(--muted);line-height:1.55}
+.pmodal__col li{position:relative;padding-left:.95rem}
+.pmodal__col li + li{margin-top:.4rem}
+.pmodal__col li::before{content:"";position:absolute;left:0;top:.6em;width:4px;height:4px;
+  border-radius:50%;background:var(--muted)}
+.pmodal__foot{padding:1.1rem 1.6rem;border-top:1px solid var(--rule);background:var(--white);
+  display:flex;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between}
+.pmodal__foot span{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;color:var(--muted)}
+
+/* ---------- a stepper so the arc is visible before you read it ---------- */
+.stepper{display:grid;grid-template-columns:repeat(auto-fit,minmax(8.5rem,1fr));gap:.6rem;margin:1.5rem 0 0}
+.stepper a{display:flex;flex-direction:column;gap:.4rem;padding:.85rem 1rem;text-decoration:none;
+  color:inherit;background:var(--white);border:1px solid var(--rule);border-radius:4px;
+  transition:border-color .15s var(--ease),transform .15s var(--ease),box-shadow .15s var(--ease)}
+.stepper a:hover{border-color:var(--ink);transform:translateY(-2px);box-shadow:0 6px 16px rgba(17,17,20,.07)}
+.stepper .n{font-family:var(--mono);font-size:.58rem;letter-spacing:.14em;color:var(--pink-text)}
+.stepper .t{font-size:.9rem;font-weight:600;color:var(--ink);line-height:1.3}
+
+/* numbered badge on each section label */
+.sec__step{display:flex;align-items:center;gap:.65rem}
+.sec__step b{display:grid;place-items:center;width:1.7rem;height:1.7rem;border-radius:50%;flex:none;
+  background:var(--ink);color:var(--paper);font-family:var(--mono);font-size:.64rem;font-weight:700}
+
+/* ---------- specificity corrections ----------
+   .sec p and .sec p strong (from the base sheet) outrank single-class rules
+   on elements nested inside a section, which silently repainted text that
+   sits on a dark panel. These restate the intent at matching specificity. */
+.sec .constraint p{color:var(--muted-dark)}
+.sec .constraint p strong{color:var(--lime);font-weight:600}
+.sec .constraint h3{color:var(--paper)}
+.sec p.sec__lead{color:var(--ink)}
+.sec p.shots__note{color:var(--muted)}
+.sec .pcard p.pcard__quote{color:var(--ink)}
+.sec .pcard ul.pcard__needs li{color:var(--muted)}
+
+/* ---------- stepper glyphs, in the diagram language from the workshop page ---------- */
+.stepper a{gap:.55rem}
+.stepper .g{display:block;color:var(--ink)}
+.stepper .g svg{width:100%;height:auto;max-width:3.4rem;display:block;overflow:visible}
+
+/* ---------- assumption matrix: importance against evidence ---------- */
+.matrix{margin:1.75rem 0;display:grid;
+  grid-template-columns:1.5rem minmax(0,1fr) minmax(0,1fr);
+  grid-template-rows:auto auto auto;gap:.7rem;align-items:stretch}
+.matrix__corner{grid-column:1;grid-row:1}
+.matrix__col{font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;color:var(--muted);
+  text-align:center;padding-bottom:.2rem}
+.matrix__row{grid-column:1;display:flex;align-items:center;justify-content:center}
+.matrix__row span{font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;color:var(--muted);
+  writing-mode:vertical-rl;transform:rotate(180deg);white-space:nowrap}
+.quad{background:var(--white);border:1px solid var(--rule);border-radius:6px;
+  padding:1.15rem 1.3rem;display:flex;flex-direction:column;gap:.55rem}
+.quad h4{margin:0;font-size:1.02rem;font-weight:600;color:var(--ink);line-height:1.25}
+.quad__axis{font-family:var(--mono);font-size:.58rem;letter-spacing:.12em;color:var(--muted);margin:0}
+.quad ul{list-style:none;margin:.35rem 0 0;padding:0;display:flex;flex-direction:column;gap:.7rem}
+.quad li{font-size:.94rem;line-height:1.45;color:var(--muted)}
+.quad--leap{background:#fff5fa;border-color:var(--pink);border-width:1.5px}
+.quad--leap h4{color:var(--ink)}
+.quad--leap li{color:var(--ink)}
+.quad__tag{display:inline-block;margin-left:.45rem;padding:.16em .5em;border-radius:3px;
+  background:var(--ink);color:var(--paper);font-family:var(--mono);font-size:.56rem;
+  letter-spacing:.1em;vertical-align:middle;white-space:nowrap}
+.matrix__cap{grid-column:2 / -1;margin:.3rem 0 0;font-family:var(--mono);font-size:.6rem;
+  letter-spacing:.1em;color:var(--muted);line-height:1.6}
+@media(max-width:52rem){
+  .matrix{grid-template-columns:minmax(0,1fr);gap:.7rem}
+  .matrix__corner,.matrix__col,.matrix__row{display:none}
+  .matrix__cap{grid-column:1}
 }
-.lmb__ring{position:absolute;inset:0;z-index:-2;border-radius:inherit;overflow:hidden;background:#bdbdc2}
-.lmb__canvas{position:absolute;inset:0}
-.lmb__canvas canvas{display:block;width:100%!important;height:100%!important}
-.lmb__tint{
-  position:absolute;inset:0;mix-blend-mode:color;
-  background:linear-gradient(100deg,var(--lime) 0%,#e6f7b0 40%,#ff9bd4 68%,var(--pink) 100%)
+
+/* three-phase breakdown (keybank mortgage cadence) */
+.phases{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;margin:1.5rem 0}
+.phases>div{border:1px solid var(--rule);border-radius:12px;background:var(--white);padding:1.1rem 1.25rem}
+.phases b{display:block;font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;
+  color:var(--pink-text);margin-bottom:.5rem}
+.sec .phases p{margin:0;font-size:.9rem;line-height:1.55;color:var(--muted)}
+@media(max-width:760px){.phases{grid-template-columns:1fr}}
+
+/* ---- campaign cadence chart (keybank mortgage) ----------------------------
+   17 weeks fit the container at desktop width; no horizontal scroll until the
+   viewport is narrower than the chart can honestly compress to. */
+.cad{--lbl:9.25rem;--cols:17;border:1px solid var(--rule);border-radius:14px;
+  background:var(--white);overflow:hidden;margin:1.5rem 0 .5rem}
+.cad__row{display:grid;grid-template-columns:var(--lbl) minmax(0,1fr);
+  align-items:center;border-top:1px dashed var(--rule)}
+.cad__row:first-child{border-top:0}
+.cad__lbl{font-size:.8rem;font-weight:600;color:var(--ink);padding:.7rem .9rem;
+  border-right:1px solid var(--rule);align-self:stretch;display:flex;align-items:center}
+.cad__track{display:grid;grid-template-columns:repeat(var(--cols),minmax(0,1fr));
+  align-items:center;padding:.55rem .5rem;position:relative;min-height:2.6rem}
+.cad__track--rule::before{content:"";position:absolute;left:.5rem;right:.5rem;top:50%;
+  height:1px;background:var(--rule);z-index:0}
+.cad__head .cad__lbl{font-family:var(--mono);font-size:.68rem;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--muted)}
+.cad__head .cad__track{padding-block:.6rem}
+.cad__wk{grid-row:1;text-align:center;line-height:1.25;min-width:0}
+.cad__wk b{display:block;font-family:var(--mono);font-size:.58rem;letter-spacing:.04em;
+  color:var(--ink);font-weight:700}
+.cad__wk span{display:block;font-family:var(--mono);font-size:.47rem;letter-spacing:.02em;
+  color:var(--muted);white-space:nowrap}
+.cad__band{display:grid;grid-template-columns:var(--lbl) minmax(0,1fr);
+  background:var(--paper);border-top:1px solid var(--rule)}
+.cad__band>b{font-family:var(--mono);font-size:.56rem;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--muted);padding:.45rem .9rem;border-right:1px solid var(--rule)}
+.cad__band>span{font-size:.72rem;color:var(--muted);padding:.45rem .9rem;align-self:center}
+.cad__chip{grid-row:1;position:relative;z-index:1;display:block;text-align:center;
+  font-family:var(--mono);font-size:.55rem;font-weight:700;letter-spacing:.02em;
+  padding:.42em .3em;border-radius:5px;color:#fff;white-space:nowrap;
+  overflow:hidden;text-overflow:ellipsis;margin-inline:2px}
+.cad .c-email{background:#3155d4}
+.cad .c-mail{background:#e0a020;color:#3a2a05}
+.cad .c-lead{background:#fbeaa8;color:#5b4406;font-weight:700}
+.cad .c-ctrl{background:#cfe8cd;color:#204a1c}
+.cad .c-tile{background:#10786f}
+.cad .c-int{background:#7b34c7}
+.cad .c-modal{background:#c9452b}
+.cad .c-sms{background:#a7dca2;color:#1c4a18}
+.cad__cap{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;color:var(--muted);
+  text-transform:uppercase;margin:.75rem 0 0}
+@media(max-width:1000px){.cad{--lbl:7rem}.cad__lbl{font-size:.72rem;padding:.6rem .6rem}}
+@media(max-width:860px){
+  .cad{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .cad__row,.cad__band{min-width:52rem}
 }
-.lmb::before{
-  content:"";position:absolute;inset:2px;z-index:-1;border-radius:inherit;
-  background:linear-gradient(180deg,#26262c 0%,#0a0a0c 100%)
-}
-.lmb:hover{transform:translateY(-2px)}
-.lmb:active{transform:translateY(1px) scale(.98)}
-.lmb:focus-visible{outline:2px solid var(--lime);outline-offset:4px}
-/* no WebGL: a static brand ring instead of silver */
-.lmb.is-failed .lmb__canvas{display:none}
-.lmb.is-failed .lmb__ring{background:linear-gradient(100deg,var(--lime),var(--pink))}
-
-/* ==========================================================================
-   .hmw — problem statement and How Might We questions, as markup rather
-   than a screenshot of sticky notes. Reusable in any case study.
-   ========================================================================== */
-.hmw{margin:1.75rem 0}
-.hmw__lbl{display:block;font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;color:var(--muted);margin-bottom:.8rem}
-.hmw__problem{
-  padding:1.4rem 1.5rem;margin-bottom:1.75rem;background:var(--ink);color:var(--paper);border-radius:4px;
-  border-left:4px solid var(--lime)
-}
-.hmw__problem .hmw__lbl{color:var(--lime)}
-/* .sec p greys every paragraph; override it here or the text drops to 2.85:1 on ink */
-.hmw .hmw__problem p{margin:0;font-size:clamp(1.02rem,1vw+.7rem,1.18rem);line-height:1.6;max-width:62ch;color:var(--paper)}
-.hmw__grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:.75rem;counter-reset:hmw}
-.hmw__grid li{
-  position:relative;padding:2rem 1.1rem 1.1rem;background:var(--white);border:1px solid var(--rule);
-  border-radius:4px;font-size:.93rem;line-height:1.5;color:var(--ink)
-}
-.hmw__grid li::before{
-  counter-increment:hmw;content:"HMW " counter(hmw,decimal-leading-zero);
-  position:absolute;top:.75rem;left:1.1rem;font-family:var(--mono);font-size:.58rem;letter-spacing:.12em;color:var(--muted)
-}
-.hmw__grid li::after{content:"";position:absolute;left:0;top:1rem;bottom:1rem;width:3px;background:var(--lime);border-radius:0 2px 2px 0}
-
-/* ==========================================================================
-   .persona — a persona card in markup. Replaces screenshotted persona
-   templates, including their empty "journey" and "solutions" boxes.
-   --acc sets each persona's accent so a pair reads as distinct.
-   ========================================================================== */
-.persona{
-  --acc:var(--pink);
-  margin:1.75rem 0;background:var(--white);border:1px solid var(--rule);border-radius:6px;overflow:hidden
-}
-.persona + .persona{margin-top:1.25rem}
-.persona--admin{--acc:var(--peri)}
-.persona__head{display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;border-bottom:1px solid var(--rule);
-  background:linear-gradient(90deg,color-mix(in srgb,var(--acc) 10%,var(--white)),var(--white) 70%)}
-.persona__av{flex:none;display:grid;place-items:center;width:3.25rem;height:3.25rem;font-size:1.9rem;line-height:1;
-  background:var(--white);border:2px solid var(--acc);border-radius:50%}
-.persona__name{margin:0;font-size:clamp(1.15rem,2vw,1.4rem);font-weight:600;line-height:1.2}
-.persona__meet{display:block;font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;color:var(--muted);font-weight:400;margin-bottom:.2rem}
-.persona__type{margin-left:auto;flex:none;font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;
-  padding:.4em .85em;border-radius:999px;border:1.5px solid var(--acc);color:var(--ink)}
-.persona__bio{padding:1.25rem 1.5rem 0}
-.persona .persona__bio p{margin:0;color:var(--muted);max-width:none;line-height:1.65}
-.persona__body{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;padding:1.25rem 1.5rem 1.5rem}
-@media(max-width:44rem){.persona__body{grid-template-columns:1fr}.persona__head{flex-wrap:wrap}}
-.persona__facts{display:grid;grid-template-columns:auto 1fr;gap:.45rem 1rem;margin:0;font-size:.9rem;align-content:start}
-.persona__facts dt{font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;color:var(--muted);padding-top:.2rem}
-.persona__facts dd{margin:0;color:var(--ink)}
-.persona__facts dd q{font-style:italic}
-.persona__h{font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;color:var(--muted);font-weight:400;margin:0 0 .6rem}
-.persona__block + .persona__block{margin-top:1.25rem}
-.persona__level{display:inline-block;margin-bottom:.35rem;font-size:.82rem;font-weight:600;
-  padding:.2em .65em;border-radius:3px;background:color-mix(in srgb,var(--acc) 14%,var(--white))}
-.persona .persona__block p{margin:0;font-size:.88rem;color:var(--muted);max-width:none;line-height:1.55}
-.persona__list{list-style:none;margin:0;padding:0}
-.persona__list li{position:relative;padding-left:1.1rem;font-size:.88rem;line-height:1.5;color:var(--muted)}
-.persona__list li + li{margin-top:.4rem}
-.persona__list li::before{content:"";position:absolute;left:0;top:.55em;width:6px;height:6px;border-radius:1px;background:var(--acc)}
-
-/* ==========================================================================
-   .scope — a workshop scoping board (in / maybe / out) in markup.
-   ========================================================================== */
-.scope{display:grid;grid-template-columns:1.35fr 1fr 1fr;gap:.75rem;margin:1.75rem 0 .75rem}
-@media(max-width:52rem){.scope{grid-template-columns:1fr}}
-.scope__col{--acc:var(--lime);background:var(--white);border:1px solid var(--rule);border-top:4px solid var(--acc);border-radius:4px;padding:1rem 1.1rem 1.1rem}
-.scope__col--maybe{--acc:var(--peri)}
-.scope__col--out{--acc:#b9b9c2}
-.scope__h{display:flex;justify-content:space-between;align-items:baseline;gap:.5rem;margin:0 0 .85rem;
-  font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;font-weight:400;color:var(--ink)}
-.scope__h b{font-weight:400;color:var(--muted)}
-.scope__col ul{list-style:none;margin:0;padding:0}
-.scope__col li{position:relative;padding-left:1.1rem;font-size:.88rem;line-height:1.45;color:var(--ink)}
-.scope__col li + li{margin-top:.45rem}
-.scope__col li::before{content:"";position:absolute;left:0;top:.5em;width:7px;height:7px;border-radius:2px;background:var(--acc)}
-.scope__col--out li{color:var(--muted)}
-.scope-note,.matrix-note{font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;color:var(--muted);margin:0 0 2rem}
-
-/* ==========================================================================
-   .matrix — assumption map: importance against strength of evidence.
-   The more-important / weak-evidence quadrant is the leap of faith.
-   ========================================================================== */
-.matrix{display:grid;grid-template-columns:auto 1fr 1fr;grid-template-rows:auto 1fr 1fr;gap:.6rem;margin:1.75rem 0 .75rem}
-.matrix__ax{font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;color:var(--muted);display:flex;align-items:center;justify-content:center}
-.matrix__ax--x{padding-bottom:.1rem}
-.matrix__ax--y{writing-mode:vertical-rl;transform:rotate(180deg);padding-right:.1rem}
-.matrix__q{background:var(--white);border:1px solid var(--rule);border-radius:4px;padding:1rem 1.1rem 1.1rem;min-height:9rem}
-.matrix__q h5{margin:0 0 .15rem;font-size:.95rem;font-weight:600;color:var(--ink)}
-.matrix__q small{display:block;margin-bottom:.8rem;font-family:var(--mono);font-size:.56rem;letter-spacing:.1em;color:var(--muted)}
-.matrix__q ul{list-style:none;margin:0;padding:0}
-.matrix__q li{font-size:.86rem;line-height:1.45;color:var(--muted)}
-.matrix__q li + li{margin-top:.5rem}
-.matrix__q--leap{border:2px solid var(--pink);background:color-mix(in srgb,var(--pink) 7%,var(--white))}
-.matrix__q--leap li{color:var(--ink)}
-.matrix__tag{display:inline-block;margin-left:.35rem;padding:.12em .5em;border-radius:3px;vertical-align:.1em;
-  font-family:var(--mono);font-size:.54rem;letter-spacing:.1em;background:var(--ink);color:var(--paper)}
-@media(max-width:44rem){
-  .matrix{grid-template-columns:1fr;grid-template-rows:none}
-  .matrix__ax{display:none}   /* each quadrant carries its own axis label on small screens */
-}
-
-/* ==========================================================================
-   .swim — a swimlane timeline in markup (weeks across, channels down).
-   Too wide for a reading column by nature, so it scrolls inside its own
-   frame with lane labels pinned left. Every item is labelled, so colour
-   is never the only thing carrying meaning.
-   ========================================================================== */
-.swim{--lab:9.5rem;--col:4.3rem;margin:1.75rem 0 .75rem;border:1px solid var(--rule);border-radius:4px;background:var(--white);overflow-x:auto;-webkit-overflow-scrolling:touch}
-.swim__in{min-width:calc(var(--lab) + 17 * var(--col));padding-bottom:.5rem}
-.swim__row{display:grid;grid-template-columns:var(--lab) repeat(17,minmax(var(--col),1fr));align-items:center;position:relative;min-height:2.6rem}
-.swim__row + .swim__row{border-top:1px dashed #ececef}
-.swim__lab{position:sticky;left:0;z-index:4;align-self:stretch;display:flex;align-items:center;padding:.4rem .75rem;
-  background:var(--white);border-right:1px solid var(--rule);font-size:.78rem;font-weight:600;color:var(--ink);line-height:1.25}
-.swim__head{position:sticky;top:0;z-index:5;border-bottom:1px solid var(--rule);background:var(--white)}
-.swim__wk{grid-row:1;text-align:center;padding:.55rem 0 .45rem;font-family:var(--mono);font-size:.6rem;letter-spacing:.06em;color:var(--ink)}
-.swim__wk small{display:block;margin-top:.15rem;font-size:.54rem;color:var(--muted)}
-.swim__phase{display:grid;grid-template-columns:var(--lab) 1fr;background:#f6f6f8;border-top:1px solid var(--rule)}
-.swim__phase span{position:sticky;left:0;padding:.35rem .75rem;font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;color:var(--muted);background:#f6f6f8}
-.swim__phase em{font-style:normal;padding:.35rem .5rem;font-size:.72rem;color:var(--muted)}
-.swim__rail{grid-row:1;height:3px;border-radius:2px;align-self:center;opacity:.55;background:var(--c)}
-.swim__pill{grid-row:1;z-index:2;justify-self:start;margin:.3rem .15rem;padding:.28rem .5rem;border-radius:4px;
-  font-size:.68rem;font-weight:600;line-height:1.2;white-space:nowrap;background:var(--c);color:var(--t)}
-.swim__bar{grid-row:1;z-index:2;margin:.3rem .15rem;padding:.28rem .5rem;border-radius:4px;font-size:.68rem;font-weight:600;
-  line-height:1.2;white-space:nowrap;background:var(--c);color:var(--t)}
-.swim__start{position:absolute;left:var(--lab);top:0;bottom:0;width:2px;background:var(--ink);z-index:1}
-.swim-hint{display:none;font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;color:var(--muted);margin:.5rem 0 0}
-@media(max-width:60rem){.swim-hint{display:block}}
-.swim .c-email{--c:#1f63c4;--t:#fff}.swim .c-dm{--c:#f2b233;--t:#111114}.swim .c-leads{--c:#fde68a;--t:#111114}
-.swim .c-control{--c:#cfe8bd;--t:#111114}.swim .c-tile{--c:#0b7a6b;--t:#fff}.swim .c-inter{--c:#7f2aa6;--t:#fff}
-.swim .c-modal{--c:#c23b17;--t:#fff}.swim .c-sms{--c:#a8d98a;--t:#111114}
-
-/* ==========================================================================
-   .dt — the five-phase design thinking framework, in markup.
-   .dt--full shows every phase with its description; .dt--mini is the
-   compact "you are here" strip that opens each section, with one phase
-   marked aria-current. Phase names are ink, so colour never carries text.
-   ========================================================================== */
-.dt{--discover:#cf6d22;--analyze:#b3501a;--ideate:#1b8a6f;--prototype:#1f4f9c;--test:#0a7fa3;
-  list-style:none;margin:1.75rem 0 .75rem;padding:0;display:grid;grid-template-columns:repeat(5,1fr);gap:.75rem;position:relative}
-.dt li{position:relative;text-align:center}
-.dt__tile{position:relative;z-index:1;display:grid;place-items:center;width:3.4rem;height:3.4rem;margin:0 auto .7rem;border-radius:6px;background:var(--c)}
-.dt__tile svg{width:1.7rem;height:1.7rem;stroke:#fff;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.dt__name{display:block;font-size:.92rem;font-weight:600;color:var(--ink)}
-.dt__name::after{content:"";display:block;width:1.6rem;height:3px;margin:.4rem auto 0;border-radius:2px;background:var(--c)}
-.dt__desc{display:block;margin-top:.55rem;font-size:.8rem;line-height:1.5;color:var(--muted)}
-/* connector running behind the tiles */
-.dt::before{content:"";position:absolute;top:1.7rem;left:10%;right:10%;height:2px;background:linear-gradient(90deg,var(--discover),var(--analyze),var(--ideate),var(--prototype),var(--test));opacity:.35}
-.dt .p-discover{--c:var(--discover)}.dt .p-analyze{--c:var(--analyze)}.dt .p-ideate{--c:var(--ideate)}
-.dt .p-prototype{--c:var(--prototype)}.dt .p-test{--c:var(--test)}
-
-.dt--mini{gap:.4rem;margin:1.25rem 0 1.5rem}
-.dt--mini .dt__tile{width:2.3rem;height:2.3rem;margin-bottom:.45rem;border-radius:5px}
-.dt--mini .dt__tile svg{width:1.15rem;height:1.15rem}
-.dt--mini::before{top:1.15rem}
-.dt--mini .dt__name{font-size:.72rem;font-weight:500;color:var(--muted)}
-.dt--mini .dt__name::after{display:none}
-.dt--mini li:not([aria-current]) .dt__tile{opacity:.28}
-.dt--mini li[aria-current] .dt__name{color:var(--ink);font-weight:600}
-.dt--mini li[aria-current] .dt__tile{box-shadow:0 0 0 3px var(--white),0 0 0 5px var(--c)}
-
-@media(max-width:44rem){
-  .dt--full{grid-template-columns:1fr;gap:1rem}
-  .dt--full::before{display:none}
-  .dt--full li{display:grid;grid-template-columns:3.4rem 1fr;gap:0 1rem;text-align:left;align-items:start}
-  .dt--full .dt__tile{grid-row:span 2;margin:0}
-  .dt--full .dt__name::after{margin-left:0}
-  .dt--full .dt__desc{margin-top:.35rem}
-}
-
-/* ==========================================================================
-   .sheet — a research worksheet: title, purpose, and its prompts.
-   ========================================================================== */
-.sheet{margin:1.25rem 0;background:var(--white);border:1px solid var(--rule);border-radius:6px;padding:1.25rem 1.4rem 1.4rem}
-.sheet__h{margin:0;font-size:1.1rem;font-weight:600;color:var(--ink)}
-.sheet .sheet__intro{margin:.4rem 0 1.1rem;font-size:.86rem;color:var(--muted);max-width:none;line-height:1.55}
-.sheet__grid{display:grid;grid-template-columns:repeat(var(--n,3),1fr);gap:.6rem}
-@media(max-width:44rem){.sheet__grid{grid-template-columns:1fr 1fr}}
-.sheet__box{background:#f4f4f6;border-radius:5px;padding:.75rem .85rem}
-.sheet__box h6{margin:0 0 .45rem;font-size:.8rem;font-weight:600;color:var(--ink)}
-.sheet__box ul{list-style:none;margin:0;padding:0}
-.sheet__box li{font-size:.78rem;line-height:1.45;color:var(--muted)}
-.sheet__box li + li{margin-top:.2rem}
-.sheet__box--wide{grid-column:1/-1}
-.sheet__tag{display:inline-block;margin-left:.5rem;vertical-align:.15em;font-family:var(--mono);font-size:.55rem;letter-spacing:.12em;
-  padding:.2em .55em;border-radius:3px;background:color-mix(in srgb,var(--discover,#cf6d22) 14%,var(--white));color:var(--ink)}
-
-/* ==========================================================================
-   .awards — award badges in markup instead of certificate screenshots.
-   Text on ink uses explicit colours so the .sec p grey rule can't reach it.
-   ========================================================================== */
-.awards{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:.75rem;margin:1.75rem 0 .75rem}
-.award{display:flex;flex-direction:column;gap:.35rem;padding:1.4rem 1.4rem 1.3rem;background:var(--ink);border-radius:6px;position:relative;overflow:hidden}
-.award::after{content:"";position:absolute;right:-2.5rem;top:-2.5rem;width:8rem;height:8rem;border-radius:50%;
-  background:radial-gradient(circle,color-mix(in srgb,var(--lime) 30%,transparent),transparent 70%)}
-.award__icon{width:2.4rem;height:2.4rem;margin-bottom:.4rem}
-.award__icon svg{width:100%;height:100%;fill:none;stroke:var(--lime);stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
-.award__kicker{font-family:var(--mono);font-size:.56rem;letter-spacing:.12em;color:rgba(247,246,242,.62)}
-.award__name{font-size:1.35rem;font-weight:600;line-height:1.2;color:var(--paper)}
-.award__win{font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;color:var(--lime)}
-.award__how{margin-top:.35rem;font-size:.85rem;color:rgba(247,246,242,.72)}
-
-/* theme cards: same shell as the HMW grid, relabelled, with a per-card accent */
-.hmw__grid--themes li::before{content:"THEME " counter(hmw,decimal-leading-zero)}
-.hmw__grid--themes li::after{background:var(--acc,var(--lime))}
-.hmw__grid--themes b{display:block;margin-bottom:.35rem;font-weight:600;color:var(--ink)}
-.hmw__grid--themes span{color:var(--muted);font-size:.86rem}
-
-/* ---- Cryptid Quest additions -------------------------------------------- */
-/* four-phase variant of .dt (Discover, Define, Design, Deliver) */
-.dt--four{grid-template-columns:repeat(4,1fr)}
-.dt .p-define{--c:#5566d1}.dt .p-design{--c:#2b76bf}.dt .p-deliver{--c:#0c7f96}
-.dt--four .p-discover{--c:#7b5cc4}
-.dt--four::before{background:linear-gradient(90deg,#7b5cc4,#5566d1,#2b76bf,#0c7f96)}
-
-/* .focus — non-sequential focus areas (no connector, unlike .dt) */
-.focus{list-style:none;margin:1.75rem 0 .75rem;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(12rem,1fr));gap:.75rem}
-.focus li{display:flex;gap:.9rem;align-items:flex-start;padding:1.1rem;background:var(--white);border:1px solid var(--rule);border-radius:6px}
-.focus .dt__tile{flex:none;margin:0;width:2.8rem;height:2.8rem}
-.focus .dt__tile svg{width:1.4rem;height:1.4rem}
-.focus b{display:block;font-size:.95rem;font-weight:600;color:var(--ink)}
-.focus span.focus__d{display:block;margin-top:.25rem;font-size:.84rem;line-height:1.45;color:var(--muted)}
-
-/* .venn — the four-part tutorial framework, drawn */
-.venn{display:block;width:100%;max-width:28rem;height:auto;margin:1.75rem auto .75rem}
-.venn text{font-family:var(--font);fill:var(--ink)}
-.venn .venn__lbl{font-size:17px;font-weight:600}
-.venn .venn__mid{font-family:var(--mono);font-size:9.5px;letter-spacing:1.4px}
-
-/* .cardsort — the pile of cards participants sorted */
-.cardsort__pile{display:flex;flex-wrap:wrap;justify-content:center;gap:.7rem .8rem;margin:1.75rem auto .6rem;max-width:34rem}
-.cardsort__pile span{padding:.75rem 1.1rem;background:var(--white);border:1px solid #d9d4ea;border-radius:4px;
-  box-shadow:0 2px 0 #e7e3f3,0 6px 14px rgba(17,17,20,.07);font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;color:#5a3f9e;font-weight:700}
-.cardsort__pile span:nth-child(odd){transform:rotate(-2.5deg)}
-.cardsort__pile span:nth-child(3n){transform:rotate(3deg)}
-.cardsort__pile span:nth-child(4n){transform:rotate(-4deg)}
-.scope--even{grid-template-columns:repeat(3,1fr)}
-@media(max-width:52rem){.scope--even{grid-template-columns:1fr}}
-.scope__col--purple{--acc:#7b5cc4}.scope__col--blue{--acc:#2b76bf}.scope__col--teal{--acc:#0c7f96}
-
-/* .tree — a site map as nested lists */
-.tree{margin:1.75rem 0 .75rem}
-.tree__root{display:block;width:-moz-max-content;width:max-content;margin:0 auto 1.25rem;padding:.55rem 1.4rem;background:var(--ink);color:var(--paper);border-radius:4px;font-weight:600;font-size:.95rem;position:relative}
-.tree__root::after{content:"";position:absolute;left:50%;top:100%;width:2px;height:1.25rem;background:var(--rule)}
-.tree__branches{display:grid;grid-template-columns:1.7fr 1fr 1fr;gap:.75rem}
-@media(max-width:52rem){.tree__branches{grid-template-columns:1fr}}
-.tree__branch{background:var(--white);border:1px solid var(--rule);border-top:4px solid var(--acc,#7b5cc4);border-radius:4px;padding:1rem 1.1rem}
-.tree__branch h5{margin:0 0 .15rem;font-size:.95rem;font-weight:600;color:var(--ink)}
-.tree__branch small{display:block;margin-bottom:.8rem;font-family:var(--mono);font-size:.56rem;letter-spacing:.12em;color:var(--muted)}
-.tree__kids{list-style:none;margin:0;padding:0;display:grid;gap:.55rem 1.1rem}
-.tree__branch--wide .tree__kids{grid-template-columns:1fr 1fr}
-.tree__kids>li>b{display:block;font-size:.86rem;font-weight:600;color:var(--ink)}
-.tree__kids ul{list-style:none;margin:.25rem 0 0 .3rem;padding-left:.8rem;border-left:2px solid #e2def2}
-.tree__kids ul li{position:relative;padding:.1rem 0;font-size:.8rem;line-height:1.4;color:var(--muted)}
-.tree__kids ul li::before{content:"";position:absolute;left:-.8rem;top:.7em;width:.55rem;height:2px;background:#e2def2}
-
-/* the four-phase strip is an overview, not "you are here" — keep every phase full strength */
-.dt--four.dt--mini li .dt__tile{opacity:1}
-.dt--four.dt--mini .dt__name{color:var(--ink);font-weight:600}
-
-/* ==========================================================================
-   .lmline — the liquid chrome hairline dividing each case study hero from
-   its role/team/timeline/tools rail. 2px, fading out at both ends, tinted
-   lime→pink like the home hero and the key buttons.
-   ========================================================================== */
-.lmline{
-  position:relative;isolation:isolate;overflow:hidden;height:2px;border-radius:2px;
-  margin-top:clamp(2.5rem,5vw,3.5rem);background:var(--rule-dark);
-  -webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);
-          mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)
-}
-.lmline + .rail{margin-top:0;border-top:0}
-.lmline__canvas{position:absolute;inset:0}
-.lmline__canvas canvas{display:block;width:100%!important;height:100%!important}
-.lmline__tint{position:absolute;inset:0;mix-blend-mode:color;
-  background:linear-gradient(90deg,var(--lime) 0%,#e6f7b0 38%,#ff9bd4 68%,var(--pink) 100%)}
-/* no WebGL: a still brand gradient in place of the old flat rule */
-.lmline.is-failed .lmline__canvas{display:none}
-.lmline.is-failed{background:linear-gradient(90deg,var(--lime),var(--pink));opacity:.6}
-
-/* ==========================================================================
-   .bp — a service blueprint in markup: stages across, lanes down, with the
-   lines of interaction, visibility and internal interaction between lanes.
-   Key moments carry a numbered tag matching the outcomes listed after it.
-   ========================================================================== */
-.bp{--lab:9.5rem;--col:8.2rem;margin:1.75rem 0 .75rem;border:1px solid var(--rule);border-radius:4px;background:var(--white);overflow-x:auto;-webkit-overflow-scrolling:touch}
-.bp__in{min-width:calc(var(--lab) + 8 * var(--col));padding:.9rem .6rem 1rem 0}
-.bp__row{display:grid;grid-template-columns:var(--lab) repeat(8,minmax(var(--col),1fr));gap:0 .5rem;align-items:stretch;padding:.3rem 0}
-.bp__lab{position:sticky;left:0;z-index:3;display:flex;align-items:center;padding:0 .75rem;background:var(--white);
-  border-right:1px solid var(--rule);font-size:.76rem;font-weight:600;color:var(--ink);line-height:1.25}
-.bp__card{position:relative;padding:.55rem .6rem;border-radius:6px;font-size:.72rem;line-height:1.35;color:var(--ink);background:var(--c)}
-.bp__row--customer .bp__card{--c:#eee0fd}.bp__row--front .bp__card{--c:#fdedbb}
-.bp__row--back .bp__card{--c:#dbe9fb}.bp__row--support .bp__card{--c:#ececef}
-.bp__line{display:grid;grid-template-columns:var(--lab) 1fr;align-items:center;margin:.15rem 0}
-.bp__line span{position:sticky;left:0;z-index:3;padding:.1rem .75rem;background:var(--white);border-right:1px solid var(--rule);
-  font-family:var(--mono);font-size:.54rem;letter-spacing:.1em;color:var(--pink-text)}
-.bp__line i{display:block;border-top:1.5px dashed #f2a9bd}
-.bp__card--key{box-shadow:0 0 0 2px var(--pink)}
-.bp__tag{display:inline-grid;place-items:center;width:1.2rem;height:1.2rem;border-radius:50%;background:var(--pink);color:var(--ink);
-  font-family:var(--mono);font-size:.6rem;font-weight:700;line-height:1}
-.bp__card .bp__tag{position:absolute;top:-.55rem;right:-.45rem}
-.bp-out{list-style:none;margin:1.25rem 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(14rem,1fr));gap:.75rem}
-.bp-out li{padding:1rem 1.1rem;background:var(--white);border:1px solid var(--rule);border-radius:6px}
-.bp-out b{display:flex;align-items:center;gap:.55rem;margin-bottom:.4rem;font-size:.95rem;font-weight:600;color:var(--ink)}
-.bp-out span.bp-out__d{display:block;font-size:.85rem;line-height:1.5;color:var(--muted)}
-
-/* persona with the illustrated portrait as a side panel */
-.persona--art{display:grid;grid-template-columns:12rem minmax(0,1fr)}
-.persona__art{display:grid;place-items:center;padding:1rem;border-right:1px solid var(--rule);background:color-mix(in srgb,var(--acc) 7%,var(--white))}
-.persona__art img{display:block;width:100%;height:auto}
-@media(max-width:44rem){
-  .persona--art{grid-template-columns:1fr}
-  .persona__art{border-right:0;border-bottom:1px solid var(--rule)}
-  .persona__art img{max-width:12rem}
-}
-.persona--simple .persona__body{grid-template-columns:auto 1fr}
-@media(max-width:44rem){.persona--simple .persona__body{grid-template-columns:1fr}}
-
-/* numbered usability tasks — same card shell as the HMW grid */
-.hmw__grid--tasks li::before{content:"TASK " counter(hmw,decimal-leading-zero)}
-.hmw__grid--tasks li::after{background:var(--acc,var(--lime))}
-
-/* .feat — a feature: explanation beside its looping prototype clip */
-.feat{display:grid;grid-template-columns:minmax(0,1fr) 14rem;gap:1.75rem;align-items:center;margin:2rem 0}
-.feat h3{margin-top:0}
-.feat__clip{border-radius:10px;overflow:hidden;background:var(--white)}
-.feat__clip video{display:block;width:100%;height:auto}
-@media(max-width:44rem){.feat{grid-template-columns:1fr}.feat__clip{max-width:15rem;margin-inline:auto}}

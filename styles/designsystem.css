@@ -7,7 +7,7 @@
     --ink:#1a1a2e; --ink-2:#1a1a1a; --muted:#616161; --muted-2:#757575; --faint:#a2a9b0;
     --ok:#21720C; --ok-bg:#E1F4DC; --ok-line:#A4E294;
     --bad:#7E1616; --bad-bg:#FFE4E4; --bad-line:#FFC4C4; --bad-tint:#FFF9F9;
-    --warn:#A66900; --warn-bg:#FFF5DA; --warn-line:#FFE69C;
+    --warn:#8F5C00; --warn-bg:#FFF5DA; --warn-line:#FFE69C;
     --wv:#26215C; --wv-bg:#EEEDFE; --wv-line:#AFA9EC;
     --o-navy:#1b3e63; --o-action:#1b4e80; --o-gray:#f4f4f4; --o-gray2:#e0e0e0;
     --o-line:#d0d0d0; --o-blue:#0f62fe; --o-red:#da1e28; --o-amber:#b28600;
@@ -455,3 +455,78 @@
 .ds .tokenised{display:flex;flex-wrap:wrap;gap:.6rem;margin:1rem 0 0}
 .ds .tokenised code{font-family:var(--mono);font-size:.64rem;letter-spacing:.06em;color:var(--muted);
   border:1px solid var(--rule);border-radius:99px;padding:.3em .7em}
+
+/* ---- focus ring inside the product demos ----------------------------------
+   the portfolio's global :focus-visible is pink (--pink-text). inside .ds we
+   are showing the product, so the ring has to be the product's own action
+   colour or the demo misrepresents the system. */
+.ds :focus-visible{outline:2px solid var(--purple);outline-offset:2px;border-radius:4px}
+.ds .d-new .d-input:focus{outline:2px solid var(--purple);outline-offset:1px;
+  border-color:var(--purple);box-shadow:0 0 0 3px rgba(83,74,183,.14)}
+.ds .d-old .d-input:focus{outline:2px solid var(--o-action);outline-offset:1px}
+
+/* ---- before / after, side by side ---------------------------------------- */
+.ds .swap{display:grid;gap:1rem}
+.ds .swap__row{border:1px solid var(--line);border-radius:14px;background:var(--canvas);
+  padding:1.1rem 1.4rem 1.3rem}
+.ds .swap__name{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--muted-2);margin:0 0 1rem}
+.ds .swap__pair{display:grid;grid-template-columns:1fr 2.5rem 1fr;align-items:start;gap:1rem}
+.ds .swap__side{display:flex;flex-direction:column;align-items:flex-start;gap:.65rem;min-width:0}
+.ds .swap__tag{font-family:var(--mono);font-size:9.5px;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--faint)}
+.ds .swap__side>.d-btn,.ds .swap__side>.d-pill{flex:0 0 auto}
+.ds .swap__side .d-input{width:100%;max-width:15rem}
+.ds .swap__side .d-card{width:100%;max-width:16rem}
+.ds .swap__spec{font-family:var(--mono);font-size:10px;line-height:1.7;color:var(--muted-2);
+  letter-spacing:.02em;margin:.15rem 0 0}
+.ds .swap__arrow{display:flex;align-items:center;justify-content:center;
+  align-self:center;color:var(--purple);opacity:.5}
+.ds .swap__arrow .material-symbols-rounded{font-size:22px}
+@media(max-width:680px){
+  .ds .swap__pair{grid-template-columns:1fr;gap:1.1rem}
+  .ds .swap__arrow{justify-content:flex-start;transform:rotate(90deg);height:1.4rem}
+}
+
+/* ---- contrast audit table ------------------------------------------------- */
+.ds .a11y{width:100%;border-collapse:collapse;font-size:13.5px}
+.ds .a11y th{text-align:left;font-family:var(--mono);font-size:10px;letter-spacing:.07em;
+  text-transform:uppercase;color:var(--muted-2);font-weight:600;
+  padding:0 .9rem .7rem 0;border-bottom:1px solid var(--line-2)}
+.ds .a11y td{padding:.7rem .9rem .7rem 0;border-bottom:1px solid var(--line);vertical-align:middle}
+.ds .a11y tr:last-child td{border-bottom:0}
+.ds .a11y .sample{display:inline-flex;align-items:center;border-radius:6px;
+  padding:.3em .7em;font-size:12.5px;font-weight:600;white-space:nowrap}
+.ds .a11y .num{font-family:var(--mono);font-size:12.5px;color:var(--ink)}
+.ds .a11y .use{color:var(--muted);font-size:12.5px}
+.ds .pass,.ds .fail{display:inline-block;font-family:var(--mono);font-size:9.5px;font-weight:600;
+  letter-spacing:.07em;border-radius:99px;padding:.32em .65em;white-space:nowrap}
+.ds .pass{background:var(--ok-bg);color:var(--ok);border:1px solid var(--ok-line)}
+.ds .fail{background:var(--bad-bg);color:var(--bad);border:1px solid var(--bad-line)}
+.ds .a11y__scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.ds .a11y__scroll table{min-width:34rem}
+
+/* ---- component spec: do / don't ------------------------------------------- */
+.ds .spec{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.25rem}
+.ds .spec__col{border:1px solid var(--line);border-radius:14px;padding:1.25rem 1.4rem;
+  background:var(--canvas)}
+.ds .spec__col--do{border-left:4px solid var(--ok)}
+.ds .spec__col--dont{border-left:4px solid var(--bad)}
+.ds .spec__h{display:flex;align-items:center;gap:.45rem;font-family:var(--mono);font-size:10px;
+  letter-spacing:.08em;text-transform:uppercase;margin:0 0 .85rem;font-weight:600}
+.ds .spec__col--do .spec__h{color:var(--ok)}
+.ds .spec__col--dont .spec__h{color:var(--bad)}
+.ds .spec__h .material-symbols-rounded{font-size:16px}
+.ds .spec ul{margin:0;padding-left:1.05rem}
+.ds .spec li{font-size:13.5px;line-height:1.6;color:var(--muted);margin-bottom:.6rem}
+.ds .spec li:last-child{margin-bottom:0}
+.ds .spec li b{color:var(--ink);font-weight:600}
+@media(max-width:680px){.ds .spec{grid-template-columns:1fr}}
+
+/* ---- anatomy callouts ----------------------------------------------------- */
+.ds .anat{display:flex;flex-wrap:wrap;align-items:center;gap:1.5rem;
+  border:1px solid var(--line);border-radius:14px;background:var(--canvas);padding:1.6rem}
+.ds .anat__parts{display:grid;gap:.5rem;font-size:12.5px;color:var(--muted);min-width:15rem;flex:1}
+.ds .anat__parts div{display:flex;gap:.6rem;align-items:baseline}
+.ds .anat__parts em{font-style:normal;font-family:var(--mono);font-size:9.5px;letter-spacing:.07em;
+  text-transform:uppercase;color:var(--purple);flex:0 0 5.5rem}
