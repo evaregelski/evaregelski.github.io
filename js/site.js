@@ -1,3 +1,15 @@
+/* every new page opens at the top (unless the link points at a section, or the
+   visitor came back with the back button, which should return them where they were) */
+(function(){
+  try{
+    var nav=performance.getEntriesByType&&performance.getEntriesByType('navigation')[0];
+    if(location.hash||(nav&&nav.type==='back_forward'))return;
+    if('scrollRestoration' in history)history.scrollRestoration='manual';
+    var top=function(){window.scrollTo({top:0,left:0,behavior:'instant'})};
+    top();window.addEventListener('DOMContentLoaded',top);window.addEventListener('load',top);
+  }catch(e){}
+})();
+
 (function(){
   var links=[].slice.call(document.querySelectorAll('.toc a'));
   var secs=links.map(function(a){return document.querySelector(a.getAttribute('href'))}).filter(Boolean);
