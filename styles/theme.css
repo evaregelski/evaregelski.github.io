@@ -394,3 +394,15 @@ section.why p strong{color:#fff}
 @media(prefers-reduced-motion:reduce){.home-hero h1::after,.worklist__head h1::after,.intro h1::after,.cv-head h1::after{animation:none}}
 /* not on the home page, where the portrait already carries the chrome */
 .home-hero:has(.spec) h1::after{content:none}
+
+/* development: one list of projects, then a small "Coming soon" label (no serif heading) */
+.dev-sec .soon{display:inline-flex;align-items:center;margin:0;padding:.32rem .8rem;border-radius:999px;
+  background:var(--card);color:var(--muted);font-family:var(--font)!important;font-size:.72rem;font-weight:500;
+  letter-spacing:.06em!important;text-transform:uppercase}
+.dev-sec--soon .proj{margin-top:1.25rem}
+.dev-sec:not(.dev-sec--soon) .proj:first-child{margin-top:0}
+
+/* case study outcome: sans, full container width, key phrases in bold */
+.impactband .impactband__text{font-family:var(--font)!important;font-weight:400;font-size:clamp(1.3rem,1rem+1.1vw,1.85rem);
+  line-height:1.4;letter-spacing:-.02em;max-width:none;color:#3c4248}
+.impactband .impactband__text strong{color:var(--ink);font-weight:600}
